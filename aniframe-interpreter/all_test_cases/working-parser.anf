@@ -1,0 +1,53 @@
+set FRAME_RATE to 30
+set MAX_NUM_OF_FRAMES to 100
+set CANVAS_WIDTH to 1000
+set CANVAS_HEIGHT to 1000
+
+# hello
+# i'm happy
+const x: Object = "hello"
+x: Number
+x: Number = 5
+x = "senpai" + 5 ^ 3 < "elyssia" + "mark" * "hans" && "hello"
+
+erio: List = [cousin, denpa, onna]
+
+(3 + 5) * 4
+
+x.flap() + 3
+
+func hello(x: Number, y: Number):
+    x = 3 - "senpai" % 7 / 4 + 5 ^ 3 * 5
+    x = 3 + "senpai" % 7 / 4 - 5 ^ 3 * 5
+    break
+
+if x == 3:
+    hello(6, x=5)
+    hello(6, 7)
+else if x > 4 + 4:
+    hello(y=x, 
+    h=7)
+else:
+    hello(5+4)
+
+for FRAME 5 to FRAME 10:
+    hello(5+4)
+
+for x in makr:
+    hello(5)
+
+for x in [4, 5]:
+    hello(6)
+
+for x in [14, 
+15]:
+    hello(6)
+
+while x < 5:
+    mark
+
+func hi(x, y) returns Number, Object:
+    x = "senpai" + 5 ^ 3
+    return dog, shoob
+
+x[1]

@@ -1,0 +1,41 @@
+{
+  "name": "p5.js-widget",
+  "version": "0.0.1",
+  "description": "Embeddable widget for p5.js sketches",
+  "main": "bundle.js",
+  "dependencies": {
+    "autoprefixer": "^6.3.6",
+    "codemirror": "^5.13.4",
+    "css-loader": "^0.23.1",
+    "esprima": "^2.7.2",
+    "postcss": "^5.0.19",
+    "postcss-custom-properties": "^5.0.0",
+    "postcss-loader": "^0.8.2",
+    "raw-loader": "^0.5.1",
+    "react": "^0.14.8",
+    "react-addons-pure-render-mixin": "^0.14.8",
+    "react-dom": "^0.14.8",
+    "style-loader": "^0.13.1",
+    "ts-loader": "^0.8.1",
+    "typescript": "^1.8.9",
+    "underscore": "^1.8.3",
+    "webpack": "^1.12.14"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "mocha-phantomjs": "^4.0.2",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "scripts": {
+    "test": "webpack && mocha-phantomjs test/index.html",
+    "bundle": "webpack",
+    "start": "webpack-dev-server --host 0.0.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/toolness/p5.js-widget.git"
+  },
+  "author": "Atul Varma <varmaa@gmail.com>",
+  "license": "LGPL-2.1"
+}

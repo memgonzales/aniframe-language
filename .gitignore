@@ -1,0 +1,117 @@
+# For aniframe browser
+#db sql
+db.sqlite3
+
+# Python
+*.py[cod]
+*.$py.class
+
+# VS Code
+*.vscode
+**/.vscode/
+
+# virtual environment
+.env/
+env/
+/.env
+
+# Django
+*.log
+*.pot
+*.pyc
+*__pycache__
+# *media
+*.DS_Store
+
+# Backup Files
+*.bak
+
+#static files
+React-Django/staticfiles
+./staticfiles
+
+# react frontend
+
+# dependencies
+aniframe-browser/aniframe/frontend/node_modules
+aniframe-browser/aniframe/frontend/.pnp
+aniframe-browser/aniframe/frontend/.pnp.js
+aniframe-browser/aniframe/frontend/.pnp.js
+
+# testing
+aniframe-browser/aniframe/frontend/coverage
+
+# production
+aniframe-browser/aniframe/frontend/build
+
+# misc
+aniframe-browser/aniframe/frontend/.DS_Store
+aniframe-browser/aniframe/frontend/.env.local
+aniframe-browser/aniframe/frontend/.env.development.local
+aniframe-browser/aniframe/frontend/.env.aniframe-browser/aniframe.local
+aniframe-browser/aniframe/frontend/.env.production.local
+
+aniframe-browser/aniframe/frontend/npm-debug.log*
+aniframe-browser/aniframe/frontend/yarn-debug.log*
+aniframe-browser/aniframe/frontend/yarn-error.log*
+
+# For p5.js widget
+aniframe-browser/p5-widget/p5.js-widget/node_modules
+*.bundle.js
+*.bundle.js.map
+aniframe-browser/p5-widget/p5.js-widget/p5-widget.js
+aniframe-browser/p5-widget/p5.js-widget/p5-widget.js.map
+website
+
+
+#  For aniframe interpreter
+antlr/
+.antlr/
+__pycache__/
+
+**/.DS_Store
+/**/.project
+/**/.classpath
+/**/.settings/
+/**/target
+/**/bin
+
+# Visual Studio Generated
+.antlr
+.fetch_time_cache
+.vs/
+.vscode/
+.gradle/
+
+#IntelliJ Idea project files
+.idea/
+*.iml
+/**/gen
+*.tokens
+out
+
+# Ignore C# regression temporaries.
+**/Generated*/
+
+# Ignore Emacs backup files.
+*~
+\#*\#
+
+# Ignore downloaded temporaries create by _scripts/get-antlr.ps1
+antlr4-*-complete.jar
+
+*.scratch
+scratch/
+scratch
+
+*.java
+!IndentAntlrLexer.java
+*.class
+*.interp
+
+aniframe-interpreter/PARSER SRC/AniFrameParser.py
+aniframe-interpreter/PARSER SRC/AniFrameLexer.py
+*Listener.py
+*Visitor.py
+
+*.tmp

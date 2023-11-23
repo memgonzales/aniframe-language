@@ -1,0 +1,32 @@
+# Here's a comment :) Don't tokenize me please
+set FRAME_RATE to 60
+set MAX_NUM_OF_FRAMES to 100
+set CANVAS_WIDTH to 400
+set CANVAS_HEIGHT to 200
+
+eye_level: Number = 1
+
+name: Text = "Mark Hans"
+banner: Text = "Elyssia B\a\r\rie O\ng"
+greetings: Text = "\"Compiler theory\" is great!"
+
+face: Object = circle(radius = 3e4, x = -3.5, y = 5)
+eye2: Object = triangle(radius = 2.5E-4, x = 2, y = eye_level)
+
+faceColor: Color = "blue"
+eyeColor: Color = "rgb(255, 250, 120, 0.5)"
+
+eye1.color(eyeColor)
+face.color(faceColor)
+
+dog: Object
+dog.add(face)
+dog.add(eye2)
+
+sun: Object
+sun = circle(radius = 5, x = 1, y = 9)
+
+sun.copy(start_frame = 1, end_frame = 5)
+
+for fr 1 to fr 5:
+    dog.move(dest_x = 3 * 9 % 5, dest_y = eye_level + 3)

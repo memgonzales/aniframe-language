@@ -1,0 +1,39 @@
+# Just trying to get a bird to fly
+set FRAME_RATE to 30
+set MAX_NUM_OF_FRAMES to 100
+set CANVAS_WIDTH to 1000
+set CANVAS_HEIGHT to 1000
+
+bird_torso: Object = rectangle(400, 400, 0, 0)
+bird_wing: Object = triangle(400, 800, 0, 400)
+
+bird_torso.fill("#F9DC35")
+bird_torso.stroke("#000001")
+bird_wing.fill("#F9DC35")
+bird_wing.stroke("#000001")
+
+bird: Object
+bird.add(bird_torso)
+bird.add(bird_wing)
+
+bg: Object = rectangle(CANVAS_WIDTH, CANVAS_HEIGHT, 0, 0)
+bg.fill("#87CEEB")
+bg.add(bird)
+
+func flap(wing: Object, start_fr: Number, end_fr: Number):
+    for FRAME start_fr to FRAME end_fr:
+        wing.flipY()
+
+func flap_back(bird: Object, wing: Object, start_fr: Number, end_fr: Number):
+
+    bird.flipX()
+
+    for FRAME start_fr to FRAME end_fr:
+        wing.flipY()
+
+
+flap(bird_wing, 1, 5)
+bird_wing.flap_back(6, 10)
+
+
+

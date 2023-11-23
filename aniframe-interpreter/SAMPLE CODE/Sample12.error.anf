@@ -1,0 +1,42 @@
+func flap(wing: Object, start_fr: Number, end_fr: Number):
+    for FRAME start_fr to end_fr:
+        wing.flipY())
+
+func flap_back(bird: Object, wing: Object, start_fr: Number, end_fr: Number):
+    
+    bird.flipX()
+
+    for FRAME start_fr to FRAME end_fr:
+        wing.flipY()
+
+func flap_back_wrong1(, bird: Object, wing: Object, start_fr: Number, end_fr: Number):
+
+    bird.flipX()
+
+
+func flap_back_wrong2(bird: Object, wing: Object, start_fr: Number, end_fr: Number,):
+
+    bird.flipX()
+
+func flap_back_with_return(bird: Object, wing: Object, start_fr: Number, end_fr: Number) returns Number, Number:
+
+    return 1, 2
+
+func flap_back_wrong2_with_return(bird: Object, wing: Object, start_fr: Number, end_fr: Number) returns , Number:
+
+    return 1, 2
+
+func flap_back_wrong3_with_return(bird: Object, wing: Object, start_fr: Number, end_fr: Number) returns Number,:
+
+    return 1, 2
+
+func flap_back_wrong4_with_return(bird: Object, wing: Object, start_fr: Number, end_fr: Number) returns ,:
+
+    return 1, 2
+
+func flap_back_wrong5_with_return(bird: Object, wing: Object, start_fr: Number, end_fr: Number) returns :
+
+    return 1, 2
+
+flap(wing-=bird_wing, start_fr += 1, end_fr *= 5);
+bird_wing.flap_back(6, 10)

@@ -1,0 +1,136 @@
+:root {
+  --very-light-gray: #f0f0f0;
+  --light-pink: #ffe5ea;
+  --dark-pink: #ec245e;
+  --blueish: #30b8e6;
+  --ui-font: Montserrat, sans-serif;
+  --code-font: "Monaco", "Menlo", "Ubuntu Mono", "Consolas",
+               "source-code-pro", monospace;
+}
+
+html,
+body,
+#app-holder,
+.app {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+button {
+  font-size: 14px;
+  font-family: var(--ui-font);
+  font-weight: normal;
+  color: black;
+  border: 1px solid var(--dark-pink);
+  background: inherit;
+  color: var(--dark-pink);
+  border-radius: 2px;
+  padding: 2px 12px;
+  cursor: pointer;
+}
+
+button:hover,
+button:hover .open-iconic {
+  fill: var(--blueish);
+  color: var(--blueish);
+  border-color: var(--blueish);
+}
+
+a.p5-logo {
+  margin-left: 10px;
+  margin-right: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+a.p5-logo img {
+  height: 25px;
+}
+
+.open-iconic {
+  fill: var(--dark-pink);
+  height: 16px;
+  width: 16px;
+  vertical-align: -10%;
+  margin-right: 5px;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+.status-bar {
+  border-top: 1px solid var(--dark-pink);
+  background: var(--very-light-gray);
+  min-height: 1em;
+  font-family: var(--code-font);
+  padding: 8px;
+}
+
+.error-message .error-message-line {
+  font-family: var(--ui-font);
+  font-weight: normal;
+  color: red;
+}
+
+.toolbar {
+  display: flex;
+}
+
+.toolbar button {
+  margin: 10px;
+}
+
+.panes {
+  flex: 1;
+  display: flex;
+  border-top: 1px solid var(--dark-pink);
+}
+
+
+.panes .editor-holder {
+  flex: 1;
+
+  /* We need this for horizontal scrolling to work properly.
+   * Very weird. */
+  overflow-x: hidden;
+}
+
+.panes .preview-holder-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.panes .preview-holder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-left: 16px solid var(--very-light-gray);
+}
+
+.panes .preview-holder-wrapper iframe {
+  flex: 1;
+  border: none;
+}
+
+.CodeMirror {
+  font-family: var(--code-font);
+
+  /* If we don't add this, the final characters on some lines aren't
+   * visible if the editor has a horizontal scrollbar. Weird. */
+  padding-right: 1em;
+}
+
+.CodeMirror-gutters {
+  border-right: none;
+  background: var(--very-light-gray);
+}
+
+.error-line {
+  background: var(--light-pink);
+}

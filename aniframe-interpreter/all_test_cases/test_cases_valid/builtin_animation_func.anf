@@ -1,0 +1,7 @@
+wheel: Object = circle(radius, 2,3)
+wheel.moveX(rand_int(), start_frame=1, end_frame=4).moveY(rand_num(3,6),4,7)
+wheel.move(x = 2, y = 3,start_frame = 7,end_frame=11).shear(deg_x=120, deg_y=30, start_frame=1, end_frame=3)
+wheel.turn("clockwise",angle=90,start_frame=11,end_frame=13)
+
+for fr 6 to fr 16:
+    wheel.flipX().flipY().flip("horizontal")

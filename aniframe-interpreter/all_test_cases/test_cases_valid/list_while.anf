@@ -1,0 +1,7 @@
+banner: Object = rectangle(width = 4.54e2, height = 297.5, x = 0, y = 0)
+list4: List = ["a", "n", "'", "t", "1", "", " ", "r"]
+
+ctr : Number = 0
+while ctr < 8:
+    banner.write(list4[ctr], 4.54e2 - 1.54e2, 200)
+    ctr += 1

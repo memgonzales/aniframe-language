@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "sourceMap": true,
+    "jsx": "react"
+  },
+  "files": [
+    "typings/custom.d.ts",
+    "typings/codemirror.d.ts",
+    "typings/react.d.ts",
+    "typings/react-dom.d.ts",
+    "typings/react-addons-pure-render-mixin.d.ts",
+    "typings/esprima/esprima.d.ts",
+    "typings/chai/chai.d.ts",
+    "test/main.tsx",
+    "test/test-loop-inserter.tsx",
+    "test/test-implicit-sketch.tsx",
+    "lib/pure-component.tsx",
+    "lib/defaults.ts",
+    "lib/autosaver.ts",
+    "lib/p5-widget.ts",
+    "lib/preview-frame.ts",
+    "lib/preview-frame-interface.ts",
+    "lib/falafel.ts",
+    "lib/implicit-sketch.ts",
+    "lib/loop-inserter.ts",
+    "lib/main.tsx",
+    "lib/app.tsx",
+    "lib/toolbar.tsx",
+    "lib/editor.tsx",
+    "lib/preview.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

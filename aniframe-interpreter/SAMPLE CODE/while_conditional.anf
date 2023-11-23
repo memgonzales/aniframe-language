@@ -1,0 +1,36 @@
+set FRAME_RATE to 30
+set CANVAS_WIDTH to 1000
+set CANVAS_HEIGHT to 1000
+
+ball1: Object = circle(147, 0, 238)
+ball1.fill("#Aa4a44")
+
+ball2: Object = circle(147, 0, 0)
+ball2.fill("rGB(26, 35, 126)")
+
+ball3: Object = circle(147, 0, -238)
+ball3.fill("green")
+
+while FRAME <= 1000:
+    ball1.moveX(10, FRAME, FRAME+1)
+    ball2.moveX(2, FRAME, FRAME+1)
+
+    while FRAME >= 501 && FRAME < 900:
+        ball2.moveX(15, FRAME, FRAME+1)
+        ball3.moveX(3, FRAME, FRAME+1)
+
+        if FRAME >= 700 && FRAME < 900:
+            ball1.moveX(0, FRAME, FRAME+1)
+        
+        while FRAME >= 901 && FRAME <= 1000:
+            ball3.moveX(12, FRAME, FRAME+1)
+
+            if FRAME >= 950 && FRAME <= 1000:
+                ball2.moveX(0, FRAME, FRAME+1)
+        
+
+        
+
+    
+
+
