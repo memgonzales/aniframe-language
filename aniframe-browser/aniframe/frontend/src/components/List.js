@@ -6,9 +6,8 @@ function List(props){
 
   return (
       <div className="code">
-        {/* <h1 >{props.filename}</h1> */}
         <p >{props.code}</p>
-        <button onClick={handleClick}>Delete</button>
+        <button className="btn btn-danger delete-btn" onClick={handleClick}>Delete</button>
       </div>
   )
 }

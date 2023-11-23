@@ -148,10 +148,10 @@ function Editor(){
         <div class="editor">
             <form className="editor-code">
                 <AceEditor
-                    focus="true"
+                    focus
                     value={editorCode}
                     width="100%"
-                    fontSize={16}
+                    fontSize={20}
                     placeholder="Enter anf code here..."
                     wrapEnabled="true"
                     highlightActiveLine="true"
@@ -160,8 +160,9 @@ function Editor(){
                     onChange={onChange}
                     name="ace-editor"
                     setOptions={{
-                    enableLiveAutocompletion: true,
-                    showLineNumbers: true,
+                      fontFamily: "Courier",
+                      enableLiveAutocompletion: true,
+                      showLineNumbers: true,
                     }}
                     editorProps={{ $blockScrolling: true }}
 
@@ -169,20 +170,24 @@ function Editor(){
 
                 <textarea className="editor-txt" onChange={onChange} name="code" value={txtAreaCode.code} spellCheck="false"/>
 
-                <div class="btn-div">
-                    <button onClick={createCode} class="btn submit-btn">Submit</button>
-                    <button onClick={resetCode} class="btn reset-btn">Reset</button>
+                <div class="btn-div row">
+                    <button onClick={createCode} class="btn btn-primary btn-lg submit-btn col">Submit</button>
+                    <button onClick={resetCode} class="btn btn-outline-danger btn-lg reset-btn col">Reset</button>
                 </div>
 
             </form>
-            
-            { codes && codes.map(code => <List
-                  key={code.id}
-                  id={code.id}
-                  code={code.code} 
-                  deletion ={DeleteCode}
-                />
-            )}
+            <br/>
+            <hr/>
+            <h3>Recent Codes</h3>
+            <div className="prev-codes overflow-auto">
+              { codes && codes.map(code => <List
+                    key={code.id}
+                    id={code.id}
+                    code={code.code} 
+                    deletion ={DeleteCode}
+                  />
+              )}
+            </div>
            
         </div>
 

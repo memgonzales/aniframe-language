@@ -2,26 +2,30 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    
+    --primary: #3a2547;
+    --danger: #be3c3c;
   }
-  html {
+
+  /* html {
     font-family: 'Courier New', Courier, monospace;
-  }
+  } */
   body {
     background: #eee;
     margin: 0 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   
-  header {
-    background-color: #9673c6;
+  .nav {
+    background-color: var(--primary);
     margin: auto -16px;
     padding: 16px 32px;
     box-shadow: 0 0 10px 0 #0000004d;
   }
   
-  header h1 {
+  .nav h1 {
     color: #fff;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 200;
+    font-weight: 400;
   }
   
   footer {
@@ -36,12 +40,13 @@
   footer p {
     color: #ccc;
   }
+
   .code {
     background: #fff;
     border-radius: 7px;
     box-shadow: 0 2px 5px #ccc;
     padding: 10px;
-    width: 300px;
+    width: 500px;
     margin: 16px;
     float: left;
   }
@@ -50,19 +55,20 @@
     margin-bottom: 6px;
   }
   .code p {
+    font-family: 'Courier New', Courier, monospace;
     font-size: 1.1em;
     margin-bottom: 10px;
     white-space: pre-wrap;
     word-wrap: break-word;
   }
   
-  .code button {
+  .delete-btn{
     position: relative;
     float: right;
     margin-right: 10px;
-    color: #222567;
+    color: #ffffff;
     border: none;
-    width: 36px;
+    width: fit-content;
     height: 36px;
     cursor: pointer;
     outline: none;
@@ -125,9 +131,27 @@
   gap: 20px;
 }
 
-.btn{
-  padding: 10px;
+.btn-primary{
+  background-color: #3a2547;
+  --bs-btn-hover-bg: #784d93;
+  --bs-btn-active-bg: #9862ba;
+  border: none;
 }
+
+.btn-outline-danger{
+  border-color: #be3c3c;
+  color: #be3c3c;
+  --bs-btn-hover-bg: #be3c3c;
+  --bs-btn-hover-color:var("white");
+}
+
+.prev-codes{
+  height: 350px;
+}
+
+/* .btn{
+  padding: 10px;
+} */
 
 .p5{
     width: 100%;

@@ -1,7 +1,7 @@
 function Header() {
   return (
-    <header>
-      <h1>AniFrame Code Test</h1>
+    <header className="nav sticky-top">
+      <h1>AniFrame</h1>
     </header>
   );
 }

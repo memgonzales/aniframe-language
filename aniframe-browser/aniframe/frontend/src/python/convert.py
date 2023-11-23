@@ -14,7 +14,7 @@ def convertAnf(str):
     f.close()
 
     print("hello world")
-    subprocess.run(["echo", "hello"])
+    # subprocess.run(["echo", "hello"])
 
     # return str
 
