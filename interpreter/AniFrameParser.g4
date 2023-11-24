@@ -34,7 +34,7 @@ expression:
 	| coordinates
 	| list
 	| member
-	| (IDENTIFIER DOT_SYMBOL)? function_call
+	| function_call
 	| unary_operator expression
 	| expression EXPONENT_OP expression
 	| expression (TIMES_OP | DIVIDE_OP | MOD_OP) expression
@@ -74,12 +74,8 @@ function_call:
 		};
 
 actual_parameters: (actual_parameter COMMA_SYMBOL)* actual_parameter;
-actual_parameter: positional_argument | keyword_argument;
+actual_parameter: positional_argument;
 positional_argument: expression;
-keyword_argument:
-	IDENTIFIER ASSIGN_OP expression
-	| IDENTIFIER compound_assignment_operator expression {notifyErrorListeners(_input.LT(-2), "Compound assignment operators are not allowed", null);
-		};
 
 // Variable declaration and initialization
 variable_declaration: IDENTIFIER COLON_SYMBOL DATA_TYPE;

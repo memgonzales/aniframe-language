@@ -116,15 +116,6 @@ class AniFrameParserListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by AniFrameParser#keyword_argument.
-    def enterKeyword_argument(self, ctx:AniFrameParser.Keyword_argumentContext):
-        pass
-
-    # Exit a parse tree produced by AniFrameParser#keyword_argument.
-    def exitKeyword_argument(self, ctx:AniFrameParser.Keyword_argumentContext):
-        pass
-
-
     # Enter a parse tree produced by AniFrameParser#variable_declaration.
     def enterVariable_declaration(self, ctx:AniFrameParser.Variable_declarationContext):
         pass
