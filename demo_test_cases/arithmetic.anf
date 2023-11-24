@@ -26,7 +26,6 @@ clock: Object
 clock += sec_hand
 clock += min_hand
 
-draw(clock)
 
 green_color: Color = clock_color - "#000000" - "rgb(255, 0, 0)" + "#FFFF00"
 
@@ -40,7 +39,7 @@ tree_coord /= {1000, 10}
 
 tree_top: Object = rectangle(tree_coord[0], tree_coord[1], 100, 100)
 
-draw(tree_top)
+
 
 clock += tree_top
 
@@ -50,8 +49,12 @@ angles = angles + [45*2, +90+90, -90+360, 180*4/2]
 
 clock = clock - tree_top 
 
-tree_top.turn(angles[rand_int % 5])
+tree_top.turn(angles[rand_int() % 5], 100, 200)
 
 num: Number = 543
 
-tree_top.turn(angles[num %= 5])
+tree_top.turn(angles[num % 5], 100, 200)
+
+
+draw(clock)
+draw(tree_top)
