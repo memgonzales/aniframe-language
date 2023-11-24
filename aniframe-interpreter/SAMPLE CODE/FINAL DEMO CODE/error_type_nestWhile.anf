@@ -24,28 +24,26 @@ bg.add(bird)
 
 func flap(wing: Object, start_fr: Number, end_fr: Number):
     for start_fr to end_fr:
-        wing.flipY()
+        wing.turnCC()
     func flap(wing: Object, start_fr: Number, end_fr: Number):
         for start_fr to end_fr:
-            wing.flipY()
+            wing.turnCC()
 
 func flap_back(bird: Object, wing: Object, start_fr: Number, end_fr: Number):
 
     bird.flipX()
 
     for start_fr to end_fr:
-        wing.flipY()
+        wing.turnCC()
         for start_fr to end_fr:
-            wing.flipY()
+            wing.turnCC()
             for start_fr to end_fr:
-                wing.flipY()
+                wing.turnCC()
 
     func flap_back(bird: Object, wing: Object, start_fr: Number, end_fr: Number):
 
-    bird.flipX()
-
     for start_fr to end_fr:
-        wing.flipY()
+        wing.turnC()
 
 
 flap(bird_wing, 1, 5)
