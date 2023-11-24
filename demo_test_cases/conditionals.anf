@@ -1,0 +1,62 @@
+shape1 = quad(58, 73, 29.000, 28.61, -3, 94.0076, 28.16, 77.19458)
+shape2: Object = triangle(235, 332, 396, 315.57, 169, 164) 
+
+start_fr = 1, 
+end_fr = 100
+num: Number = rand_num
+
+ctr: Number = 25
+
+if num > 400 || num < 0:
+    repeat 5:
+        if num > 400 || num < 0:
+            num = rand_num
+        else:
+            break
+
+if num > 0 && < 400:
+    if num < 100 || num > 300:
+        num = rand_num
+        repeat 10:
+            if num < 100 || num > 300:
+                num = rand_num
+            else:
+                break
+        
+    else:
+        if num > 100 && num < 300:
+            while num <= 199 || num >= 301:
+                num = rand_num
+            
+if start_fr < ctr && start_fr:
+    shape1.moveY(-num, start_fr, ctr)
+    shape2.moveY(num-0.000, start_fr, ctr)
+
+    start_fr += ctr
+
+    if start_fr == ctr || start_fr > ctr:
+        shape1.moveY(+num, start_fr, ctr*2)
+        shape2.moveY(num*-1, start_fr, ctr*2)
+
+        start_fr += ctr
+
+        if start_fr != ctr && start_fr >= 50:
+            shape1.moveY(0-num, start_fr, ctr*3)
+            shape2.moveY(+num, start_fr, 75)
+        
+            start_fr += ctr
+
+            if !(start_fr < 75):
+                shape1.moveY(num+0, start_fr, ctr*3)
+                shape2.moveY(-2*num+num, start_fr, 75) 
+
+                start_fr += ctr
+            
+                if start_fr >= end_fr:
+                    shape1.moveY(0, start_fr, start_fr)
+                    shape2.moveY(num-num, start_fr, start_fr) 
+
+                else:
+                    shape1.moveY(num-2*num, start_fr, end_fr)
+                    shape2.moveY(2*num-num, start_fr, end_fr) 
+
