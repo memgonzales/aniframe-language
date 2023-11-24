@@ -391,10 +391,10 @@ def hexrgb_to_colors(value):
         colors[1] = int(value[3:5],16)
         colors[2] = int(value[5:-1],16)
     elif is_rgb(value):
-        regex = r'^rgb\((\d{1,3})\,\s*(\d{1,3})\,\s*(\d{1,3})\)$'
+        regex = r'^rgb\(\s*(\d{1,3})\,\s*(\d{1,3})\,\s*(\d{1,3})\)$'
         vals = re.match(regex,value)
         for i in range(1,4):
-            colors[i-1] = vals.group(i)
+            colors[i-1] = int(vals.group(i))
 
     return colors
 
@@ -407,12 +407,11 @@ def rgb_to_colors(value):
     return colors
 
 def is_rgb(value):
-    regex = r'^rgb\((\d{1,3})\,\s*(\d{1,3})\,\s*(\d{1,3})\)$'
-    print(value)
+    regex = r'^rgb\(\s*(\d{1,3})\,\s*(\d{1,3})\,\s*(\d{1,3})\)$'
     vals = re.match(regex,value)
     if  vals != None:
         for i in range(1,4):
-            if not (vals.group(i) >= 0 or vals.group(i) <= 255):
+            if not (int(vals.group(i)) >= 0 and int(vals.group(i)) <= 255):
                 return False
         return True
     else:
@@ -516,10 +515,9 @@ class AniFrameParserVisitor(ParseTreeVisitor):
 
         else:
             stmnt = self.visit(ctx.getChild(0))
-            if isinstance(stmnt,defaultdict):
+            if isinstance(stmnt,defaultdict) or isinstance(stmnt,dict):
                 return stmnt
             var_name = stmnt[0]
-
             if var_name in VARIABLES:
                 return stmnt
             
@@ -531,6 +529,8 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                 case 'info':
                     if result[0]['data_type'] == "Object":
                         print(mapping.CLASSES[mapping.clean_identifier(result[0]['identifier'])])
+                    elif result[0]['data_type'] == "Color":
+                        print(f"rgb{result[0]['value'][0],result[0]['value'][1],result[0]['value'][2]}")
                     else:
                         print(result[0]['value'])
 
@@ -542,150 +542,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by AniFrameParser#expression.
     def visitExpression(self, ctx:AniFrameParser.ExpressionContext):
-        expr_txt = ctx.getText()
-        if '(' in expr_txt and '"' not in expr_txt:
-            #HANDLE FUNCTION CALLS
-            #ASSUME NO CHAINING
-            idx = 0
-            if '.' in expr_txt[:expr_txt.index('(')]:
-                idx = 2
-                #TODO
-                pass
-            else:
-                func_name,params = self.visit(ctx.getChild(idx))
-
-            match func_name:
-                case 'point':
-                    check = True if len(params) == 2 else False
-                    if check:
-                        for param in params:
-                            if param['data_type'] != "Number":
-                                check = False
-                                break
-                    if check:
-                        params = [param['value'] for param in params]
-                        return {'value': [func_name,params], 'data_type': 'Object'}
-                    else:
-                        #THROW ERROR
-                        raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
-                case 'line':
-                    check = True if len(params) == 4 else False
-                    if check:
-                        for param in params:
-                            if param['data_type'] != "Number":
-                                check = False
-                                break
-                        
-                    if check:
-                        return {'value': [func_name,params], 'data_type': 'Object'}
-                    else:
-                        #THROW ERROR
-                        raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
-                case 'curve':
-                    check = True if len(params) == 8 else False
-                    if check:
-                        for param in params:
-                            if param['data_type'] != "Number":
-                                check = False
-                                break
-                        
-                    if check:
-                        params = [param['value'] for param in params]
-                        return {'value': [func_name,params], 'data_type': 'Object'}
-                    else:
-                        #THROW ERROR
-                        raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
-                case 'circle':
-                    check = True if len(params) == 3 else False
-                    if check:
-                        for param in params:
-                            if param['data_type'] != "Number":
-                                check = False
-                                break
-                        
-                    if check:
-                        params = [param['value'] for param in params]
-                        return {'value': [func_name,params], 'data_type': 'Object'}
-                    else:
-                        #THROW ERROR
-                        raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
-                case 'ellipse':
-                    check = True if len(params) == 4 else False
-                    if check:
-                        for param in params:
-                            if param['data_type'] != "Number":
-                                check = False
-                                break
-                        
-                    if check:
-                        params = [param['value'] for param in params]
-                        return {'value': [func_name,params], 'data_type': 'Object'}
-                    else:
-                        #THROW ERROR
-                        raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
-                case 'triangle':
-                    check = True if len(params) == 6 else False
-                    if check:
-                        for param in params:
-                            if param['data_type'] != "Number":
-                                check = False
-                                break
-                        
-                    if check:
-                        params = [param['value'] for param in params]
-                        return {'value': [func_name,params], 'data_type': 'Object'}
-                    else:
-                        #THROW ERROR
-                        raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
-                case 'rectangle':
-                    check = True if len(params) == 4 else False
-                    if check:
-                        for param in params:
-                            if param['data_type'] != "Number":
-                                check = False
-                                break
-                        
-                    if check:
-                        params = [param['value'] for param in params]
-                        return {'value': [func_name,params], 'data_type': 'Object'}
-                    else:
-                        #THROW ERROR
-                        raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
-                case 'quad':
-                    check = True if len(params) == 8 else False
-                    if check:
-                        for param in params:
-                            if param['data_type'] != "Number":
-                                check = False
-                                break
-                        
-                    if check:
-                        params = [param['value'] for param in params]
-                        return {'value': [func_name,params], 'data_type': 'Object'}
-                    else:
-                        #THROW ERROR
-                        raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
-                case 'polygon':
-                    check = True if len(params) == 1 else False
-                    if check:
-                        for param in params:
-                            if param['data_type'] != "List":
-                                check = False
-                                break
-                            for item in param:
-                                if item['data_type'] != "Coord":
-                                    check = False
-                                    break
-                        
-                    if check:
-                        params = [param['value'] for param in params]
-                        return {'value': [func_name,params], 'data_type': 'Object'}
-                    else:
-                        #THROW ERROR
-                        raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
-                case _:
-                    pass
-        elif ctx.getChildCount() == 3:
+        if ctx.getChildCount() == 3:
             #Take the value in parenthesis
             if ctx.getChild(0).getText() == "(":
                 return self.visit(ctx.getChild(1))
@@ -946,8 +803,148 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                 res = eval("".join([opr,str(expr['value'])]))
                 return {'value': res, 'data_type': "Number"}
         elif ctx.getChildCount() == 1:
-            return self.visit(ctx.getChild(0))
+            val = self.visit(ctx.getChild(0))
+            
+            if isinstance(val,dict):
+                return val
+            else:
+                func_name,params = self.visit(ctx.getChild(0))
 
+                match func_name:
+                    case 'rand_num':
+                        pass
+                    case 'rand_int':
+                        pass
+                    case 'point':
+                        check = True if len(params) == 2 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                        if check:
+                            params = [param['value'] for param in params]
+                            return {'value': [func_name,params], 'data_type': 'Object'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'line':
+                        check = True if len(params) == 4 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                            
+                        if check:
+                            return {'value': [func_name,params], 'data_type': 'Object'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'curve':
+                        check = True if len(params) == 8 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                            
+                        if check:
+                            params = [param['value'] for param in params]
+                            return {'value': [func_name,params], 'data_type': 'Object'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'circle':
+                        check = True if len(params) == 3 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                            
+                        if check:
+                            params = [param['value'] for param in params]
+                            return {'value': [func_name,params], 'data_type': 'Object'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'ellipse':
+                        check = True if len(params) == 4 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                            
+                        if check:
+                            params = [param['value'] for param in params]
+                            return {'value': [func_name,params], 'data_type': 'Object'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'triangle':
+                        check = True if len(params) == 6 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                            
+                        if check:
+                            params = [param['value'] for param in params]
+                            return {'value': [func_name,params], 'data_type': 'Object'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'rectangle':
+                        check = True if len(params) == 4 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                            
+                        if check:
+                            params = [param['value'] for param in params]
+                            return {'value': [func_name,params], 'data_type': 'Object'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'quad':
+                        check = True if len(params) == 8 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                            
+                        if check:
+                            params = [param['value'] for param in params]
+                            return {'value': [func_name,params], 'data_type': 'Object'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'polygon':
+                        check = True if len(params) == 1 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "List":
+                                    check = False
+                                    break
+                                for item in param:
+                                    if item['data_type'] != "Coord":
+                                        check = False
+                                        break
+                            
+                        if check:
+                            params = [param['value'] for param in params]
+                            return {'value': [func_name,params], 'data_type': 'Object'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case _:
+                        pass
     # Visit a parse tree produced by AniFrameParser#coordinates.
     def visitCoordinates(self, ctx:AniFrameParser.CoordinatesContext):
         x_val = self.visit(ctx.getChild(1))
@@ -1046,12 +1043,6 @@ class AniFrameParserVisitor(ParseTreeVisitor):
     def visitPositional_argument(self, ctx:AniFrameParser.Positional_argumentContext):
         return self.visit(ctx.getChild(0))
 
-
-    # Visit a parse tree produced by AniFrameParser#keyword_argument.
-    def visitKeyword_argument(self, ctx:AniFrameParser.Keyword_argumentContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by AniFrameParser#variable_declaration.
     def visitVariable_declaration(self, ctx:AniFrameParser.Variable_declarationContext):
         iden,dtype = ctx.getText().split(':')
@@ -1087,7 +1078,8 @@ class AniFrameParserVisitor(ParseTreeVisitor):
         if expr.get('value') == None:
             iden = expr['identifier']
             raiseError(ctx,NameError,f"Identifier {iden} is not defined")
-    
+
+        #assign to array access member
         if '[' == ctx.getChild(1).getText():
             iden = ctx.getChild(0).getText()
             idx = self.visit(ctx.getChild(2))
@@ -1118,6 +1110,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                 color = is_hexColor(expr['value']) or is_rgb(expr['value']) 
                 if color:
                     VARIABLES[val]['value'] = hexrgb_to_colors(expr['value'])
+                    return val, VARIABLES[val]
                 else:
                     raiseError(ctx,TypeError,f'Invalid assignment statement')
             else:
