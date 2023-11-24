@@ -1,0 +1,44 @@
+set FRAME_RATE to 1
+set CANVAS_WIDTH to 500
+set CANVAS_HEIGHT to 500
+
+clock_color: Color = "#FF0000" + "rgb(0, 0, 255)" + "rgb(0, 0, 0)"
+
+clock_x: Number = 250
+clock_y: Number = 123
+clock_d: Number = clock_x-50
+
+clock_face: Object = circle(clock_x, clock_y, clock_d)
+clock_face.stroke(clock_color)
+
+sec_hand: Object = rectangle(clock_x, clock_y, 10/2, -90)
+sec_hand.fill(255,0,0)
+sec_hand.stroke(255,0,0)
+
+min_hand: Object = rectangle(clock_x, clock_y, -(-90), 2*2.5)
+min_hand.fill("#000000")
+
+clock: Object 
+clock += sec_hand
+clock += min_hand
+
+draw(clock)
+
+green_color: Color = clock_color - "#000000" - "rgb(255, 0, 0)" + "#FFFF00"
+
+tree_coord = Coord
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
