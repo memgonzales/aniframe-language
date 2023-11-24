@@ -8,14 +8,19 @@
 
 ## Setup Intructions
 1. Clone the repository 
-2. Set up the p5.js widget locally by following the instructions [here](https://github.com/memgonzales/p5.js-widget).
+2. Set up the p5.js widget locally:
+```
+ cd browser/p5-widget/p5.js-widget
+ npm install
+ ```
 To run the p5.js widget:
 ```
- cd p5-widget/p5.js-widget
+ cd browser/p5-widget/p5.js-widget
  npm start
  ```
 3. In a separate terminal, create your environment 
  ```
+ cd browser
  python -m venv env
  ```
 4. Activate your environment 
@@ -71,6 +76,7 @@ python manage.py runserver
 ## Additional Reminders
  - Remember to activate the virtual env for every start up of application:
 ```
+cd browser
 env\Scripts\activate.bat
 cd aniframe
 ```
