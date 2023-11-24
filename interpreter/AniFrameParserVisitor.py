@@ -382,14 +382,14 @@ def check_parameters(name,params,ctx):
 
 def is_hexColor(value):
     regex = r'^#[0-9A-Fa-f]{6}$'
-    return bool(re.match(regex,value[1:-1]))
+    return bool(re.match(regex,value))
 
 def hexrgb_to_colors(value):
     colors = [0,0,0]
     if is_hexColor(value):
-        colors[0] = int(value[2:4],16)
-        colors[1] = int(value[4:6],16)
-        colors[2] = int(value[6:-1],16)
+        colors[0] = int(value[1:3],16)
+        colors[1] = int(value[3:5],16)
+        colors[2] = int(value[5:-1],16)
     elif is_rgb(value):
         regex = r'^rgb\((\d{1,3})\,\s*(\d{1,3})\,\s*(\d{1,3})\)$'
         vals = re.match(regex,value)
@@ -530,7 +530,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                     print(result[0]['data_type'])
                 case 'info':
                     if result[0]['data_type'] == "Object":
-                        print(mapping.CLASSES[result[0]['identifier']])
+                        print(mapping.CLASSES[mapping.clean_identifier(result[0]['identifier'])])
                     else:
                         print(result[0]['value'])
 
@@ -672,6 +672,10 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                             if param['data_type'] != "List":
                                 check = False
                                 break
+                            for item in param:
+                                if item['data_type'] != "Coord":
+                                    check = False
+                                    break
                         
                     if check:
                         params = [param['value'] for param in params]
@@ -1651,6 +1655,8 @@ class AniFrameParserVisitor(ParseTreeVisitor):
         dtype = check_type(val)
         if dtype == "Number":
             val = literal_eval(val)
+        else:
+            val = val[1:-1]
         return {'value': val, 'data_type': dtype}
 
 
