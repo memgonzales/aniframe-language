@@ -135,7 +135,6 @@ def raiseError(ctx, error_type, error_msg):
         raise error_type(f'Error on line {line}: {error_msg}')
 
 def check_parameters(name,params,ctx):
-
     match name:
         case 'add':
             check = True if len(params) == 1 else False
@@ -386,7 +385,7 @@ def hexrgb_to_colors(value):
         colors[1] = int(value[4:6],16)
         colors[2] = int(value[6:-1],16)
     elif is_rgb(value):
-        regex = r'^rgb\((\d{1,3})\,(\d{1,3})\,(\d{1,3})\)$'
+        regex = r'^rgb\((\d{1,3})\,\s*(\d{1,3})\,\s*(\d{1,3})\)$'
         vals = re.match(regex,value)
         for i in range(1,4):
             colors[i-1] = vals.group(i)
@@ -395,14 +394,15 @@ def hexrgb_to_colors(value):
 
 def rgb_to_colors(value):
     colors = [0,0,0]
-    regex = r'^rgb\((\d{1,3})\,(\d{1,3})\,(\d{1,3})\)$'
+    regex = r'^rgb\((\d{1,3})\,\s*(\d{1,3})\,\s*(\d{1,3})\)$'
     vals = re.match(regex,value)
     for i in range(1,4):
         colors[i-1] = vals.group(i)
     return colors
 
 def is_rgb(value):
-    regex = r'^rgb\((\d{1,3})\,(\d{1,3})\,(\d{1,3})\)$'
+    regex = r'^rgb\((\d{1,3})\,\s*(\d{1,3})\,\s*(\d{1,3})\)$'
+    print(value)
     vals = re.match(regex,value)
     if  vals != None:
         for i in range(1,4):
@@ -513,7 +513,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
     # Visit a parse tree produced by AniFrameParser#expression.
     def visitExpression(self, ctx:AniFrameParser.ExpressionContext):
         expr_txt = ctx.getText()
-        if '(' in expr_txt:
+        if '(' in expr_txt and '"' not in expr_txt:
             #HANDLE FUNCTION CALLS
             #ASSUME NO CHAINING
             idx = 0

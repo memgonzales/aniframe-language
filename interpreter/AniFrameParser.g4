@@ -23,7 +23,7 @@ compound_statement:
 	| function_declaration_definition;
 
 draw_statement:
-	DRAW OPEN_PAREN_SYMBOL actual_parameter CLOSE_PAREN_SYMBOL;
+	IDENTIFIER DOT_SYMBOL DRAW OPEN_PAREN_SYMBOL actual_parameters CLOSE_PAREN_SYMBOL;
 
 // ================ SIMPLE STATEMENTS ================
 
