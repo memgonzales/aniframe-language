@@ -1,0 +1,60 @@
+# it's not a loop, it's a spiral :>
+set CANVAS_BACKGROUND to "#000000"
+
+angle = 2
+offset = 1.50*200
+value = 3.5
+speed = 1/10
+
+marker_color: Text = "#97Aba0"
+
+repeat 19:
+    marker_x = offset + cos(angle) * scalar
+    marker_y = offset + sin(angle) * scalar
+    marker = ellipse(marker_x, y, 10, 5*(1*2)) 
+    marker.fill("rgb(64, 145, 255)")
+
+    draw(marker)
+
+    angle += speed
+    value += speed
+
+    repeat 19:
+        marker_x = offset + cos(angle) * scalar
+        marker_y = offset + sin(angle) * scalar
+        marker = ellipse(marker_x, marker_y, 10, 5*(1*2)) 
+        marker.fill("#7C070A")
+
+        draw(marker)
+
+        angle += speed
+        value += speed
+
+        repeat 658:
+            marker_x = offset + cos(angle) * scalar
+            marker_y = offset + sin(angle) * scalar
+            marker = ellipse(marker_x, marker_y, 10, 5*(1*2)) 
+
+            if type(marker_color) == "Color":
+                marker.fill(marker_color)
+            
+            else: 
+                marker.fill("#0c3A14")
+
+            draw(marker)
+
+            angle += speed
+            value += speed
+
+            if marker_color != "#0c3A14":
+                 repeat 665:
+                    marker_x = offset + cos(angle) * scalar
+                    marker_y = offset + sin(angle) * scalar
+                    marker = ellipse(marker_x, marker_y, 10, 5*(1*2)) 
+                    marker.fill(0, 0, 0)
+
+                    draw(marker)
+            else: 
+                break
+
+
