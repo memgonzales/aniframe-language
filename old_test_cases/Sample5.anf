@@ -1,0 +1,24 @@
+set FRAME_RATE to 30
+set MAX_NUM_OF_FRAMES to 100
+set CANVAS_WIDTH to 1000
+set CANVAS_HEIGHT to 1000
+
+ground: Object = rectangle(900, 500, 0, 0)
+ground.fill("#926829")
+
+bg: Object = rectangle(CANVAS_WIDTH, CANVAS_HEIGHT, 0, 0)
+bg.fill("#87CEEB")
+bg.add(ground)
+
+func shake_ground(ground: Object, start_fr: Number, end_fr: Number):
+    ground.shearX(186.565)
+    ground.shearX(-153.74)
+    ground.shearY(asin(149.565) + 23)
+    ground.shearY(-254.80)
+
+repeat(5):
+    shake_ground(ground, 1, 5)
+
+ground.shear(x = 10.583^1.5, y = asin(-00.672))
+
+ground.info()

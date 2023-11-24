@@ -1,0 +1,39 @@
+
+height = 3
+ball : Object = ellipse()
+curr_frame = 1
+end_frame = 3
+ball.add(line(2,2,6,5))
+ball.add(point({4,4}))
+
+func jump_ball(ball: Object, height: Number, curr_frame: Number, end_frame: Number) returns Number, Number:
+    repeat(2):
+        ball.moveY(height,curr_frame,end_frame)
+        ball.moveY(0,curr_frame+3,end_frame+3)
+        curr_frame+=6
+        end_frame+=6
+        height+=5
+    return curr_frame, end_frame
+
+func roll_ball(ball: Object, destination: Number, curr_frame: Number, end_frame: Number) returns Number, Number:
+    ball.moveX(destination,curr_frame,end_frame)
+    return curr_frame,end_frame
+
+curr_pos = 0
+while(curr_pos <= CANVAS_WIDTH-1):
+    if curr_frame >= 20:
+        break
+
+    if curr_pos%2 == 0:
+        movement : Number = rand_int(0,5)
+        curr_frame, end_frame = roll_ball(ball,curr_pos+ movement,curr_frame,end_frame)
+        curr_pos += movement
+        curr_frame = end_frame
+        end_frame += 3
+
+    else if curr_pos%2 > 0: 
+        height = rand_num(height,height+5)
+        curr_frame, end_frame = jump_ball(ball,height,curr_frame,end_frame)
+        curr_pos-=-1
+
+clear()

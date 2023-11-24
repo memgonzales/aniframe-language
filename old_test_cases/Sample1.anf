@@ -1,0 +1,85 @@
+# Just trying to get a car to run
+set FRAME_RATE to 30
+set MAX_NUM_OF_FRAMES to 100
+set CANVAS_WIDTH to 20000
+set CANVAS_HEIGHT to 20000
+
+title: Text = "The S\t\anley Parable"
+desc: Text = "This is is a story of a car named S\t\anley. Stanley is from a company in a big building where he was car #427."
+
+car_body: Object = rectangle(width = 95.4e2, 
+                             height = 79.5e2, 
+                             x = 0, 
+                             y = 0)
+
+wheel1: Object = circle(radius = 1678, x = -3.5, y = -5)
+wheel2: Object = circle(1678, 3.5, -5)
+
+window_lvl: Number = 4270
+
+window1: Object = triangle(width = 30.0e2, 
+                           height = 29.5e2, 
+                           x = -23.75,
+                           y = window_lvl)
+
+window2: Object = triangle(30.0e2, 29.5e2, 23.75, window_lvl)
+
+window_color: Color = "#ADD8E6"
+car_color: Color = "rgb(136, 8, 8, 0.8)"
+wheel_color: Color = "black"
+
+car_body.fill(car_color)
+window1.fill(window_color)
+window2.fill(window_color)
+wheel1.stroke(wheel_color)
+wheel2.stroke(wheel_color)
+
+car: Object
+car += car_body
+car += window1
+car += window2
+car += wheel1
+car += wheel2
+
+bg: Object = rectangle(CANVAS_WIDTH, CANVAS_HEIGHT, 0, 0)
+bg.fill("#87CEEB")
+bg += car
+
+# add title and desc in canvas
+bg.write(text = title, x = 0, y = CANVAS_HEIGHT/8)
+bg.write(desc, 0, CANVAS_HEIGHT/8-5)
+
+land: Object = rectangle(CANVAS_WIDTH, CANVAS_HEIGHT/2, 0, -(CANVAS_HEIGHT/4))
+land.fill("#569c69")
+
+# add land, which would overlap the car
+bg.add(land)
+
+# place land behind the car
+land.bring_backward()
+
+
+trunk: Object = quad(x1 = 20, y1 = 30, x2 = 25, y2 = 30, x3 = 27.5, y3 = 0, x4 = 17.5, y4 = 0)
+leaves: Object = quad(10, 50, 35, 50, -(-10), 20, 35, 20)
+
+leaves.turnCC(45*2)
+
+tree: Object
+tree += trunk
+tree += leaves
+
+bg += tree
+
+bg.copy(1, 10)
+
+angle: Number = 1.5708
+angle.to_deg()
+
+for FRAME 1 to FRAME 10:
+    wheel1.turnC(angle)
+    wheel2.turnC(angle)
+
+    num = 0
+    num+=100
+
+    tree.moveX(num, FRAME, FRAME+1)

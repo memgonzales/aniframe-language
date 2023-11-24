@@ -1,0 +1,18 @@
+set MAX_NUM_OF_FRAMES to 100
+set CANVAS_WIDTH to 1000
+set CANVAS_HEIGHT to 1000
+
+sample_coordinate_wrong = {,}
+sample_coordinate_wrong = {1,}
+sample_coordinate_wrong = {,2}
+sample_coordinate_wrong = {1,2,}
+sample_coordinate_wrong = {1,2,3}
+sample_coordinate_wrong = {1,2,3,}
+spikes = [1,2,3,4,5+6]
+
+while x-2 in spikes:
+    if spikes[2] >= 2:
+        break
+
+repeat for x in spikes:
+    counter += spikes[x]

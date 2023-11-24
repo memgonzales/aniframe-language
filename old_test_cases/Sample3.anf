@@ -1,0 +1,39 @@
+set MAX_NUM_OF_FRAMES to 100
+set CANVAS_WIDTH to 1000
+set CANVAS_HEIGHT to 1000
+
+coord_ball: Coord = {-750, 200}
+
+ball: Object = circle(200, coord_ball)
+ball.fill("blue")
+
+coord_floor: Coord = {0, CANVAS_HEIGHT/(sqrt(16))}
+
+floor: Object = rectangle(CANVAS_WIDTH, CANVAS_HEIGHT/2, coord_floor)
+floor.fill("#808080")
+floor.type()
+
+
+coord_lamp: Coord = {-ball_x, 250}
+
+lamp_post: Object = rectangle(200, 500, coord_lamp)
+lamp_post.fill("#000000")
+
+frames: List = [1, 2, 3, 4, 5, 6, 7, 8, 9, "10"]
+
+
+func get_distance(loc1: Coord, loc2: Coord) returns Number:
+
+    return sqrt((loc2[0]-loc1[0])^2 + (loc2[1]-loc1[1])^2)
+
+
+dist: Number = get_distance(coord_ball, coord_lamp)
+
+for i in frames:
+
+    if dist != 0 || i < 10 :
+        ball.moveX(10, i, i+1)
+        dist-=10
+    
+    if i == 10 && !dist:
+        ball.moveX(100, i, 1)
