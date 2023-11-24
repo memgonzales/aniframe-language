@@ -31,8 +31,6 @@ func flap(wing: Object, start_fr: Number, end_fr: Number):
 
 func flap_back(bird: Object, wing: Object, start_fr: Number, end_fr: Number):
 
-    bird.flipX()
-
     for start_fr to end_fr:
         wing.turnCC()
         for start_fr to end_fr:
