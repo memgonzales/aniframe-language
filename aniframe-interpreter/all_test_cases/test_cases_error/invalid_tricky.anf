@@ -1,4 +1,0 @@
-greetings: Text = '\"hello\" he said'
-wher#areya?
-greetings: Text = "You are wrong"
-ded : Object = circle(radius = 3e4, x = 3.5, y = 5)

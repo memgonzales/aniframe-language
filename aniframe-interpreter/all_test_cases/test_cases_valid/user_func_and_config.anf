@@ -1,7 +1,0 @@
-set FRAME_RATE to 30
-set MAX_NUM_OF_FRAMES to 100
-set CANVAS_WIDTH to 1280
-set CANVAS_HEIGHT to 720
-
-function animate_the_stanley_parable(preamble: Text):
-    return preamble + " This is is a story of a car named S\t\anley. Stanley is from a company in a big building where he was car #427."

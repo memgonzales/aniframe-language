@@ -1,7 +1,0 @@
-function create_wheel(radius: Number, x: Number, y: Number):
-    return circle(radius, x, y)
-
-car_body: Object = rectangle(width = 45.4e1, height = 297.5, x = 0, y = 0)
-
-repeat 4:
-    car_body += create_wheel(rand_num(3^2, 10), 3.5, 5)

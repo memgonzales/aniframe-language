@@ -1,8 +1,0 @@
-king += sceptre + diadem + cape + crown
-
-sceptre.bring_forward()
-diadem.bring_to_front()
-cape.bring_to_back()
-crown.bring_backward()
-
-king.move(dest_x=6, dest_y=5, start_frame=1, end_frame=4)

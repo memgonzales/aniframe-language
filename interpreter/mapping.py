@@ -1,20 +1,27 @@
 from collections import defaultdict, OrderedDict
 from collections.abc import Iterable
 
+# DEFAULTS
+DEFAULT_FILL = '#FFFFFF'
+DEFAULT_STROKE = '#000000'
+
 # CONFIGURABLES
+FRAME_RATE = 60
 MAX_FRAMES = int(1e100)
+CANVAS_WIDTH = 400
+CANVAS_HEIGHT = 400
+CANVAS_BACKGROUND = DEFAULT_FILL
 
-# DICTIONARY
+# DICTIONARIES
 VARIABLES = defaultdict(OrderedDict)
-
 CLASSES = defaultdict(OrderedDict)
-CLASSES_HIERARCHY = defaultdict(OrderedDict)
+DRAW_CLASSES = defaultdict(OrderedDict)
 
+# COUNTERS
 EXPR_NO_IDENTIFIER_CTR = 0
 COMPOSITE_OBJ_NO_IDENTIFIER_CTR = 0
 
-DRAW_CLASSES = defaultdict(OrderedDict)
-
+# INDICES
 FILL_IDX = 0
 STROKE_IDX = 1
 
@@ -22,18 +29,15 @@ START_FRAME_IDX = 0
 END_FRAME_IDX = 1
 SCRIPT_IDX = 2
 
-DEFAULT_FILL = '#FFFFFF'
-DEFAULT_STROKE = '#000000'
+# ========
+# UTILITY
+# ========
 
 def clean_identifier(name):
     return '_' + name
 
 def is_function(name):
     return name.endswith('()')
-
-def write(src_code):
-    with open('src.anf-int', 'w') as f:
-        f.write(src_code)
 
 def flatten_list(xs):
     for x in xs:
@@ -42,14 +46,26 @@ def flatten_list(xs):
         else:
             yield x
 
-def print_src_code(background=DEFAULT_FILL):
-    ret = 'function setup() {createCanvas(1000, 1000);}\n'
+# ================================
+# GENERATION OF INTERMEDIATE CODE
+# ================================
+
+def write(src_code):
+    with open('src.anf-int', 'w') as f:
+        f.write(src_code)
+
+def print_src_code():
+    ret = 'function setup() {\n'
+    ret += f'    createCanvas({CANVAS_WIDTH}, {CANVAS_HEIGHT});\n'
+    ret += f'    frameRate({FRAME_RATE});\n'
+    ret += '}'
 
     ret += 'function draw() {\n'
-    ret += f'    background("{background}");\n'
+    ret += f'    background("{CANVAS_BACKGROUND}");\n'
 
     ret += print_display()
 
+    ret += f'    if (frameCount > {MAX_FRAMES}) {{frameCount = 0;\n}}'
     ret += '}\n'
 
     ret += print_classes()
@@ -93,7 +109,6 @@ def print_display_object(object):
     return ret
 
 def print_display():
-    print(DRAW_CLASSES)
     ret = ''
 
     for _, object in DRAW_CLASSES.items():
@@ -136,6 +151,10 @@ def print_classes():
 
     return ret
 
+# =======
+# OBJECT
+# =======
+
 def convert_object_to_p5(name):
     CLASSES[name] = OrderedDict()
     CLASSES[name]['constructor()'] = OrderedDict()
@@ -143,8 +162,6 @@ def convert_object_to_p5(name):
     CLASSES[name]['display()'] = [OrderedDict([('fill', None),
                                                 ('stroke', None),
                                                 ('shape', None)])]
-
-    CLASSES_HIERARCHY[name] = [name]
 
 def convert_object_new_to_p5(name):
     convert_object_to_p5(clean_identifier(name))
@@ -194,20 +211,26 @@ def convert_write_to_p5(name, text, x, y):
 def convert_color_to_p5(name, value):
     VARIABLES[clean_identifier(name)] = value
 
-def convert_fill_to_p5(object, color):
+def convert_fill_to_p5(object, r, g, b):
     for shape in CLASSES[clean_identifier(object)]['display()']:
-        shape['fill'] = color
+        shape['fill'] = f'rgb({r}, {g}, {b})'
 
-def convert_stroke_to_p5(object, color):
+def convert_stroke_to_p5(object, r, g, b):
     for shape in CLASSES[clean_identifier(object)]['display()']:
-        shape['stroke'] = color
+        shape['stroke'] = f'rgb({r}, {g}, {b})'
 
 def convert_object_assign_to_p5(base_object, new_object):
     base_object = clean_identifier(base_object)
     new_object = clean_identifier(new_object)
 
+    CLASSES[base_object] = CLASSES[new_object]
+
+def add_object_internal(base_object, new_object):
+    base_object = clean_identifier(base_object)
+    new_object = clean_identifier(new_object)
+
     CLASSES[base_object]['display()'] += CLASSES[new_object]['display()']
-    CLASSES_HIERARCHY[base_object].append(CLASSES_HIERARCHY[new_object])
+
 
 def convert_object_add_to_p5(operand1, operand2):
     # Identifier cleaning is done by convert_object_assign_to_p5
@@ -217,12 +240,12 @@ def convert_object_add_to_p5(operand1, operand2):
     convert_object_new_to_p5(mock_identifier)
 
     try:
-        convert_object_assign_to_p5(mock_identifier, operand1)
+        add_object_internal(mock_identifier, operand1)
     except:
         convert_object_new_to_p5(operand1)
 
     try:
-        convert_object_assign_to_p5(mock_identifier, operand2)
+        add_object_internal(mock_identifier, operand2)
     except:
         convert_object_new_to_p5(operand2)
 
@@ -275,13 +298,63 @@ def convert_move_to_p5(name, x, y, start_frame, end_frame):
     if name not in DRAW_CLASSES:
         DRAW_CLASSES[name] = OrderedDict()
 
-    script = f'translate(new p5.Vector(frameCount - {start_frame} + {x}, frameCount - {start_frame} + {y}));\n'
+    signX = 1
+    if x < 0:
+        signX = -1
+
+    signY = 1
+    if y < 0:
+        signY = -1
+
+    script = f'translate(new p5.Vector({signX} * (frameCount - {start_frame} + {x}), {signY} * (frameCount - {start_frame} + {y})));\n'
     try:
         DRAW_CLASSES[name].append([start_frame, end_frame, script])
     except:
         DRAW_CLASSES[name] = [[start_frame, end_frame, script]]
 
-    end_script = f'translate(new p5.Vector({end_frame} - {start_frame} + {x}, {end_frame} - {start_frame} + {y}));\n'
+    end_script = f'translate(new p5.Vector({signX} * ({end_frame} - {start_frame} + {x}), {signY} * ({end_frame} - {start_frame} + {y})));\n'
+    try:
+        DRAW_CLASSES[name].append([end_frame, MAX_FRAMES, end_script])
+    except:
+        DRAW_CLASSES[name] = [[end_frame, MAX_FRAMES, end_script]]
+
+def convert_moveX_to_p5(name, x, start_frame, end_frame):
+    name = clean_identifier(name)
+    if name not in DRAW_CLASSES:
+        DRAW_CLASSES[name] = OrderedDict()
+
+    signX = 1
+    if x < 0:
+        signX = -1
+
+    script = f'translate(new p5.Vector({signX} * (frameCount - {start_frame} + {x}), 0));\n'
+    try:
+        DRAW_CLASSES[name].append([start_frame, end_frame, script])
+    except:
+        DRAW_CLASSES[name] = [[start_frame, end_frame, script]]
+
+    end_script = f'translate(new p5.Vector({signX} * ({end_frame} - {start_frame} + {x}), 0));\n'
+    try:
+        DRAW_CLASSES[name].append([end_frame, MAX_FRAMES, end_script])
+    except:
+        DRAW_CLASSES[name] = [[end_frame, MAX_FRAMES, end_script]]
+        
+def convert_moveY_to_p5(name, y, start_frame, end_frame):
+    name = clean_identifier(name)
+    if name not in DRAW_CLASSES:
+        DRAW_CLASSES[name] = OrderedDict()
+
+    signY = 1
+    if y < 0:
+        signY = -1
+
+    script = f'translate(new p5.Vector(0, {signY} * (frameCount - {start_frame} + {y})));\n'
+    try:
+        DRAW_CLASSES[name].append([start_frame, end_frame, script])
+    except:
+        DRAW_CLASSES[name] = [[start_frame, end_frame, script]]
+
+    end_script = f'translate(new p5.Vector(0, {signY} * ({end_frame} - {start_frame} + {y})));\n'
     try:
         DRAW_CLASSES[name].append([end_frame, MAX_FRAMES, end_script])
     except:
@@ -304,6 +377,116 @@ def convert_rotate_to_p5(name, angle, start_frame, end_frame):
     except:
         DRAW_CLASSES[name] = [[end_frame, MAX_FRAMES, end_script]]
 
+def convert_rotateC_to_p5(name, angle, start_frame, end_frame):
+    convert_rotate_to_p5(name, angle, start_frame, end_frame)
+
+def convert_rotateCC_to_p5(name, angle, start_frame, end_frame):
+    convert_rotate_to_p5(name, -angle, start_frame, end_frame)
+
+def convert_shear_to_p5(name, angle, start_frame, end_frame):
+    name = clean_identifier(name)
+    if name not in DRAW_CLASSES:
+        DRAW_CLASSES[name] = OrderedDict()
+
+    script = f'shearX((frameCount - {start_frame}) * radians({angle}) / ({end_frame} - {start_frame} + 1));\n'
+    script += f'shearY((frameCount - {start_frame}) * radians({angle}) / ({end_frame} - {start_frame} + 1));\n'
+    try:
+        DRAW_CLASSES[name].append([start_frame, end_frame, script])
+    except:
+        DRAW_CLASSES[name] = [[start_frame, end_frame, script]]
+
+    end_script = f'shearX(({end_frame} - {start_frame}) * radians({angle}) / ({end_frame} - {start_frame} + 1));\n'
+    end_script += f'shearY(({end_frame} - {start_frame}) * radians({angle}) / ({end_frame} - {start_frame} + 1));\n'
+    try:
+        DRAW_CLASSES[name].append([end_frame, MAX_FRAMES, end_script])
+    except:
+        DRAW_CLASSES[name] = [[end_frame, MAX_FRAMES, end_script]]
+
+def convert_shearX_to_p5(name, angle, start_frame, end_frame):
+    name = clean_identifier(name)
+    if name not in DRAW_CLASSES:
+        DRAW_CLASSES[name] = OrderedDict()
+
+    script = f'shearX((frameCount - {start_frame}) * radians({angle}) / ({end_frame} - {start_frame} + 1));\n'
+    try:
+        DRAW_CLASSES[name].append([start_frame, end_frame, script])
+    except:
+        DRAW_CLASSES[name] = [[start_frame, end_frame, script]]
+
+    end_script = f'shearX(({end_frame} - {start_frame}) * radians({angle}) / ({end_frame} - {start_frame} + 1));\n'
+    try:
+        DRAW_CLASSES[name].append([end_frame, MAX_FRAMES, end_script])
+    except:
+        DRAW_CLASSES[name] = [[end_frame, MAX_FRAMES, end_script]]
+
+def convert_shearY_to_p5(name, angle, start_frame, end_frame):
+    name = clean_identifier(name)
+    if name not in DRAW_CLASSES:
+        DRAW_CLASSES[name] = OrderedDict()
+
+    script = f'shearY((frameCount - {start_frame}) * radians({angle}) / ({end_frame} - {start_frame} + 1));\n'
+    try:
+        DRAW_CLASSES[name].append([start_frame, end_frame, script])
+    except:
+        DRAW_CLASSES[name] = [[start_frame, end_frame, script]]
+
+    end_script = f'shearY(({end_frame} - {start_frame}) * radians({angle}) / ({end_frame} - {start_frame} + 1));\n'
+    try:
+        DRAW_CLASSES[name].append([end_frame, MAX_FRAMES, end_script])
+    except:
+        DRAW_CLASSES[name] = [[end_frame, MAX_FRAMES, end_script]]
+
+def convert_resize_to_p5(name, factor, start_frame, end_frame):
+    name = clean_identifier(name)
+    if name not in DRAW_CLASSES:
+        DRAW_CLASSES[name] = OrderedDict()
+
+    script = f'scale(new p5.Vector(1 + ((frameCount - {start_frame} + 1) * {factor - 1}) / ({end_frame} - {start_frame} + 1), 1 + ((frameCount - {start_frame} + 1) * {factor - 1}) / ({end_frame} - {start_frame} + 1)));\n'
+    try:
+        DRAW_CLASSES[name].append([start_frame, end_frame, script])
+    except:
+        DRAW_CLASSES[name] = [[start_frame, end_frame, script]]
+
+    end_script = f'scale(new p5.Vector(1 + (({end_frame} - {start_frame} + 1) * {factor - 1}) / ({end_frame} - {start_frame} + 1), 1 + (({end_frame} - {start_frame} + 1) * {factor - 1}) / ({end_frame} - {start_frame} + 1)));\n'
+    try:
+        DRAW_CLASSES[name].append([end_frame, MAX_FRAMES, end_script])
+    except:
+        DRAW_CLASSES[name] = [[end_frame, MAX_FRAMES, end_script]]
+
+def convert_resizeX_to_p5(name, factor, start_frame, end_frame):
+    name = clean_identifier(name)
+    if name not in DRAW_CLASSES:
+        DRAW_CLASSES[name] = OrderedDict()
+
+    script = f'scale(new p5.Vector(1 + ((frameCount - {start_frame} + 1) * {factor - 1}) / ({end_frame} - {start_frame} + 1), 1));\n'
+    try:
+        DRAW_CLASSES[name].append([start_frame, end_frame, script])
+    except:
+        DRAW_CLASSES[name] = [[start_frame, end_frame, script]]
+
+    end_script = f'scale(new p5.Vector(1 + (({end_frame} - {start_frame} + 1) * {factor - 1}) / ({end_frame} - {start_frame} + 1), 1));\n'
+    try:
+        DRAW_CLASSES[name].append([end_frame, MAX_FRAMES, end_script])
+    except:
+        DRAW_CLASSES[name] = [[end_frame, MAX_FRAMES, end_script]]
+
+def convert_resizeY_to_p5(name, factor, start_frame, end_frame):
+    name = clean_identifier(name)
+    if name not in DRAW_CLASSES:
+        DRAW_CLASSES[name] = OrderedDict()
+
+    script = f'scale(new p5.Vector(1, 1 + ((frameCount - {start_frame} + 1) * {factor - 1}) / ({end_frame} - {start_frame} + 1)));\n'
+    try:
+        DRAW_CLASSES[name].append([start_frame, end_frame, script])
+    except:
+        DRAW_CLASSES[name] = [[start_frame, end_frame, script]]
+
+    end_script = f'scale(new p5.Vector(1, 1 + (({end_frame} - {start_frame} + 1) * {factor - 1}) / ({end_frame} - {start_frame} + 1)));\n'
+    try:
+        DRAW_CLASSES[name].append([end_frame, MAX_FRAMES, end_script])
+    except:
+        DRAW_CLASSES[name] = [[end_frame, MAX_FRAMES, end_script]]
+
 def draw(name, start_frame, end_frame):
     name = clean_identifier(name)
     if name not in DRAW_CLASSES:
@@ -315,7 +498,39 @@ def draw(name, start_frame, end_frame):
     except:
         DRAW_CLASSES[name] = [[start_frame, end_frame, script]]
 
+# ==============
+# CONFIGURABLES
+# ==============
 
+def configure_frame_rate(frame_rate):
+    global FRAME_RATE
+    FRAME_RATE = frame_rate
+
+def configure_canvas_width(width):
+    global CANVAS_WIDTH
+    CANVAS_WIDTH = width
+
+def configure_canvas_height(height):
+    global CANVAS_HEIGHT
+    CANVAS_HEIGHT = height
+
+def configure_canvas_background(background):
+    global CANVAS_BACKGROUND
+    CANVAS_BACKGROUND = background
+
+def configure_max_num_frames(num_frames):
+    global MAX_FRAMES
+    MAX_FRAMES = num_frames
+
+# =======
+# SAMPLE
+# =======
+
+configure_frame_rate(100)
+configure_canvas_width(1000)
+configure_canvas_height(1000)
+configure_canvas_background('#DEDEDE')
+configure_max_num_frames(1000)
 
 convert_rectangle_to_p5('car_body', 0, 0, 95.4, 79.5)
 convert_circle_to_p5('wheel1', 80, 80, 33)
@@ -323,14 +538,16 @@ convert_triangle_to_p5('window1', 30, 75, 58, 20, 86, 75)
 
 convert_color_to_p5('window_color', '#ADD8E6')
 
-convert_fill_to_p5('car_body', '#ADD8E6')
-convert_fill_to_p5('window1', '#000000')
-convert_stroke_to_p5('wheel1', '#ADD8FF')
+# convert_fill_to_p5('car_body', '#ADD8E6')
+# convert_fill_to_p5('window1', '#000000')
+# convert_stroke_to_p5('wheel1', '#ADD8FF')
 
 convert_object_new_to_p5('car')
-convert_object_add_to_p5('car', 'car_body')
-convert_object_add_to_p5('car', 'window1')
-convert_object_add_to_p5('car', 'wheel1')
+convert_object_assign_to_p5('car', convert_object_add_to_p5('car', 'car_body'))
+convert_object_assign_to_p5('car', convert_object_add_to_p5('car', 'window1'))
+convert_object_assign_to_p5('car', convert_object_add_to_p5('car', 'wheel1'))
+
+draw('car', 100, 400)
 
 # =====================
 
@@ -338,30 +555,31 @@ convert_rectangle_to_p5('car_body1', 200, 200, 95.4, 79.5)
 convert_circle_to_p5('wheel11', 280, 280, 33)
 convert_triangle_to_p5('window11', 230, 275, 258, 220, 286, 275)
 
-convert_fill_to_p5('car_body1', '#ADD8E6')
-convert_fill_to_p5('window11', '#000000')
-convert_stroke_to_p5('wheel11', '#ADD8FF')
+convert_fill_to_p5('car_body1', 200, 100, 255)
+convert_fill_to_p5('window11', 0, 10, 100)
+convert_stroke_to_p5('wheel11', 10, 200, 155)
 
 convert_object_assign_to_p5('car1', convert_object_add_to_p5('car1', 'car_body1'))
 convert_object_assign_to_p5('car1', convert_object_add_to_p5('car1', 'window11'))
 convert_object_assign_to_p5('car1', convert_object_add_to_p5('car1', 'wheel11'))
 
-convert_object_add_to_p5('car1', convert_object_add_to_p5('car1', 'car'))
-convert_move_to_p5('car1', 10, 20, 200, 300)
-convert_rotate_to_p5('car1', 45, 250, 300)
-
-draw('car1', 100, 400)
+# convert_object_assign_to_p5('car1', 'car')
+convert_moveY_to_p5('car1', 10, 200, 400)
+convert_rotateCC_to_p5('car1', 45, 250, 400)
+convert_resizeY_to_p5('car1', 2, 275, 400)
+draw('car1', 100, 500)
 
 convert_polygon_to_p5('star', [(30, 20), (85, 20), (85, 75), (30, 75)])
+convert_shearY_to_p5('star', 45, 250, 300)
 draw('star', 1, 400)
 
 convert_write_to_p5('dog', 'awooo', 80, 90)
-draw('dog', 50, 400)
+draw('dog', 50, 600)
 
 # ========================
 
-# draw(convert_object_expr_to_p5('line', [100, 200, 300, 400]))
-# draw(convert_object_add_to_p5(convert_object_expr_to_p5('line', [100, 200, 300, 400]), convert_object_expr_to_p5('rectangle', [10, 20, 30, 40])))
+draw(convert_object_expr_to_p5('line', [100, 200, 300, 400]), 100, 400)
+draw(convert_object_add_to_p5(convert_object_expr_to_p5('line', [100, 200, 300, 400]), convert_object_expr_to_p5('rectangle', [10, 20, 30, 40])), 100, 400)
 
 # ========================
 

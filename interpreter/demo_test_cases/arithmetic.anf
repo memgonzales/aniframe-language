@@ -55,18 +55,3 @@ tree_top.turn(angles[rand_int % 5])
 num: Number = 543
 
 tree_top.turn(angles[num %= 5])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

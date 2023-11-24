@@ -1,7 +1,0 @@
-car_body: Object = rectangle(width = 4.54e2, height = 297.5, x = 0, y = 0)
-wheel1: Object = circle(radius = z, x = 38.5, y = num)
-
-SomeRandomColor: Color = "rgb(136, 8, 8, 0.8)"
-clrs: List = ["#ADD8E6", SomeRandomColor, "black"]
-
-car_body.fill(clrs[0]).stroke(clrs[2])

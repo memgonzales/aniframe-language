@@ -8,7 +8,7 @@ start_: (NEWLINE | config_statement)* (
 		NEWLINE
 		| simple_statement
 		| compound_statement
-	)* EOF;
+	)* (NEWLINE | draw_statement)* EOF;
 
 simple_statement: (
 		(IDENTIFIER DOT_SYMBOL)? function_call
@@ -21,6 +21,9 @@ compound_statement:
 	conditional
 	| loop
 	| function_declaration_definition;
+
+draw_statement:
+	DRAW OPEN_PAREN_SYMBOL actual_parameter CLOSE_PAREN_SYMBOL;
 
 // ================ SIMPLE STATEMENTS ================
 
@@ -58,7 +61,9 @@ list:
 	| OPEN_BRACKET_SYMBOL (expression COMMA_SYMBOL)+ CLOSE_BRACKET_SYMBOL {notifyErrorListeners(_input.LT(-1), "Missing list element after comma", null);
 		};
 member:
-	IDENTIFIER (OPEN_BRACKET_SYMBOL expression CLOSE_BRACKET_SYMBOL)? OPEN_BRACKET_SYMBOL expression CLOSE_BRACKET_SYMBOL;
+	IDENTIFIER (
+		OPEN_BRACKET_SYMBOL expression CLOSE_BRACKET_SYMBOL
+	)? OPEN_BRACKET_SYMBOL expression CLOSE_BRACKET_SYMBOL;
 
 // Function call
 function_call:
@@ -81,7 +86,7 @@ variable_declaration: IDENTIFIER COLON_SYMBOL DATA_TYPE;
 
 // Assignment statement
 assignment_statement:
-	CONST? (variable_declaration | IDENTIFIER ) assignment_operator expression 
+	CONST? (variable_declaration | IDENTIFIER) assignment_operator expression
 	| IDENTIFIER OPEN_BRACKET_SYMBOL expression CLOSE_BRACKET_SYMBOL assignment_operator expression;
 
 // Configuration statement
@@ -89,8 +94,7 @@ config_statement: SET configurable TO expression;
 
 // Flow control statement
 flow_control_statement: return_statement | break_statement;
-return_statement: RETURN return_values;
-return_values: (expression COMMA_SYMBOL)* expression;
+return_statement: RETURN expression;
 break_statement: BREAK;
 
 // ================ COMPOUND STATEMENTS ================
@@ -111,15 +115,9 @@ else_line: ELSE COLON_SYMBOL;
 loop: for_loop | while_loop | repeat_loop;
 
 // for loop
-for_loop: frame_for_loop | iteration_for_loop;
-
-frame_for_loop: frame_for_line loop_block;
-frame_for_line:
-	FOR FRAME expression TO FRAME expression COLON_SYMBOL;
-
-iteration_for_loop: iteration_for_line loop_block;
-iteration_for_line:
-	FOR (IDENTIFIER COMMA_SYMBOL)* IDENTIFIER IN expression COLON_SYMBOL;
+for_loop: for_line loop_block;
+for_line:
+	FOR (IDENTIFIER COMMA_SYMBOL)? IDENTIFIER IN expression COLON_SYMBOL;
 
 // while loop
 while_loop: while_line loop_block;
@@ -136,7 +134,7 @@ function_declaration_definition:
 function_declaration:
 	FUNCTION function_name (
 		OPEN_PAREN_SYMBOL formal_parameters? CLOSE_PAREN_SYMBOL
-	) (RETURNS return_value_data_types)? COLON_SYMBOL
+	) (RETURNS return_value_data_type)? COLON_SYMBOL
 	| FUNCTION function_name (
 		OPEN_PAREN_SYMBOL COMMA_SYMBOL formal_parameters? CLOSE_PAREN_SYMBOL
 	) (RETURNS return_value_data_types)? COLON_SYMBOL {notifyErrorListeners(_input.LT(-1), "Missing first parameter", null);
@@ -168,11 +166,7 @@ return_value_data_type: DATA_TYPE;
 function_name: built_in_function | IDENTIFIER;
 
 conditional_block:
-	NEWLINE INDENT (
-		simple_statement
-		| loop
-		| conditional
-	)+ UNINDENT;
+	NEWLINE INDENT (simple_statement | loop | conditional)+ UNINDENT;
 
 conditional_with_break:
 	if_statement_with_break else_if_statement_with_break* else_statement_with_break?;
@@ -218,7 +212,7 @@ else_statement_with_break_return:
 
 conditional_block_with_break_return:
 	NEWLINE INDENT (
-		simple_statement 
+		simple_statement
 		| (flow_control_statement) NEWLINE
 		| loop_with_return
 		| conditional_with_break_return
@@ -236,13 +230,7 @@ loop_with_return:
 	for_loop_with_return
 	| while_loop_with_return
 	| repeat_loop_with_return;
-for_loop_with_return:
-	frame_for_loop_with_return
-	| iteration_for_loop_with_return;
-frame_for_loop_with_return:
-	frame_for_line loop_block_with_return;
-iteration_for_loop_with_return:
-	iteration_for_line loop_block_with_return;
+for_loop_with_return: for_line loop_block_with_return;
 while_loop_with_return: while_line loop_block_with_return;
 repeat_loop_with_return: repeat_line loop_block_with_return;
 
@@ -267,7 +255,8 @@ configurable:
 	FRAME_RATE
 	| NUM_FRAMES
 	| CANVAS_WIDTH
-	| CANVAS_HEIGHT;
+	| CANVAS_HEIGHT
+	| CANVAS_BACKGROUND;
 
 built_in_function:
 	POINT
@@ -280,30 +269,22 @@ built_in_function:
 	| QUADRILATERAL
 	| POLYGON
 	| WRITE
-	| BRING_TO_FRONT
-	| BRING_FORWARD
-	| BRING_TO_BACK
-	| BRING_BACKWARD
 	| MOVE
 	| MOVEX
 	| MOVEY
 	| TURN
 	| TURNC
 	| TURNCC
-	| FLIP
-	| FLIPX
-	| FLIPY
 	| SHEAR
 	| SHEARX
 	| SHEARY
-	| COPY
-	| MORPH
 	| RESIZE
+	| RESIZEX
+	| RESIZEY
 	| FILL
 	| STROKE
 	| ADD
 	| REMOVE
-	| CLEAR
 	| RAND_NUM
 	| RAND_INT
 	| SQRT

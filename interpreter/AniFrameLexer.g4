@@ -30,6 +30,7 @@ FRAME_RATE: 'FRAME_RATE';
 NUM_FRAMES: 'MAX_NUM_OF_FRAMES';
 CANVAS_WIDTH: 'CANVAS_WIDTH';
 CANVAS_HEIGHT: 'CANVAS_HEIGHT';
+CANVAS_BACKGROUND: 'CANVAS_BACKGROUND';
 
 // Built-in functions
 POINT: 'point';
@@ -42,30 +43,22 @@ RECTANGLE: 'rectangle';
 QUADRILATERAL: 'quad';
 POLYGON: 'polygon';
 WRITE: 'write';
-BRING_TO_FRONT: 'bring_to_front';
-BRING_FORWARD: 'bring_forward';
-BRING_TO_BACK: 'bring_to_back';
-BRING_BACKWARD: 'bring_backward';
 MOVE: 'move';
 MOVEX: 'moveX';
 MOVEY: 'moveY';
 TURN: 'turn';
 TURNC: 'turnC';
 TURNCC: 'turnCC';
-FLIP: 'flip';
-FLIPX: 'flipX';
-FLIPY: 'flipY';
 SHEAR: 'shear';
 SHEARX: 'shearX';
 SHEARY: 'shearY';
-COPY: 'copy';
-MORPH: 'morph';
 RESIZE: 'resize';
+RESIZEX: 'resizeX';
+RESIZEY: 'resizeY';
 FILL: 'fill';
 STROKE: 'stroke';
 ADD: 'add';
 REMOVE: 'remove';
-CLEAR: 'clear';
 RAND_NUM: 'rand_num';
 RAND_INT: 'rand_int';
 SQRT: 'sqrt';
@@ -80,6 +73,7 @@ TO_RADIANS: 'to_rad';
 TO_DEGREES: 'to_deg';
 TYPE: 'type';
 INFO: 'info';
+DRAW: 'draw';
 
 // Operators
 AND_OP: '&&';

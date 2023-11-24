@@ -1,6 +1,0 @@
-angle : Number = atan(5/8.66)
-sideA,sideB : Number = 5*sin(angle), 5*tan(angle)
-hypo : Number = sideB/cos(angle)
-hypo = atan2(hypo/hypo*sin(angle))
-smthin : Number = (to_rad(asin(sideA))+to_deg(acos(sideB)))/tan(angle)
-type(hypo)

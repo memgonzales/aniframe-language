@@ -1,9 +1,0 @@
-# Here's a comment :) Don't tokenize me please
-greetings: Text = "Welcome \to \"A\nif\rame!\""
-
-face: Object = ellipse(minor_radius=3, major_radius=1e2, x = 3.5, y = 5)
-eye2: Object = triangle(x1=2, y1=2., x2=4,y2=5, x3=1,   y3=0)
-
-for fr 1 to fr 5:
-    face.moveX(sqrt(3^2 + 4^2))
- 

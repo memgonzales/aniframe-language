@@ -1,7 +1,0 @@
-for fr 1 to fr 10:
-    wheel1.turnCC(angle)
-
-    if (fr == 6 || fr > 10 || fr >= 10) && fr < 2 && !(fr != 1) && fr <= 2:
-        break
-    else:
-        wheel2.turnC(angle)

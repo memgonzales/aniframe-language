@@ -1,8 +1,0 @@
-num1:  Number = sqrt(1*5)
-num_2:  Number = 2.0-(1)
-
-a_bunch_of_NUMBERS = [num1+78, num_2^(9.1011)]
-for num in bunch_of_NUMBERS:
-    some_horizontally_shifting_balloon.moveX(num, start_frame=1, end_frame=5).moveY(num, start_frame=1, end_frame=5)
-
-a_bunch_of_NUMBERS.clear()

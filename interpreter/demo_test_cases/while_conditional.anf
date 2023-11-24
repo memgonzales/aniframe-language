@@ -31,9 +31,3 @@ while curr_frame <= 1000:
             if curr_frame >= 950 && curr_frame <= 1000:
                 ball2.moveX(0, curr_frame, curr_frame+30)
         
-
-        
-
-    
-
-
