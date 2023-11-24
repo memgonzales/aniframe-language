@@ -284,7 +284,7 @@ def convert_object_expr_to_p5(function_name, param):
             convert_quad_to_p5(mock_identifier, param[0], param[1], param[2], param[3], param[4], param[5], param[6], param[7])
 
         case 'polygon':
-            convert_polygon_to_p5(mock_identifier, param[0])
+            convert_polygon_to_p5(mock_identifier, param)
 
         case 'write':
             convert_write_to_p5(mock_identifier, param[0], param[1], param[2])

@@ -932,13 +932,13 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                                 if param['data_type'] != "List":
                                     check = False
                                     break
-                                for item in param:
+                                for item in param['value']:
                                     if item['data_type'] != "Coord":
                                         check = False
                                         break
                             
                         if check:
-                            params = [param['value'] for param in params]
+                            params = [coord['value'] for coord in param['value'] for param in params]
                             return {'value': [func_name,params], 'data_type': 'Object'}
                         else:
                             #THROW ERROR
