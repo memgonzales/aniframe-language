@@ -1,8 +1,0 @@
-func check_str(list: List, item: Text):
-
-    for i in list:
-
-        # TRICKY! – and - are different 
-        # The first symbol is an en dash (not a minus sign)
-
-        x =  1.5^2 – 33;
