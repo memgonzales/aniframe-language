@@ -297,6 +297,7 @@ built_in_function:
 	| ATAN2
 	| TO_RADIANS
 	| TO_DEGREES
+	| GET_INPUT
 	| TYPE
 	| INFO;
 
