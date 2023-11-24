@@ -28,8 +28,8 @@ def main(argv):
         vinterp = AniFrameParserVisitor()
         try:
             vinterp.visit(tree)
-        except:
-            raise Exception
+        except Exception as e:
+            raise e
 
     try:
         os.remove(f'{argv[1]}.tmp')

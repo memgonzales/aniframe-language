@@ -376,15 +376,15 @@ def check_parameters(name,params,ctx):
     return None
 
 def is_hexColor(value):
-    regex = r'^#[0-9A-F]{6}$'
-    return bool(re.match(regex,value))
+    regex = r'^#[0-9A-Fa-f]{6}$'
+    return bool(re.match(regex,value[1:-1]))
 
 def hexrgb_to_colors(value):
     colors = [0,0,0]
     if is_hexColor(value):
-        colors[0] = int(value[1:3],16)
-        colors[1] = int(value[3:5],16)
-        colors[2] = int(value[5:-1],16)
+        colors[0] = int(value[2:4],16)
+        colors[1] = int(value[4:6],16)
+        colors[2] = int(value[6:-1],16)
     elif is_rgb(value):
         regex = r'^rgb\((\d{1,3})\,(\d{1,3})\,(\d{1,3})\)$'
         vals = re.match(regex,value)
