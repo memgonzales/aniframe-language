@@ -5,6 +5,9 @@ import mapping
 from collections import defaultdict, OrderedDict
 from copy import deepcopy
 import re
+import random
+import math
+
 
 if "." in __name__:
     from .AniFrameParser import AniFrameParser
@@ -54,7 +57,6 @@ def assign_member_value(val,idx,expr,assignment,ctx):
                 else:
                     #throw error
                     raiseError(ctx,TypeError,f" {dtype} to {VARIABLES[val]['value'][idx]['data_type']} assignment is not supported")
-                    pass
             case '+':
                 match VARIABLES[val]['value'][idx]['data_type'],dtype:
                     case "Number","Number":
@@ -70,7 +72,6 @@ def assign_member_value(val,idx,expr,assignment,ctx):
                     case _:
                         #throw error
                         raiseError(ctx,TypeError,f"{assignment} operator between {VARIABLES[val]['value'][idx]['data_type']} and {dtype} is not supported")
-                        pass
             case '-':
                 match VARIABLES[val]['value'][idx]['data_type'],dtype:
                     case "Number","Number":
@@ -85,7 +86,6 @@ def assign_member_value(val,idx,expr,assignment,ctx):
                     case _:
                         #throw error
                         raiseError(ctx,TypeError,f"{assignment} operator between {VARIABLES[val]['value'][idx]['data_type']} and {dtype} is not supported")
-                        pass
             case '*':
                 match VARIABLES[val]['value'][idx]['data_type'],dtype:
                     case "Number","Number":
@@ -97,7 +97,6 @@ def assign_member_value(val,idx,expr,assignment,ctx):
                     case _:
                         # throw error
                         raiseError(ctx,TypeError,f"{assignment} operator between {VARIABLES[val]['value'][idx]['data_type']} and {dtype} is not supported")
-                        pass
             case '/':
                 match VARIABLES[val]['value'][idx]['data_type'],dtype:
                     case "Number","Number":
@@ -109,7 +108,6 @@ def assign_member_value(val,idx,expr,assignment,ctx):
                     case _:
                         # throw error
                         raiseError(ctx,TypeError,f"{assignment} operator between {VARIABLES[val]['value'][idx]['data_type']} and {dtype} is not supported")
-                        pass
             case '%':
                 match VARIABLES[val]['value'][idx]['data_type'],dtype:
                     case "Number","Number":
@@ -117,7 +115,6 @@ def assign_member_value(val,idx,expr,assignment,ctx):
                     case _:
                         # throw error
                         raiseError(ctx,TypeError,f"{assignment} operator between {VARIABLES[val]['value'][idx]['data_type']} and {dtype} is not supported")
-                        pass 
         return val, VARIABLES[val]['value'][idx]
     else:
         # throw error
@@ -356,7 +353,10 @@ def check_parameters(name,params,ctx):
                 raiseError(ctx,ValueError,f'Wrong parameters for {name}')
         case 'fill':
             check = True if len(params) == 1 else False
-            if is_hexColor(params[0]['value']) or is_rgb(params[0]['value']):
+            if check and (len(params[0]['value']) == 3 and params[0]['data_type'] == "Color"):
+                params = params[0]['value']
+                return params
+            if check and (is_hexColor(params[0]['value']) or is_rgb(params[0]['value'])):
                 params[0]['data_type'] = "Color"
                 params = hexrgb_to_colors(params[0]['value'])
                 return params
@@ -365,9 +365,14 @@ def check_parameters(name,params,ctx):
             if check:
                 params = [params[0]['value']]
                 return params
+            else:
+                raiseError(ctx,ValueError,f'Wrong parameters for {name}')
         case 'stroke':
             check = True if len(params) == 1 else False
-            if is_hexColor(params[0]['value']) or is_rgb(params[0]['value']):
+            if check and (len(params[0]['value']) == 3 and params[0]['data_type'] == "Color"):
+                params = params[0]['value']
+                return params
+            if check and (is_hexColor(params[0]['value']) or is_rgb(params[0]['value'])):
                 params[0]['data_type'] = "Color"
                 params = hexrgb_to_colors(params[0]['value'])
                 return params
@@ -376,6 +381,8 @@ def check_parameters(name,params,ctx):
             if check:
                 params = [params[0]['value']]
                 return params
+            else:
+                raiseError(ctx,ValueError,f'Wrong parameters for {name}')
         case _:
             return None
     return None
@@ -533,6 +540,8 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                         print(f"rgb{result[0]['value'][0],result[0]['value'][1],result[0]['value'][2]}")
                     else:
                         print(result[0]['value'])
+                case _: 
+                    raiseError(ctx,ValueError,f"{func_name} is not a valid function")
 
         return
     # Visit a parse tree produced by AniFrameParser#compound_statement.
@@ -552,12 +561,10 @@ class AniFrameParserVisitor(ParseTreeVisitor):
 
             if expr1['data_type'] == '_':
                 #THROW ERROR
-                raiseError(ctx,ValueError,f'Identifier {expr["identifier"]} has no value')
-                pass
+                raiseError(ctx,ValueError,f'Identifier {expr1["identifier"]} has no value')
             if expr2['data_type'] == '_':
                 #THROW ERROR
-                raiseError(ctx,ValueError,f'Identifier {expr["identifier"]} has no value')
-                pass
+                raiseError(ctx,ValueError,f'Identifier {expr2["identifier"]} has no value')
             match operator:
                 case '+':
                     match expr1['data_type'],expr2['data_type']:
@@ -572,6 +579,22 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                             return {'value': res, 'data_type': "Text"}
                         case "Color","Color":
                             res = [int((expr1['value'][0] + expr2['value'][0])/2),int((expr1['value'][1] + expr2['value'][1])/2),int((expr1['value'][2] + expr2['value'][2])/2)]
+                            return {'value': res, 'data_type': "Color"}
+                        case "Color","Text":
+                            iscolor = is_rgb(expr2['value']) or is_hexColor(expr2['value'])
+                            if iscolor:
+                                colors = hexrgb_to_colors(expr2['value'])
+                            else:
+                                raiseError(ctx,TypeError,f"{operator} operator between {expr1['data_type']} and {expr2['data_type']} is not supported")
+                            res = [int((expr1['value'][0] + colors[0])/2),int((expr1['value'][1] + colors[1])/2),int((expr1['value'][2] + colors[2])/2)]
+                            return {'value': res, 'data_type': "Color"}
+                        case "Text","Color":
+                            iscolor = is_rgb(expr1['value']) or is_hexColor(expr1['value'])
+                            if iscolor:
+                                colors = hexrgb_to_colors(expr1['value'])
+                            else:
+                                raiseError(ctx,TypeError,f"{operator} operator between {expr1['data_type']} and {expr2['data_type']} is not supported")
+                            res = [int((expr2['value'][0] + colors[0])/2),int((expr2['value'][1] + colors[1])/2),int((expr2['value'][2] + colors[2])/2)]
                             return {'value': res, 'data_type': "Color"}
                         case "Coord","Coord":
                             res = (expr1['value'][0] + expr2['value'][0],expr1['value'][1] + expr2['value'][1])
@@ -591,13 +614,29 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                             expr2['value'] = invert(expr2['value'])
                             res = [int((expr1['value'][0] + expr2['value'][0])/2),int((expr1['value'][1] + expr2['value'][1])/2),int((expr1['value'][2] + expr2['value'][2])/2)]
                             return {'value': res, 'data_type': "Color"}
+                        case "Color","Text":
+                            iscolor = is_rgb(expr2['value']) or is_hexColor(expr2['value'])
+                            if iscolor:
+                                colors = invert(hexrgb_to_colors(expr2['value']))
+                            else:
+                                raiseError(ctx,TypeError,f"{operator} operator between {expr1['data_type']} and {expr2['data_type']} is not supported")
+                            res = [int((expr1['value'][0] + colors[0])/2),int((expr1['value'][1] + colors[1])/2),int((expr1['value'][2] + colors[2])/2)]
+                            return {'value': res, 'data_type': "Color"}
+                        case "Text","Color":
+                            iscolor = is_rgb(expr1['value']) or is_hexColor(expr1['value'])
+                            if iscolor:
+                                colors = hexrgb_to_colors(expr1['value'])
+                                colors2 = invert(expr2['value'])
+                            else:
+                                raiseError(ctx,TypeError,f"{operator} operator between {expr1['data_type']} and {expr2['data_type']} is not supported")
+                            res = [int((colors[0] + colors2[0] )/2),int((colors[1] + colors2[1] )/2),int((colors[1] + colors2[1] )/2)]
+                            return {'value': res, 'data_type': "Color"}
                         case "Coord","Coord":
                             res = (expr1['value'][0] - expr2['value'][0],expr1['value'][1] - expr2['value'][1])
                             return {'value': res, 'data_type': "Coord"}
                         case _:
                             #throw error
                             raiseError(ctx,TypeError,f"{operator} operator between {expr1['data_type']} and {expr2['data_type']} is not supported")
-                            pass
                 case "*":
                     match expr1['data_type'],expr2['data_type']:
                         case "Number","Number":
@@ -799,7 +838,6 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                 if expr['data_type'] != "Number":
                     #THROW SOME ERROR
                     raiseError(ctx,TypeError,f'Unary operator {opr} cannot be evaluated with {expr["data_type"]}')
-                    pass
                 res = eval("".join([opr,str(expr['value'])]))
                 return {'value': res, 'data_type': "Number"}
         elif ctx.getChildCount() == 1:
@@ -811,10 +849,160 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                 func_name,params = self.visit(ctx.getChild(0))
 
                 match func_name:
+                    case 'get_input':
+                        check = True if len(params) == 1 else False
+                        if check:
+                            if params[0]['data_type'] != "Text":
+                                check = False
+                        if check:
+                            try:
+                                file = open(params[0]['value'],'r')
+                                lines = [line[:-2] for line in file.readlines()]
+                                file.close()
+                            except:
+                                raiseError(ctx,ValueError,f'File {params[0]["value"]} does not exist')
+                            return {'value': lines, 'data_type': 'List'}
+                        else:
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'type':
+                        check = check_parameters('type',params,ctx)
+                        if check:
+                            # print(check[0]['data_type'])
+                            return {'value': check[0]['data_type'], 'data_type': 'Text'}
+                        else:
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'sin':
+                        check = True if len(params) == 1 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                        if check:
+                            return {'value': math.sin(params[0]['value']), 'data_type': 'Number'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'cos':
+                        check = True if len(params) == 1 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                        if check:
+                            return {'value': math.cos(params[0]['value']), 'data_type': 'Number'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'tan':
+                        check = True if len(params) == 1 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                        if check:
+                            return {'value': math.tan(params[0]['value']), 'data_type': 'Number'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'asin':
+                        check = True if len(params) == 1 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                        if check:
+                            return {'value': math.asin(params[0]['value']), 'data_type': 'Number'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'acos':
+                        check = True if len(params) == 1 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                        if check:
+                            return {'value': math.acos(params[0]['value']), 'data_type': 'Number'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'atan':
+                        check = True if len(params) == 1 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                        if check:
+                            return {'value': math.atan(params[0]['value']), 'data_type': 'Number'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'atan2':
+                        check = True if len(params) == 1 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                        if check:
+                            return {'value': math.atan2(params[0]['value']), 'data_type': 'Number'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'to_rad':
+                        check = True if len(params) == 1 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                        if check:
+                            return {'value': math.radians(params[0]['value']), 'data_type': 'Number'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'to_deg':
+                        check = True if len(params) == 1 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                        if check:
+                            return {'value': math.degrees(params[0]['value']), 'data_type': 'Number'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')        
                     case 'rand_num':
-                        pass
+                        check = True if len(params) == 2 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                        if check:
+                            return {'value': random.uniform(params[0]['value'],params[1]['value']), 'data_type': 'Number'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
                     case 'rand_int':
-                        pass
+                        check = True if len(params) == 2 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                        if check:
+                            return {'value': random.randint(int(params[0]['value']),int(params[1]['value'])), 'data_type': 'Number'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
                     case 'point':
                         check = True if len(params) == 2 else False
                         if check:
@@ -944,7 +1132,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                             #THROW ERROR
                             raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
                     case _:
-                        pass
+                        raiseError(ctx,ValueError,f"{func_name} is not a valid function")
     # Visit a parse tree produced by AniFrameParser#coordinates.
     def visitCoordinates(self, ctx:AniFrameParser.CoordinatesContext):
         x_val = self.visit(ctx.getChild(1))
@@ -990,7 +1178,6 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                     if VARIABLES[iden]['value'][idx]['data_type'] != 'Coord':
                         #throw error
                         raiseError(ctx,TypeError,f"{VARIABLES[iden]['value'][idx]['data_type']} is not iterable")
-                        pass
                     idx2 = int(expr_2['value'])
                     val = VARIABLES[iden]['value'][idx]['value'][idx2]
                     dtype = "Number"
@@ -1011,7 +1198,6 @@ class AniFrameParserVisitor(ParseTreeVisitor):
         else:
             #throw error not a list
             raiseError(ctx,TypeError,f'{iden} is not iterable')
-            pass
 
     # Visit a parse tree produced by AniFrameParser#function_call.
     def visitFunction_call(self, ctx:AniFrameParser.Function_callContext):
@@ -1049,7 +1235,6 @@ class AniFrameParserVisitor(ParseTreeVisitor):
         if not valid_dtype(dtype):
             #THROW ERROR
             raiseError(ctx,ValueError,f'{dtype} is an invalid data type')
-            pass
         if VARIABLES[iden]['data_type'] == '_' or 'data_type' not in VARIABLES[iden] or VARIABLES[iden]['data_type'] == dtype:
             VARIABLES[iden]['data_type'] = dtype 
             VARIABLES[iden]['identifier'] = iden
@@ -1059,8 +1244,6 @@ class AniFrameParserVisitor(ParseTreeVisitor):
         else:
             #THROW SOME ERROR
             raiseError(ctx,TypeError,f'{iden} has already been declared with data type {VARIABLES[iden]["data_type"]}')
-            pass
-        # return "variable_declaration"
 
 
     # Visit a parse tree produced by AniFrameParser#assignment_statement.
@@ -1105,7 +1288,6 @@ class AniFrameParserVisitor(ParseTreeVisitor):
             if 'constant' in VARIABLES[val]:
                 #THROW SOME ERROR SINCE CONSTANT
                 raiseError(ctx,TypeError,f'Cannot change value of const variable {val}')
-                pass
             elif VARIABLES[val]['data_type'] == "Color" and expr['data_type'] == "Text":
                 color = is_hexColor(expr['value']) or is_rgb(expr['value']) 
                 if color:
@@ -1240,10 +1422,20 @@ class AniFrameParserVisitor(ParseTreeVisitor):
     def visitConfig_statement(self, ctx:AniFrameParser.Config_statementContext):
         configurable = ctx.getChild(1).getText()
         value = self.visit(ctx.getChild(3))
-        if value['data_type'] != "Number":
-            raiseError(ctx,ValueError,f'Invalid value for {configurable}')
-        VARIABLES[configurable]['data_type'] = configurable
-        VARIABLES[configurable]['value'] = value['value']
+        if configurable == "CANVAS_BACKGROUND":
+            try:
+                if is_rgb(value['value']) or is_hexColor(value['value']):
+                    VARIABLES[configurable]['data_type'] = configurable
+                    VARIABLES[configurable]['value'] = hexrgb_to_colors(value['value'])
+                else:
+                    raiseError(ctx,ValueError,f'Invalid value for {configurable}')
+            except:
+                raiseError(ctx,ValueError,f'Invalid value for {configurable}')
+        else:
+            if value['data_type'] != "Number":
+                raiseError(ctx,ValueError,f'Invalid value for {configurable}')
+            VARIABLES[configurable]['data_type'] = configurable
+            VARIABLES[configurable]['value'] = value['value']
         return
 
     # Visit a parse tree produced by AniFrameParser#flow_control_statement.
