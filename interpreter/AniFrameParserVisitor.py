@@ -419,7 +419,21 @@ class AniFrameParserVisitor(ParseTreeVisitor):
         mapping.write(mapping.print_src_code())
         return
 
+    def visitDraw_statement(self, ctx:AniFrameParser.Draw_statementContext):
+        var_name = ctx.getChild(0).getText()
+        params = self.visit(ctx.getChild(4))
 
+        result = check_parameters('draw',params,ctx)
+        if result == None:
+            raiseError(ctx,ValueError,f'Invalid parameters for draw')
+        if VARIABLES.get(var_name) == None:
+            raiseError(ctx,ValueError,f'identifier {var_name} does not exist')
+        if VARIABLES[var_name]['data_type'] != "Object":
+            raiseError(ctx,TypeError,f"{VARIABLES[var_name]['data_type']} does not have method draw")
+        
+        mapping.draw(var_name,result[0],result[1])
+
+        return
     # Visit a parse tree produced by AniFrameParser#simple_statement.
     def visitSimple_statement(self, ctx:AniFrameParser.Simple_statementContext):
         if ctx.getChildCount() == 4:
