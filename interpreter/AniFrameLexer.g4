@@ -71,6 +71,7 @@ ATAN: 'atan';
 ATAN2: 'atan2';
 TO_RADIANS: 'to_rad';
 TO_DEGREES: 'to_deg';
+GET_INPUT: 'get_input';
 TYPE: 'type';
 INFO: 'info';
 DRAW: 'draw';
