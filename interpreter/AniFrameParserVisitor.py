@@ -130,6 +130,18 @@ def raiseError(ctx, error_type, error_msg):
 
 def check_parameters(name,params,ctx):
     match name:
+        case 'type':
+            check = True if len(params) == 1 else False
+            if check:
+                return params
+            else:
+                raiseError(ctx,ValueError,f"Invalid parameters for type")
+        case 'info':
+            check = True if len(params) == 1 else False
+            if check:
+                return params
+            else:
+                raiseError(ctx,ValueError,f"Invalid parameters for info")
         case 'add':
             check = True if len(params) == 1 else False
             if check:
@@ -510,7 +522,17 @@ class AniFrameParserVisitor(ParseTreeVisitor):
 
             if var_name in VARIABLES:
                 return stmnt
-            return
+            
+            func_name,params = self.visit(ctx.getChild(0)) 
+            result = check_parameters(func_name,params,ctx)
+            match func_name:
+                case 'type':
+                    print(result[0]['data_type'])
+                case 'info':
+                    if result[0]['data_type'] == "Object":
+                        print(mapping.CLASSES[result[0]['identifier']])
+                    else:
+                        print(result[0]['value'])
 
         return
     # Visit a parse tree produced by AniFrameParser#compound_statement.
