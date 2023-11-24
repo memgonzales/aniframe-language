@@ -66,8 +66,7 @@ def assign_member_value(val,idx,expr,assignment,ctx):
                         VARIABLES[val]['value'][idx]['value'][1] = int((VARIABLES[val]['value'][idx]['value'][1] + expr['value'][1])/2)
                         VARIABLES[val]['value'][idx]['value'][2] = int((VARIABLES[val]['value'][idx]['value'][2] + expr['value'][2])/2)
                     case "Coord","Coord":
-                        VARIABLES[val]['value'][idx]['value'][0] += expr['value'][0]
-                        VARIABLES[val]['value'][idx]['value'][1] += expr['value'][1]
+                        VARIABLES[val]['value'][idx]['value'] = (VARIABLES[val]['value'][idx]['value'][0] + expr['value'][0], VARIABLES[val]['value'][idx]['value'][1] + expr['value'][1])
                     case _:
                         #throw error
                         raiseError(ctx,TypeError,f"{assignment} operator between {VARIABLES[val]['value'][idx]['data_type']} and {dtype} is not supported")
@@ -82,8 +81,7 @@ def assign_member_value(val,idx,expr,assignment,ctx):
                         VARIABLES[val]['value'][idx]['value'][1] = int((VARIABLES[val]['value'][idx]['value'][1] + expr['value'][1])/2)
                         VARIABLES[val]['value'][idx]['value'][2] = int((VARIABLES[val]['value'][idx]['value'][2] + expr['value'][2])/2)
                     case "Coord","Coord":
-                        VARIABLES[val]['value'][idx]['value'][0] -= expr['value'][0]
-                        VARIABLES[val]['value'][idx]['value'][1] -= expr['value'][1]
+                        VARIABLES[val]['value'][idx]['value'] = (VARIABLES[val]['value'][idx]['value'][0] - expr['value'][0], VARIABLES[val]['value'][idx]['value'][1] - expr['value'][1])
                     case _:
                         #throw error
                         raiseError(ctx,TypeError,f"{assignment} operator between {VARIABLES[val]['value'][idx]['data_type']} and {dtype} is not supported")
@@ -93,11 +91,9 @@ def assign_member_value(val,idx,expr,assignment,ctx):
                     case "Number","Number":
                         VARIABLES[val]['value'][idx]['value'] = VARIABLES[val]['value'][idx]['value'] * expr['value']
                     case "Coord","Number":
-                        VARIABLES[val]['value'][idx]['value'][0] *= expr['value']
-                        VARIABLES[val]['value'][idx]['value'][1] *= expr['value']
+                        VARIABLES[val]['value'][idx]['value']= (VARIABLES[val]['value'][idx]['value'][0]*expr['value'],VARIABLES[val]['value'][idx]['value'][1] * expr['value'])
                     case "Coord","Coord":
-                        VARIABLES[val]['value'][idx]['value'][0] *= expr['value'][0]
-                        VARIABLES[val]['value'][idx]['value'][1] *= expr['value'][1]
+                        VARIABLES[val]['value'][idx]['value'] = (VARIABLES[val]['value'][idx]['value'][0] * expr['value'][0], VARIABLES[val]['value'][idx]['value'][1] * expr['value'][1])
                     case _:
                         # throw error
                         raiseError(ctx,TypeError,f"{assignment} operator between {VARIABLES[val]['value'][idx]['data_type']} and {dtype} is not supported")
@@ -107,11 +103,9 @@ def assign_member_value(val,idx,expr,assignment,ctx):
                     case "Number","Number":
                         VARIABLES[val]['value'][idx]['value'] = VARIABLES[val]['value'][idx]['value'] / expr['value']
                     case "Coord","Number":
-                        VARIABLES[val]['value'][idx]['value'][0] /= expr['value']
-                        VARIABLES[val]['value'][idx]['value'][1] /= expr['value']
+                        VARIABLES[val]['value'][idx]['value'] = (VARIABLES[val]['value'][idx]['value'][0]/expr['value'],VARIABLES[val]['value'][idx]['value'][1] / expr['value'])
                     case "Coord","Coord":
-                        VARIABLES[val]['value'][idx]['value'][0] /= expr['value'][0]
-                        VARIABLES[val]['value'][idx]['value'][1] /= expr['value'][1]
+                        VARIABLES[val]['value'][idx]['value'] = (VARIABLES[val]['value'][idx]['value'][0] / expr['value'][0], VARIABLES[val]['value'][idx]['value'][1] / expr['value'][1])
                     case _:
                         # throw error
                         raiseError(ctx,TypeError,f"{assignment} operator between {VARIABLES[val]['value'][idx]['data_type']} and {dtype} is not supported")
@@ -949,7 +943,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
             #throw error
             raiseError(ctx,TypeError,f'Invalid index data type')
         idx = int(expr['value'])
-        if isinstance(VARIABLES[iden]['value'],list):
+        if VARIABLES[iden]['data_type'] == "List" or VARIABLES[iden]['data_type'] == "Coord":
             list_len =  len(VARIABLES[iden]['value'])
             if idx >= list_len or idx < 0 or expr_2['value'] > 1:
                 #throw error
@@ -965,13 +959,21 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                     dtype = "Number"
                     identi = VARIABLES[iden]['value'][idx].get('identifier')
                 else:
-                    val = VARIABLES[iden]['value'][idx]['value']
-                    dtype = VARIABLES[iden]['value'][idx]['data_type']
-                    identi = VARIABLES[iden]['value'][idx].get('identifier')
+                    if VARIABLES[iden]['data_type'] == "List":
+                        val = VARIABLES[iden]['value'][idx]['value']
+                        dtype = VARIABLES[iden]['value'][idx]['data_type']
+                        identi = VARIABLES[iden]['value'][idx].get('identifier')
+                    elif VARIABLES[iden]['data_type'] == "Coord":
+                        val  = VARIABLES[iden]['value'][idx]
+                        dtype = "Number"
+                        try:
+                            identi = VARIABLES[iden]['value'][idx].get('identifier')
+                        except:
+                            identi = None
                 return {'value': val, 'data_type': dtype, 'identifier' : identi}
         else:
             #throw error not a list
-            raiseError(ctx,TypeError,f'{iden} is not a list')
+            raiseError(ctx,TypeError,f'{iden} is not iterable')
             pass
 
     # Visit a parse tree produced by AniFrameParser#function_call.
@@ -1124,8 +1126,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                             else:
                                 raiseError(ctx,ValueError,f"{expr['value']} can not be treated as color")
                         case "Coord", "Coord":
-                            VARIABLES[val]['value'][0] += expr['value'][0]
-                            VARIABLES[val]['value'][1] += expr['value'][1]
+                            VARIABLES[val]['value'] = (VARIABLES[val]['value'][0] + expr['value'][0], VARIABLES[val]['value'][1] + expr['value'][1])
                             return val,VARIABLES[val]
                         case "List","List":
                             VARIABLES[val]['value'] += expr['value']
@@ -1153,8 +1154,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                             else:
                                 raiseError(ctx,ValueError,f"{expr['value']} can not be treated as color")
                         case "Coord","Coord":
-                            VARIABLES[val]['value'][0] -= expr['value'][0]
-                            VARIABLES[val]['value'][1] -= expr['value'][1]
+                            VARIABLES[val]['value'] = (VARIABLES[val]['value'][0]- expr['value'][0], VARIABLES[val]['value'][1] - expr['value'][1])
                             return val,VARIABLES[val]
                         case _:
                             # throw error
@@ -1165,12 +1165,10 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                             VARIABLES[val]['value'] = VARIABLES[val]['value'] * expr['value']
                             return val,VARIABLES[val]
                         case "Coord","Number":
-                            VARIABLES[val]['value'][0] *= expr['value']
-                            VARIABLES[val]['value'][1] *= expr['value']
+                            VARIABLES[val]['value'] = (VARIABLES[val]['value'][0]* expr['value'], VARIABLES[val]['value'][1] * expr['value'])
                             return val,VARIABLES[val]
                         case "Coord", "Coord":
-                            VARIABLES[val]['value'][0] *= expr['value'][0]
-                            VARIABLES[val]['value'][1] *= expr['value'][1]
+                            VARIABLES[val]['value'] = (VARIABLES[val]['value'][0] *expr['value'][0],VARIABLES[val]['value'][1] * expr['value'][1])
                             return val,VARIABLES[val]
                         case _:
                             # throw error
@@ -1181,12 +1179,11 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                             VARIABLES[val]['value'] = VARIABLES[val]['value'] / expr['value']
                             return val,VARIABLES[val]
                         case "Coord","Number":
-                            VARIABLES[val]['value'][0] /= expr['value']
-                            VARIABLES[val]['value'][1] /= expr['value']
+                            VARIABLES[val]['value'] = (VARIABLES[val]['value'][0]/expr['value'],VARIABLES[val]['value'][1] / expr['value'])
+                            
                             return val,VARIABLES[val]
                         case "Coord", "Coord":
-                            VARIABLES[val]['value'][0] /= expr['value'][0]
-                            VARIABLES[val]['value'][1] /= expr['value'][1]
+                            VARIABLES[val]['value'] = (VARIABLES[val]['value'][0]/ expr['value'][0],VARIABLES[val]['value'][1] / expr['value'][1])
                             return val,VARIABLES[val]
                         case _:
                             #throw error
