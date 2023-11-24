@@ -94,8 +94,8 @@ export default class Editor extends PureComponent<Props, State> {
 
     let rectHeight = this.refs.container.getBoundingClientRect().height;
 
-    // **hide the editor permanently in our case
-    wrapper.style.display = oldDisplay;
+    // **comment out the line below to hide the editor permanently in our case
+    // wrapper.style.display = oldDisplay;
 
     this._cm.setSize(null, rectHeight);
   }
