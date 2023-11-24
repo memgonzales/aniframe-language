@@ -87,7 +87,6 @@ __pycache__/
 .idea/
 *.iml
 /**/gen
-*.tokens
 out
 
 # Ignore C# regression temporaries.
@@ -107,11 +106,4 @@ scratch
 *.java
 !IndentAntlrLexer.java
 *.class
-*.interp
-
-interpreter/PARSER SRC/AniFrameParser.py
-interpreter/PARSER SRC/AniFrameLexer.py
-*Listener.py
-*Visitor.py
-
 *.tmp

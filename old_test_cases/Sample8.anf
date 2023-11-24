@@ -1,0 +1,26 @@
+set MAX_NUM_OF_FRAMES to 100
+set CANVAS_WIDTH to 1000
+set CANVAS_HEIGHT to 1000
+
+const default_x1: Number = 50
+const default_y1: Number = 50 
+const default_x2: Number = 50 
+const default_y2: Number = -50
+const default_x3: Number = -50
+const default_y3: Number = -50 
+const default_x4: Number = -50 
+const default_y4: Number = 50
+
+square: Object = rectangle(default_x1, default_y1, default_x2, default_y2,
+
+default_x3, default_y3,
+default_x4,
+
+default_y4)
+square.fill(
+    "#222222")
+
+for FRAME 1 to FRAME 10:
+
+    square.morph(126, 263, 281, 317, 475, 132, 405, y4 = 417, start_frame=FRAME, end_frame = FRAME+1).morph(default_x1, default_y1, 
+        default_x2, default_y2, default_x3, default_y3, default_x4, default_y4, FRAME+2, FRAME+3)

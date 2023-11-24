@@ -1,0 +1,37 @@
+set MAX_NUM_OF_FRAMES to 100
+set CANVAS_WIDTH to 1000
+set CANVAS_HEIGHT to 1000
+
+func se_spike(floor: Object, height: Number, curr_pos: Number):
+    floor+=triangle(curr_pos,height,curr_pos-3,0,curr_pos+3,0)
+    spikes += [curr_pos-3,curr_pos+3]
+
+func check_bounds(curr_pos: Number) returns Number:
+    if curr_pos+3 > CANVAS_WIDTH || curr_pos-3 < 0:
+        return 0
+    return 1
+
+func rolling(spikes: List, curr_pos: Number) returns Number:
+    for x,y in spikes:
+        if curr_pos >= x && curr_pos <= y:
+            return 0
+
+    return 1        
+
+
+
+curr_pos = 0        
+floor = line(0,0,CANVAS_WIDTH,0)
+height = 5
+spikes = []
+spikes = [1]
+spikes = [1, 3]
+spikes = [{1, 3}, {4, 5}]
+
+repeat 6:
+    if check_bounds(curr_pos) && rolling(curr_pos):
+        floor.set_spike(height,curr_pos)
+    else:
+        curr_pos+=rand_int(1,10)
+    if (curr_pos >= CANVAS_WIDTH):
+        break
