@@ -419,7 +419,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
         mapping.write(mapping.print_src_code())
         return
 
-    def visitdraw_statement(self,ctx:AniFrameParser.Draw_statementContext):
+    def visitDraw_statement(self, ctx:AniFrameParser.Draw_statementContext):
         var_name = ctx.getChild(0).getText()
         params = self.visit(ctx.getChild(4))
 
