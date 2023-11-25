@@ -27,7 +27,7 @@ def check_type(value):
 def default_value():
     return '_'
 
-def process_input(lines):
+def process_input(lines,ctx):
     #TODO finish regex
     num_regex = r""
     txt_regex = r""
@@ -41,6 +41,8 @@ def process_input(lines):
         elif re.match(coord_regex,line):
             val = re.match(coord_regex,line)
             result.append({'value': (literal_eval(val.group(1)),literal_eval(val.group(1))),'data_type':"Coord"})
+        else:
+            raiseError(ctx,ValueError,f"User input {line} is invalid")
 
     return result
 
@@ -938,7 +940,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                             except:
                                 raiseError(ctx,ValueError,f'File {params[0]["value"]} does not exist')
                             #TODO Process
-                            lines = process_input(lines)
+                            lines = process_input(lines,ctx)
                             return {'value': lines, 'data_type': 'List'}
                         else:
                             raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
