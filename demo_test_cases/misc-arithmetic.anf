@@ -78,3 +78,10 @@ info(Z)
 
 # XX: Coord = {3, 5}
 # info(XX)
+
+info(">>>>>")
+list = [1, 2, 3, 4]
+happy = {list[0], list[3] % list[2]}
+info(happy)
+
+info(happy * Z)
