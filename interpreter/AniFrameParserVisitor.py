@@ -1940,7 +1940,17 @@ class AniFrameParserVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by AniFrameParser#conditional_block_with_break_return.
     def visitConditional_block_with_break_return(self, ctx:AniFrameParser.Conditional_block_with_break_returnContext):
-        return self.visitChildren(ctx)
+        children = ctx.getChildCount()
+        for i in range(2,children):
+            val = self.visit(ctx.getChild(i))
+            if val == None:
+                continue
+            if val == False:
+                return False
+            if val:
+                return val
+            
+        return
 
 
     # Visit a parse tree produced by AniFrameParser#loop_block.
