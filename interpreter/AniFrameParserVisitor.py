@@ -1427,6 +1427,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                 if is_rgb(value['value']) or is_hexColor(value['value']):
                     VARIABLES[configurable]['data_type'] = configurable
                     VARIABLES[configurable]['value'] = hexrgb_to_colors(value['value'])
+                    mapping.configure_canvas_background = VARIABLES[configurable]['value']
                 else:
                     raiseError(ctx,ValueError,f'Invalid value for {configurable}')
             except:
@@ -1436,6 +1437,16 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                 raiseError(ctx,ValueError,f'Invalid value for {configurable}')
             VARIABLES[configurable]['data_type'] = configurable
             VARIABLES[configurable]['value'] = value['value']
+
+            match configurable:
+                case 'FRAME_RATE':
+                    mapping.configure_frame_rate(VARIABLES[configurable]['value'])
+                case 'CANVAS_WIDTH':
+                    mapping.configure_canvas_width(VARIABLES[configurable]['value'])
+                case 'CANVAS_HEIGHT':
+                    mapping.configure_canvas_height(VARIABLES[configurable]['value'])
+                case 'MAX_NUM_OF_FRAMES':
+                    mapping.configure_max_num_frames(VARIABLES[configurable]['value'])
         return
 
     # Visit a parse tree produced by AniFrameParser#flow_control_statement.
