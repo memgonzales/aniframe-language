@@ -13,7 +13,7 @@ func returnMe(txt: Text) returns Text:
 
     return txt2
 
-returnMe("#FF") 
+info(returnMe("#FF") )
 
 
 func iAmLoop(scalar, offset, marker_x, marker_y) returns Number:
@@ -32,5 +32,6 @@ func iAmLoop(scalar, offset, marker_x, marker_y) returns Number:
     return marker_x
 
 ctr = 5
-iAmLoop(3, 5, 0, 0)
+y = iAmLoop(3, 5, 0, 0)
+info(y)
 info(ctr)               # Shouldn't print anything
