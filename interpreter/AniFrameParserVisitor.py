@@ -552,14 +552,18 @@ class AniFrameParserVisitor(ParseTreeVisitor):
             result = check_parameters(func_name,params,ctx)
             match func_name:
                 case 'type':
-                    print(result[0]['data_type'])
+                    res = result[0]['data_type']
+                    if res == '_': print("None")
+                    else: print(res) 
                 case 'info':
                     if result[0]['data_type'] == "Object":
                         print(mapping.CLASSES[mapping.clean_identifier(result[0]['identifier'])])
                     elif result[0]['data_type'] == "Color":
                         print(f"rgb{result[0]['value'][0],result[0]['value'][1],result[0]['value'][2]}")
                     else:
-                        print(result[0]['value'])
+                        res = result[0]['value']
+                        if res == '_': print("None") 
+                        else: print(res)
                 case 'length':
                     check = True if len(params) == 1 else False
                     if check:
@@ -574,9 +578,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                         function_ctr +=1
                         val = self.visitFunction_declaration_definition(context,params,return_value)
                         function_ctr-=1
-                        if val == None:
-                            return
-                        return val
+                        return
                 case _: 
                     raiseError(ctx,ValueError,f"{func_name} is not a valid function")
 
@@ -1819,47 +1821,121 @@ class AniFrameParserVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by AniFrameParser#conditional_with_return.
     def visitConditional_with_return(self, ctx:AniFrameParser.Conditional_with_returnContext):
-        return self.visitChildren(ctx)
+        children = ctx.getChildCount()
+
+        for i in range(children):
+            val = self.visit(ctx.getChild(i))
+            if val == True:
+                return
+            if val:
+                return val
+            #IF val == none meaning condition was false; go next
+        
+        return
 
 
     # Visit a parse tree produced by AniFrameParser#if_statement_with_return.
     def visitIf_statement_with_return(self, ctx:AniFrameParser.If_statement_with_returnContext):
-        return self.visitChildren(ctx)
+        if self.visit(ctx.getChild(0)):
+            val = self.visit(ctx.getChild(1))
+            if val == None:
+                return True
+            if val:
+                return val
+
+        return
 
 
     # Visit a parse tree produced by AniFrameParser#else_if_statement_with_return.
     def visitElse_if_statement_with_return(self, ctx:AniFrameParser.Else_if_statement_with_returnContext):
-        return self.visitChildren(ctx)
+        if self.visit(ctx.getChild(0)):
+            val = self.visit(ctx.getChild(1))
+            if val == None:
+                return True
+            if val:
+                return val
+
+        return
 
 
     # Visit a parse tree produced by AniFrameParser#else_statement_with_return.
     def visitElse_statement_with_return(self, ctx:AniFrameParser.Else_statement_with_returnContext):
-        return self.visitChildren(ctx)
+        val = self.visit(ctx.getChild(1))
+        if val == None:
+            return True
+        if val:
+            return val
+        return
 
 
     # Visit a parse tree produced by AniFrameParser#conditional_block_with_return.
     def visitConditional_block_with_return(self, ctx:AniFrameParser.Conditional_block_with_returnContext):
-        return self.visitChildren(ctx)
+        children = ctx.getChildCount()
+        for i in range(2,children):
+            val = self.visit(ctx.getChild(i))
+            if val == None:
+                continue
+            if val:
+                return val
+            
+        return
 
 
     # Visit a parse tree produced by AniFrameParser#conditional_with_break_return.
     def visitConditional_with_break_return(self, ctx:AniFrameParser.Conditional_with_break_returnContext):
-        return self.visitChildren(ctx)
+        children = ctx.getChildCount()
+
+        for i in range(children):
+            val = self.visit(ctx.getChild(i))
+            if val == True:
+                return
+            if val == False:
+                return False
+            if val:
+                return val
+            #IF val == none meaning condition was false; go next
+        
+        return
 
 
     # Visit a parse tree produced by AniFrameParser#if_statement_with_break_return.
     def visitIf_statement_with_break_return(self, ctx:AniFrameParser.If_statement_with_break_returnContext):
-        return self.visitChildren(ctx)
+        if self.visit(ctx.getChild(0)):
+            val = self.visit(ctx.getChild(1))
+            if val == None:
+                return True
+            if val == False:
+                return False
+            if val:
+                return val
+
+        return
 
 
     # Visit a parse tree produced by AniFrameParser#else_if_statement_with_break_return.
     def visitElse_if_statement_with_break_return(self, ctx:AniFrameParser.Else_if_statement_with_break_returnContext):
-        return self.visitChildren(ctx)
+        if self.visit(ctx.getChild(0)):
+            val = self.visit(ctx.getChild(1))
+            if val == None:
+                return True
+            if val == False:
+                return False
+            if val:
+                return val
+
+        return
 
 
     # Visit a parse tree produced by AniFrameParser#else_statement_with_break_return.
     def visitElse_statement_with_break_return(self, ctx:AniFrameParser.Else_statement_with_break_returnContext):
-        return self.visitChildren(ctx)
+        val = self.visit(ctx.getChild(1))
+        if val == None:
+            return True
+        if val == False:
+            return False
+        if val:
+            return val
+        return
 
 
     # Visit a parse tree produced by AniFrameParser#conditional_block_with_break_return.
@@ -1885,22 +1961,62 @@ class AniFrameParserVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by AniFrameParser#for_loop_with_return.
     def visitFor_loop_with_return(self, ctx:AniFrameParser.For_loop_with_returnContext):
-        return self.visitChildren(ctx)
+        ctr = 0
+        storage,idens,expr = self.visitFor_line(ctx.getChild(0),ctr,first=True)
+        end = len(expr['value'])
+        while ctr < end:
+            _,_,expr = self.visitFor_line(ctx.getChild(0),ctr)
+            end = len(expr['value'])
+            val = self.visit(ctx.getChild(1))
+            if val == False:
+                break
+            if val:
+                break
+            ctr+=1
+
+        for i in idens:
+            VARIABLES.pop(i)
+        for iden,item in storage:
+            VARIABLES[iden] = item
+        if val:
+            return val
+        return
 
 
     # Visit a parse tree produced by AniFrameParser#while_loop_with_return.
     def visitWhile_loop_with_return(self, ctx:AniFrameParser.While_loop_with_returnContext):
-        return self.visitChildren(ctx)
+        while self.visit(ctx.getChild(0)):
+            val = self.visit(ctx.getChild(1))
+            if val == False:
+                break
+            if val:
+                return val
+        return 
 
 
     # Visit a parse tree produced by AniFrameParser#repeat_loop_with_return.
     def visitRepeat_loop_with_return(self, ctx:AniFrameParser.Repeat_loop_with_returnContext):
-        return self.visitChildren(ctx)
+        value = self.visit(ctx.getChild(0))
+        for i in range(value):
+            val = self.visit(ctx.getChild(1))
+            if val == False:
+                break
+            if val:
+                return val
+        return
 
 
     # Visit a parse tree produced by AniFrameParser#loop_block_with_return.
     def visitLoop_block_with_return(self, ctx:AniFrameParser.Loop_block_with_returnContext):
-        return self.visitChildren(ctx)
+        children = ctx.getChildCount()
+        for i in range(2,children-1):
+            val = self.visit(ctx.getChild(i))
+            if val == False:
+                return False
+            if val:
+                return val
+        
+        return
 
 
     # Visit a parse tree produced by AniFrameParser#function_block.
