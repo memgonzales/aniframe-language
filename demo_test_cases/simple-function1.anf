@@ -1,0 +1,31 @@
+func printMe(txt: Text):
+    txt2: Text = "00" + "0"
+    txt2 += "0"
+
+    info(txt2)
+
+printMe("#FF") 
+
+
+func returnMe(txt: Text) returns Text:
+    txt2: Text = "00" + "0"
+    txt2 += "0"
+
+    return txt2
+
+returnMe("#FF") 
+
+
+func iAmLoop(scalar, offset, marker_x, marker_y) returns Number:
+    repeat(7):
+        marker_x += offset + cos(angle) * scalar
+        marker_y += offset + sin(angle) * scalar
+
+        repeat(5):
+            info(marker_x)
+            info(marker_y)
+
+        if marker_x > 10:
+            break
+
+    return marker_x
