@@ -150,7 +150,7 @@ def check_parameters(name,params,ctx):
                     else:
                         params = mapping.convert_object_expr_to_p5(params[0]['value'][0],params[0]['value'][1])
             if check:
-                return params
+                return [params]
             else:
                 #THROW ERROR
                 raiseError(ctx,TypeError,f'Invalid data types for add')
@@ -429,9 +429,16 @@ def check_user_params(name,params,ctx):
     check = True if len(params) == len(func_params) else False
     if check:
         for i in range(len(params)):
+            if func_params[i]['data_type'] == "Color" and params[i]['data_type'] == "Text":
+                color = is_rgb(params[i]['value']) or is_hexColor(params[i]['value'])
+                if color: 
+                    func_params[i]['value'] = params[i]['value']
+                    continue
+                else:
+                    raiseError(ctx,ValueError,f"Invalid parameters for {name}. Parameter {i+1} must be {func_params[i]['data_type']}")
             if params[i]['data_type'] != func_params[i]['data_type']:
                 check = False
-                raiseError(ctx,ValueError,f"Invalid parameters for {name}")
+                raiseError(ctx,ValueError,f"Invalid parameters for {name}. Parameter {i+1} must be {func_params[i]['data_type']}")
             func_params[i]['value'] = params[i]['value']
                 
     if check:
@@ -1505,7 +1512,8 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                 if is_rgb(value['value']) or is_hexColor(value['value']):
                     VARIABLES[configurable]['data_type'] = configurable
                     VARIABLES[configurable]['value'] = hexrgb_to_colors(value['value'])
-                    mapping.configure_canvas_background = VARIABLES[configurable]['value']
+                    hexc = "#" + hex(VARIABLES[configurable]['value'][0])[2:] + hex(VARIABLES[configurable]['value'][1])[2:] + hex(VARIABLES[configurable]['value'][2])[2:]
+                    mapping.configure_canvas_background(hexc)
                 else:
                     raiseError(ctx,ValueError,f'Invalid value for {configurable}')
             except:
@@ -1701,7 +1709,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
 
         storage = deepcopy(VARIABLES)
         return_val = self.visitFunction_block(ctx.getChild(1),params,retval)
-        VARIABLES = storage
+        VARIABLES = deepcopy(storage)
         del storage
 
         if return_val != None:
