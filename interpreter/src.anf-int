@@ -3,6 +3,20 @@ function setup() {
     frameRate(60);
 }function draw() {
     background("#FFFFFF");
+push();
+if (1 <= frameCount && frameCount <= 1000) {
+    new _marker().display();
+}
+pop();
     if (frameCount > 10000000000000000159028911097599180468360808563945281389781327557747838772170381060813469985856815104) {frameCount = 0;
 }}
 
+class _marker {
+    constructor() {
+    }
+    display() {
+fill("#FFFFFF");
+stroke("#000000");
+ellipse(10.000019024086908, 25.0238897937473, 100, 10);
+    }
+}
