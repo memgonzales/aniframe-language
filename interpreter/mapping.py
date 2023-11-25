@@ -121,33 +121,34 @@ def print_display():
 def print_classes():
     ret = '\n'
     for class_name, methods in CLASSES.items():
-        ret += f'class {class_name} {{\n'
+        if class_name in DRAW_CLASSES:
+            ret += f'class {class_name} {{\n'
 
-        for method, body in methods.items():
-            if not is_function(method):
-                continue
+            for method, body in methods.items():
+                if not is_function(method):
+                    continue
 
-            if method != 'display()':
-                ret += f'    {method} {{\n'
-                ret += ';\n        '.join(body)
-                ret += '    }\n'
+                if method != 'display()':
+                    ret += f'    {method} {{\n'
+                    ret += ';\n        '.join(body)
+                    ret += '    }\n'
 
-            else:
-                ret += f'    {method} {{\n'
-                for entry in body:
-                    for prop, value in entry.items():
-                        if value is None:
-                            continue
-                        
-                        if prop == 'shape':
-                            ret += f'{value};\n'
-                        
-                        else:
-                            ret += f'{prop}("{value}");\n'
+                else:
+                    ret += f'    {method} {{\n'
+                    for entry in body:
+                        for prop, value in entry.items():
+                            if value is None:
+                                continue
+                            
+                            if prop == 'shape':
+                                ret += f'{value};\n'
+                            
+                            else:
+                                ret += f'{prop}("{value}");\n'
 
-                ret += '    }\n'
+                    ret += '    }\n'
 
-        ret += '}\n'
+            ret += '}\n'
 
     return ret
 
@@ -522,65 +523,65 @@ def configure_max_num_frames(num_frames):
     global MAX_FRAMES
     MAX_FRAMES = num_frames
 
-# =======
-# SAMPLE
-# =======
+# # =======
+# # SAMPLE
+# # =======
 
-configure_frame_rate(100)
-configure_canvas_width(1000)
-configure_canvas_height(1000)
-configure_canvas_background('#DEDEDE')
-configure_max_num_frames(1000)
+# configure_frame_rate(100)
+# configure_canvas_width(1000)
+# configure_canvas_height(1000)
+# configure_canvas_background('#DEDEDE')
+# configure_max_num_frames(1000)
 
-convert_rectangle_to_p5('car_body', 0, 0, 95.4, 79.5)
-convert_circle_to_p5('wheel1', 80, 80, 33)
-convert_triangle_to_p5('window1', 30, 75, 58, 20, 86, 75)
+# convert_rectangle_to_p5('car_body', 0, 0, 95.4, 79.5)
+# convert_circle_to_p5('wheel1', 80, 80, 33)
+# convert_triangle_to_p5('window1', 30, 75, 58, 20, 86, 75)
 
-convert_color_to_p5('window_color', '#ADD8E6')
+# convert_color_to_p5('window_color', '#ADD8E6')
 
-# convert_fill_to_p5('car_body', '#ADD8E6')
-# convert_fill_to_p5('window1', '#000000')
-# convert_stroke_to_p5('wheel1', '#ADD8FF')
+# # convert_fill_to_p5('car_body', '#ADD8E6')
+# # convert_fill_to_p5('window1', '#000000')
+# # convert_stroke_to_p5('wheel1', '#ADD8FF')
 
-convert_object_new_to_p5('car')
-convert_object_assign_to_p5('car', convert_object_add_to_p5('car', 'car_body'))
-convert_object_assign_to_p5('car', convert_object_add_to_p5('car', 'window1'))
-convert_object_assign_to_p5('car', convert_object_add_to_p5('car', 'wheel1'))
+# convert_object_new_to_p5('car')
+# convert_object_assign_to_p5('car', convert_object_add_to_p5('car', 'car_body'))
+# convert_object_assign_to_p5('car', convert_object_add_to_p5('car', 'window1'))
+# convert_object_assign_to_p5('car', convert_object_add_to_p5('car', 'wheel1'))
 
-draw('car', 100, 400)
+# draw('car', 100, 400)
 
-# =====================
+# # =====================
 
-convert_rectangle_to_p5('car_body1', 200, 200, 95.4, 79.5)
-convert_circle_to_p5('wheel11', 280, 280, 33)
-convert_triangle_to_p5('window11', 230, 275, 258, 220, 286, 275)
+# convert_rectangle_to_p5('car_body1', 200, 200, 95.4, 79.5)
+# convert_circle_to_p5('wheel11', 280, 280, 33)
+# convert_triangle_to_p5('window11', 230, 275, 258, 220, 286, 275)
 
-convert_fill_to_p5('car_body1', 200, 100, 255)
-convert_fill_to_p5('window11', 0, 10, 100)
-convert_stroke_to_p5('wheel11', 10, 200, 155)
+# convert_fill_to_p5('car_body1', 200, 100, 255)
+# convert_fill_to_p5('window11', 0, 10, 100)
+# convert_stroke_to_p5('wheel11', 10, 200, 155)
 
-convert_object_assign_to_p5('car1', convert_object_add_to_p5('car1', 'car_body1'))
-convert_object_assign_to_p5('car1', convert_object_add_to_p5('car1', 'window11'))
-convert_object_assign_to_p5('car1', convert_object_add_to_p5('car1', 'wheel11'))
+# convert_object_assign_to_p5('car1', convert_object_add_to_p5('car1', 'car_body1'))
+# convert_object_assign_to_p5('car1', convert_object_add_to_p5('car1', 'window11'))
+# convert_object_assign_to_p5('car1', convert_object_add_to_p5('car1', 'wheel11'))
 
-# convert_object_assign_to_p5('car1', 'car')
-convert_moveY_to_p5('car1', 10, 200, 400)
-convert_rotateCC_to_p5('car1', 45, 250, 400)
-convert_resizeY_to_p5('car1', 2, 275, 400)
-draw('car1', 100, 500)
+# # convert_object_assign_to_p5('car1', 'car')
+# convert_moveY_to_p5('car1', 10, 200, 400)
+# convert_rotateCC_to_p5('car1', 45, 250, 400)
+# convert_resizeY_to_p5('car1', 2, 275, 400)
+# draw('car1', 100, 500)
 
-convert_polygon_to_p5('star', [(30, 20), (85, 20), (85, 75), (30, 75)])
-convert_shearY_to_p5('star', 45, 250, 300)
-draw('star', 1, 400)
+# convert_polygon_to_p5('star', [(30, 20), (85, 20), (85, 75), (30, 75)])
+# convert_shearY_to_p5('star', 45, 250, 300)
+# draw('star', 1, 400)
 
-convert_write_to_p5('dog', 'awooo', 80, 90)
-draw('dog', 50, 600)
+# convert_write_to_p5('dog', 'awooo', 80, 90)
+# draw('dog', 50, 600)
 
-# ========================
+# # ========================
 
-draw(convert_object_expr_to_p5('line', [100, 200, 300, 400]), 100, 400)
-draw(convert_object_add_to_p5(convert_object_expr_to_p5('line', [100, 200, 300, 400]), convert_object_expr_to_p5('rectangle', [10, 20, 30, 40])), 100, 400)
+# draw(convert_object_expr_to_p5('line', [100, 200, 300, 400]), 100, 400)
+# draw(convert_object_add_to_p5(convert_object_expr_to_p5('line', [100, 200, 300, 400]), convert_object_expr_to_p5('rectangle', [10, 20, 30, 40])), 100, 400)
 
-# ========================
+# # ========================
 
-write(print_src_code())
+# write(print_src_code())
