@@ -540,6 +540,14 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                         print(f"rgb{result[0]['value'][0],result[0]['value'][1],result[0]['value'][2]}")
                     else:
                         print(result[0]['value'])
+                case 'len':
+                    check = True if len(params) == 1 else False
+                    if check:
+                        check = True if params[0]['data_type'] == "List" else False
+                    if check:
+                        return
+                    else:
+                        raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
                 case _: 
                     raiseError(ctx,ValueError,f"{func_name} is not a valid function")
 
@@ -849,6 +857,14 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                 func_name,params = self.visit(ctx.getChild(0))
 
                 match func_name:
+                    case 'len':
+                        check = True if len(params) == 1 else False
+                        if check:
+                            check = True if params[0]['data_type'] == "List" else False
+                        if check:
+                            return {'value': len(params[0]['value']), 'data_type': "Number"}
+                        else:
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
                     case 'get_input':
                         check = True if len(params) == 1 else False
                         if check:
