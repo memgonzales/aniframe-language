@@ -1,32 +1,39 @@
 shape1 = quad(58, 73, 29.000, 28.61, -3, 94.0076, 28.16, 77.19458)
 shape2: Object = triangle(235, 332, 396, 315.57, 169, 164) 
 
-start_fr = 1, 
+start_fr = 1 
 end_fr = 100
-num: Number = rand_num
+num: Number = 401
 
 ctr: Number = 25
 
 if num > 400 || num < 0:
     repeat 5:
         if num > 400 || num < 0:
-            num = rand_num
+            num = 8
+            info("repeat")
         else:
+            info("trigger me!")
             break
 
-if num > 0 && < 400:
+    info(num)
+
+if num > 0 && num < 400:
     if num < 100 || num > 300:
-        num = rand_num
+        num = 5
+        info(num)
+
         repeat 10:
             if num < 100 || num > 300:
-                num = rand_num
+                num = 5
+                info(num)
             else:
                 break
         
     else:
         if num > 100 && num < 300:
             while num <= 199 || num >= 301:
-                num = rand_num
+                num = 5
             
 if start_fr < ctr && start_fr:
     shape1.moveY(-num, start_fr, ctr)
@@ -60,3 +67,5 @@ if start_fr < ctr && start_fr:
                     shape1.moveY(num-2*num, start_fr, end_fr)
                     shape2.moveY(2*num-num, start_fr, end_fr) 
 
+shape1.draw(1, 10000)    
+shape2.draw(1, 10000)    
