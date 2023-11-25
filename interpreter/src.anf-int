@@ -4,19 +4,42 @@ function setup() {
 }function draw() {
     background("#FFFFFF");
 push();
+if (1 <= frameCount && frameCount <= 100) {
+    new _wing().display();
+}
+if (101 <= frameCount && frameCount <= 1000) {
+    translate(new p5.Vector(1 * (frameCount - 100 + 100), 1 * (frameCount - 100 + 0)));
+rotate((frameCount - 100) * radians(-180) / (1000 - 100 + 1));
+new _wing().display();
+}
+if (1001 <= frameCount && frameCount <= 10000000000000000159028911097599180468360808563945281389781327557747838772170381060813469985856815104) {
+    translate(new p5.Vector(1 * (1000 - 100 + 100), 1 * (1000 - 100 + 0)));
+rotate((1000 - 100) * radians(-180) / (1000 - 100 + 1));
+}
+pop();
+push();
 if (1 <= frameCount && frameCount <= 1000) {
-    new _marker().display();
+    new _torso().display();
 }
 pop();
     if (frameCount > 10000000000000000159028911097599180468360808563945281389781327557747838772170381060813469985856815104) {frameCount = 0;
 }}
 
-class _marker {
+class _torso {
     constructor() {
     }
     display() {
 fill("#FFFFFF");
 stroke("#000000");
-ellipse(10.000019024086908, 25.0238897937473, 100, 10);
+rect(100, 200, 200, 100);
+    }
+}
+class _wing {
+    constructor() {
+    }
+    display() {
+fill("#FFFFFF");
+stroke("#000000");
+triangle(270, 250, 130.0, 250, 400, 100.0);
     }
 }
