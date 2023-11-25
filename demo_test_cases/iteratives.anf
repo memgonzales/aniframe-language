@@ -1,42 +1,44 @@
-sq: Object = rectangle(87, 65, 134, 134)
 tri: Object = triangle(179.27, 20.6407, 19.70574, 27.07795, 14.58877, 87.39309)
 dot = point(rand_num(1, 200), rand_num(1, 200))
 stick = line(rand_num(1, 200), rand_num(1, 200), rand_num(1, 200), rand_num(1, 200))
 bump = curve(rand_num(1, 200), rand_num(1, 200), rand_num(1, 200), rand_num(1, 200))
 
-shapes1 = [sq, tri, dot, stick, bump]
-
-shapes2 = [bump, stick, dot]
-
-colors = ["#89AC76", "rgb(041, 49, +51)", "rgb(134, 115, 161)", "#1E2460", "#2271B3",
+colors1 = ["#89AC76", "rgb(041, 49, +51)", "rgb(134, 115, 161)", "#1E2460", "#2271B3",
     "rgb(203, 208, 204)", "#A18594", "#256D7B", "#20214F", "rgb(157, 161, 170)"]
 
-repeat(3):
-    for i in shapes1:
-        shapes1 += shapes1[i]
+colors2 = ["rgb(237, 118, 14)", "#FFFF00", "#924E7D", "rgb(00, 187, 045)", "rgb(106, 95, 49)"]
 
-shapes1 += shapes2    
+colors3: List
 
-i = 100
+repeat(2):
+    for i in colors1:
+        colors3 += colors1[i]
+
+        for j in colors2:
+            colors3 += colors2[j]
+
+i = 10
 
 while i > 0:
-    for j in shapes1: 
+    for j in colors: 
 
         if i % 4 == 0:
-            shapes1[i].move(56, 374, 1, 1000)
+            tri.move(56, 374, 1, 1000)
         
         else if i % 4 == 1:
-            shapes1[i].move(374, 56, 1, 1000)
+            dot.move(374, 56, 1, 1000)
 
         else if i % 4 == 2:
-            shapes1[i].move(56, -374, 1, 1000)
+            stick.move(56, -374, 1, 1000)
         
         else if i % 4 == 3:
-            shapes1[i].move(-374, 56, 1, 1000)
+            bump.move(-374, 56, 1, 1000)
 
-        for k in colors:
-            shapes1[i].fill(colors[k])
-            shapes1[i].stroke(colors[k])
+        for k in colors3:
+            tri.fill(colors3[k])
+            dot.stroke(colors3[k])
+            stick.stroke(colors3[k])
+            bump.stroke(colors3[k])
 
     
     i -= 1
