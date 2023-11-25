@@ -1,0 +1,45 @@
+sq: Object = rectangle(87, 65, 134, 134)
+tri: Object = triangle(179.27, 20.6407, 19.70574, 27.07795, 14.58877, 87.39309)
+dot = point(rand_num(1, 200), rand_num(1, 200))
+stick = line(rand_num(1, 200), rand_num(1, 200), rand_num(1, 200), rand_num(1, 200))
+bump = curve(rand_num(1, 200), rand_num(1, 200), rand_num(1, 200), rand_num(1, 200))
+
+shapes1 = [sq, tri, dot, stick, bump]
+
+shapes2 = [bump, stick, dot]
+
+colors = ["#89AC76", "rgb(041, 49, +51)", "rgb(134, 115, 161)", "#1E2460", "#2271B3",
+    "rgb(203, 208, 204)", "#A18594", "#256D7B", "#20214F", "rgb(157, 161, 170)"]
+
+repeat(3):
+    for i in shapes1:
+        shapes1 += shapes1[i]
+
+shapes1 += shapes2    
+
+i = 100
+
+while i > 0:
+    for j in shapes1: 
+
+        if i % 4 == 0:
+            shapes1[i].move(56, 374, 1, 1000)
+        
+        else if i % 4 == 1:
+            shapes1[i].move(374, 56, 1, 1000)
+
+        else if i % 4 == 2:
+            shapes1[i].move(56, -374, 1, 1000)
+        
+        else if i % 4 == 3:
+            shapes1[i].move(-374, 56, 1, 1000)
+
+        for k in colors:
+            shapes1[i].fill(colors[k])
+            shapes1[i].stroke(colors[k])
+
+    
+    i -= 1
+
+
+    

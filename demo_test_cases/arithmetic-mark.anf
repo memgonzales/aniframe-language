@@ -1,0 +1,71 @@
+set FRAME_RATE to 1
+set CANVAS_WIDTH to 500
+set CANVAS_HEIGHT to 500
+
+txt: Text = "#FF"
+txt2: Text = "00" + "0"
+txt2 += "0"
+
+info(txt2)
+
+
+
+clock_x: Number = 250
+clock_y: Number = 123
+clock_d: Number = clock_x-50
+
+info(clock_x)
+info(clock_y)
+info(clock_d)
+type(clock_x)
+
+clock_face: Object = circle(clock_x, clock_y, clock_d)
+
+type(clock_face)
+info(clock_face)
+
+sec_hand: Object = rectangle(clock_x, clock_y, 10/2, -90)
+
+min_hand: Object = rectangle(clock_x, clock_y, -1*-90, 2*2.5)
+min_hand.fill("#000000")
+
+clock: Object 
+clock += sec_hand
+clock += min_hand
+
+
+tree_coord: Coord = {0, 0}
+clock_coord: Coord = {clock_x, clock_y}
+
+info(tree_coord)
+info(clock_coord)
+
+tree_top: Object = rectangle(tree_coord[0], tree_coord[1], 100, 100)
+
+clock_coord *= 2
+clock_coord = clock_coord * {1.5, -2}
+tree_coord -= clock_coord + {+74683, -31}
+tree_coord /= {1000, 10}
+
+tree_top: Object = rectangle(tree_coord[0], tree_coord[1], 100, 100)
+
+clock += tree_top
+
+angles: List = [45]
+
+angles = angles + [45*2, +90+90, -90+360, 180*4/2]
+
+info(angles)
+type(angles)
+
+tree_top.turn(angles[0], 100, 200)
+
+num: Number = 543
+
+tree_top.turn(angles[num % 5], 100, 200)
+
+info(tree_top)
+type(tree_top)
+
+clock.draw(100, 400)
+tree_top.draw(200, 500)

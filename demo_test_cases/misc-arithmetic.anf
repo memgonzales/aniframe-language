@@ -1,0 +1,87 @@
+info({5, 6} - {6, 4})
+info({5, 6} + {6, 4})
+info({5, 6} * {6, 4})
+info({5, 6} / {6, 4})
+# info({5} / {6, 4})
+# info({5, 6} % {6, 4})
+
+# x: Number = {5, 6} / {6, 4}
+
+info(["hello", {3, 5}] + ["hi", 5])
+info(["hello", {3, 5}] + ["hi", 5] + ["hola"])
+# info(["hello", [3, 5]] + ["hi", 5])
+# info(["hello", {3, 5}] - ["hi", 5])
+# info(["hello", {3, 5}] * ["hi", 5])
+# info(["hello", {3, 5}] / ["hi", 5])
+# info(["hello", {3, 5}] < ["hi", 5])
+info([] + ["hi", 5])
+
+info(5 < 6 + 5 + 6)
+# info([] && ["hi", 5])
+coord: Coord = {5, 6}
+info(coord[0])
+type(coord[0])
+
+X: Color = "#FEFEFE"
+Y: Color = "#DADADA"
+
+B: Text = "#FEFEFE"
+type(B)
+C: Color = B
+type(C)
+info(C)
+
+D: Color = "#FEFEFE"
+info(D)
+
+E = X - Y 
+info(E)
+
+clock_x = 3 + 5
+clock_y = 5 + 4
+clock_coord: Coord = {clock_x, clock_y}
+clock_coord *= 2
+info(clock_coord)
+
+XX  :  Number = 333
+YY  : Number = 555
+
+info("================")
+Z = XX + YY
+info(Z)
+Z = XX - YY 
+info(Z)
+Z = XX * YY 
+info(Z)
+Z = XX % YY
+info(Z) 
+Z = XX / YY
+info(Z)
+
+XX = 34.2
+YY = 12.4
+
+info("<<<<<<<<")
+Z = XX + YY
+info(Z)
+Z = XX - YY 
+info(Z)
+Z = XX * YY 
+info(Z)
+Z = XX % YY
+info(Z) 
+Z = XX / YY
+info(Z)
+
+Z %= YY
+info(Z)
+
+# XX: Coord = {3, 5}
+# info(XX)
+
+info(">>>>>")
+list = [1, 2, 3, 4]
+happy = {list[0], list[3] % list[2]}
+info(happy)
+
+info(happy * Z)
