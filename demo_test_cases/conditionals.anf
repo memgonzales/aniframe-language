@@ -1,10 +1,17 @@
+set CANVAS_WIDTH to 600
+set CANVAS_HEIGHT to 600
+set CANVAS_BACKGROUND to "#DEDEDE"
+set MAX_NUM_OF_FRAMES to 10100
+set FRAME_RATE to 100
+
+
 shape1 = quad(58, 73, 29.000, 28.61, -3, 94.0076, 28.16, 77.19458)
-shape1.fill(rand_int(0, 255), rand_int(0, 255), rand_int(0, 255))
+shape1.fill("rgb(100, 200, 55)")
 shape1.stroke("#000000")
 
 shape2: Object = triangle(235, 332, 396, 315.57, 169, 164) 
-shape2.fill("#CCCCFF")
-shape2.stroke(rand_int(0, 255), rand_int(0, 255), rand_int(0, 255))
+shape2.fill("rgb(200, 100, 155)")
+shape2.stroke("#DEDEDE")
 
 start_fr = 1 
 end_fr = 100
@@ -44,10 +51,10 @@ if start_fr < ctr && start_fr:
     shape1.moveY(-num, start_fr, ctr)
     shape2.moveY(num-0.000, start_fr, ctr)
 
-    shape2.fill(rand_int(0, 255), rand_int(0, 255), rand_int(0, 255))
+    shape2.fill("rgb(200, 100, 155)")
     shape2.stroke("#000000")
     shape1.fill("#CCCCFF")
-    shape1.stroke(rand_int(0, 255), rand_int(0, 255), rand_int(0, 255))
+    shape1.stroke("rgb(200, 100, 155)")
 
     start_fr += ctr
 
@@ -55,10 +62,10 @@ if start_fr < ctr && start_fr:
         shape1.moveY(+num, start_fr, ctr*2)
         shape2.moveY(num*-1, start_fr, ctr*2)
 
-        shape1.fill(rand_int(0, 255), rand_int(0, 255), rand_int(0, 255))
+        shape1.fill("rgb(200, 100, 155)")
         shape1.stroke("#000000")
         shape2.fill("#CCCCFF")
-        shape2.stroke(rand_int(0, 255), rand_int(0, 255), rand_int(0, 255))
+        shape2.stroke("rgb(200, 100, 155)")
 
         start_fr += ctr
 
@@ -68,20 +75,20 @@ if start_fr < ctr && start_fr:
         
             start_fr += ctr
             
-            shape2.fill(rand_int(0, 255), rand_int(0, 255), rand_int(0, 255))
+            shape2.fill("rgb(200, 100, 155)")
             shape2.stroke("#000000")
             shape1.fill("#CCCCFF")
-            shape1.stroke(rand_int(0, 255), rand_int(0, 255), rand_int(0, 255))
+            shape1.stroke("rgb(200, 100, 155)")
 
 
             if !(start_fr < 75):
                 shape1.moveY(num+0, start_fr, ctr*3)
                 shape2.moveY(-2*num+num, start_fr, 75) 
 
-                shape1.fill(rand_int(0, 255), rand_int(0, 255), rand_int(0, 255))
+                shape1.fill("rgb(200, 100, 155)")
                 shape1.stroke("#000000")
                 shape2.fill("#CCCCFF")
-                shape2.stroke(rand_int(0, 255), rand_int(0, 255), rand_int(0, 255))
+                shape2.stroke("rgb(200, 100, 155)")
 
                 start_fr += ctr
             
@@ -89,10 +96,10 @@ if start_fr < ctr && start_fr:
                     shape1.moveY(0, start_fr, start_fr)
                     shape2.moveY(num-num, start_fr, start_fr) 
 
-                    shape2.fill(rand_int(0, 255), rand_int(0, 255), rand_int(0, 255))
+                    shape2.fill("rgb(200, 100, 155)")
                     shape2.stroke("#000000")
                     shape1.fill("#CCCCFF")
-                    shape1.stroke(rand_int(0, 255), rand_int(0, 255), rand_int(0, 255))
+                    shape1.stroke("rgb(200, 100, 155)")
 
                 else:
                     shape1.moveY(num-2*num, start_fr, end_fr)
