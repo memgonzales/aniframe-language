@@ -1,293 +1,140 @@
 function setup() {
-    createCanvas(1000, 1000);
+    createCanvas(600, 600);
     frameRate(100);
 }function draw() {
-    background("#DEDEDE");
+    background("#FFFFFF");
 push();
-if (100 <= frameCount && frameCount <= 400) {
-    new _car().display();
+if (1 <= frameCount && frameCount <= 25) {
+    translate(new p5.Vector(0, -1 * (frameCount - 1 + -5)));
+new _shape1().display();
+}
+if (26 <= frameCount && frameCount <= 26) {
+    translate(new p5.Vector(0, -1 * (25 - 1 + -5)));
+translate(new p5.Vector(0, 1 * (frameCount - 26 + 5)));
+new _shape1().display();
+}
+if (27 <= frameCount && frameCount <= 50) {
+    translate(new p5.Vector(0, -1 * (25 - 1 + -5)));
+translate(new p5.Vector(0, 1 * (frameCount - 26 + 5)));
+new _shape1().display();
+}
+if (51 <= frameCount && frameCount <= 51) {
+    translate(new p5.Vector(0, -1 * (25 - 1 + -5)));
+translate(new p5.Vector(0, 1 * (50 - 26 + 5)));
+translate(new p5.Vector(0, -1 * (frameCount - 51 + -5)));
+new _shape1().display();
+}
+if (52 <= frameCount && frameCount <= 75) {
+    translate(new p5.Vector(0, -1 * (25 - 1 + -5)));
+translate(new p5.Vector(0, 1 * (50 - 26 + 5)));
+translate(new p5.Vector(0, -1 * (frameCount - 51 + -5)));
+new _shape1().display();
+}
+if (76 <= frameCount && frameCount <= 76) {
+    translate(new p5.Vector(0, -1 * (25 - 1 + -5)));
+translate(new p5.Vector(0, 1 * (50 - 26 + 5)));
+translate(new p5.Vector(0, -1 * (75 - 51 + -5)));
+translate(new p5.Vector(0, 1 * (75 - 76 + 5)));
+new _shape1().display();
+}
+if (77 <= frameCount && frameCount <= 101) {
+    translate(new p5.Vector(0, -1 * (25 - 1 + -5)));
+translate(new p5.Vector(0, 1 * (50 - 26 + 5)));
+translate(new p5.Vector(0, -1 * (75 - 51 + -5)));
+translate(new p5.Vector(0, 1 * (75 - 76 + 5)));
+new _shape1().display();
+}
+if (102 <= frameCount && frameCount <= 10000) {
+    translate(new p5.Vector(0, -1 * (25 - 1 + -5)));
+translate(new p5.Vector(0, 1 * (50 - 26 + 5)));
+translate(new p5.Vector(0, -1 * (75 - 51 + -5)));
+translate(new p5.Vector(0, 1 * (75 - 76 + 5)));
+translate(new p5.Vector(0, 1 * (101 - 101 + 0)));
+new _shape1().display();
+}
+if (10001 <= frameCount && frameCount <= 10100) {
+    translate(new p5.Vector(0, -1 * (25 - 1 + -5)));
+translate(new p5.Vector(0, 1 * (50 - 26 + 5)));
+translate(new p5.Vector(0, -1 * (75 - 51 + -5)));
+translate(new p5.Vector(0, 1 * (75 - 76 + 5)));
+translate(new p5.Vector(0, 1 * (101 - 101 + 0)));
 }
 pop();
 push();
-if (100 <= frameCount && frameCount <= 200) {
-    new _car1().display();
+if (1 <= frameCount && frameCount <= 25) {
+    translate(new p5.Vector(0, 1 * (frameCount - 1 + 5.0)));
+new _shape2().display();
 }
-if (201 <= frameCount && frameCount <= 250) {
-    translate(new p5.Vector(0, 1 * (frameCount - 200 + 10)));
-new _car1().display();
+if (26 <= frameCount && frameCount <= 26) {
+    translate(new p5.Vector(0, 1 * (25 - 1 + 5.0)));
+translate(new p5.Vector(0, -1 * (frameCount - 26 + -5)));
+new _shape2().display();
 }
-if (251 <= frameCount && frameCount <= 275) {
-    translate(new p5.Vector(0, 1 * (frameCount - 200 + 10)));
-rotate((frameCount - 250) * radians(-45) / (400 - 250 + 1));
-new _car1().display();
+if (27 <= frameCount && frameCount <= 50) {
+    translate(new p5.Vector(0, 1 * (25 - 1 + 5.0)));
+translate(new p5.Vector(0, -1 * (frameCount - 26 + -5)));
+new _shape2().display();
 }
-if (276 <= frameCount && frameCount <= 400) {
-    translate(new p5.Vector(0, 1 * (frameCount - 200 + 10)));
-rotate((frameCount - 250) * radians(-45) / (400 - 250 + 1));
-scale(new p5.Vector(1, 1 + ((frameCount - 275 + 1) * 1) / (400 - 275 + 1)));
-new _car1().display();
+if (51 <= frameCount && frameCount <= 51) {
+    translate(new p5.Vector(0, 1 * (25 - 1 + 5.0)));
+translate(new p5.Vector(0, -1 * (50 - 26 + -5)));
+translate(new p5.Vector(0, 1 * (frameCount - 51 + 5)));
+new _shape2().display();
 }
-if (401 <= frameCount && frameCount <= 500) {
-    translate(new p5.Vector(0, 1 * (400 - 200 + 10)));
-rotate((400 - 250) * radians(-45) / (400 - 250 + 1));
-scale(new p5.Vector(1, 1 + ((400 - 275 + 1) * 1) / (400 - 275 + 1)));
-new _car1().display();
+if (52 <= frameCount && frameCount <= 75) {
+    translate(new p5.Vector(0, 1 * (25 - 1 + 5.0)));
+translate(new p5.Vector(0, -1 * (50 - 26 + -5)));
+translate(new p5.Vector(0, 1 * (frameCount - 51 + 5)));
+new _shape2().display();
 }
-if (501 <= frameCount && frameCount <= 1000) {
-    translate(new p5.Vector(0, 1 * (400 - 200 + 10)));
-rotate((400 - 250) * radians(-45) / (400 - 250 + 1));
-scale(new p5.Vector(1, 1 + ((400 - 275 + 1) * 1) / (400 - 275 + 1)));
+if (76 <= frameCount && frameCount <= 76) {
+    translate(new p5.Vector(0, 1 * (25 - 1 + 5.0)));
+translate(new p5.Vector(0, -1 * (50 - 26 + -5)));
+translate(new p5.Vector(0, 1 * (75 - 51 + 5)));
+translate(new p5.Vector(0, -1 * (75 - 76 + -5)));
+new _shape2().display();
 }
-pop();
-push();
-if (1 <= frameCount && frameCount <= 250) {
-    new _star().display();
+if (77 <= frameCount && frameCount <= 101) {
+    translate(new p5.Vector(0, 1 * (25 - 1 + 5.0)));
+translate(new p5.Vector(0, -1 * (50 - 26 + -5)));
+translate(new p5.Vector(0, 1 * (75 - 51 + 5)));
+translate(new p5.Vector(0, -1 * (75 - 76 + -5)));
+new _shape2().display();
 }
-if (251 <= frameCount && frameCount <= 300) {
-    shearY((frameCount - 250) * radians(45) / (300 - 250 + 1));
-new _star().display();
+if (102 <= frameCount && frameCount <= 10000) {
+    translate(new p5.Vector(0, 1 * (25 - 1 + 5.0)));
+translate(new p5.Vector(0, -1 * (50 - 26 + -5)));
+translate(new p5.Vector(0, 1 * (75 - 51 + 5)));
+translate(new p5.Vector(0, -1 * (75 - 76 + -5)));
+translate(new p5.Vector(0, 1 * (101 - 101 + 0)));
+new _shape2().display();
 }
-if (301 <= frameCount && frameCount <= 400) {
-    shearY((300 - 250) * radians(45) / (300 - 250 + 1));
-new _star().display();
-}
-if (401 <= frameCount && frameCount <= 1000) {
-    shearY((300 - 250) * radians(45) / (300 - 250 + 1));
-}
-pop();
-push();
-if (50 <= frameCount && frameCount <= 600) {
-    new _dog().display();
-}
-pop();
-push();
-if (100 <= frameCount && frameCount <= 400) {
-    new __0().display();
-}
-pop();
-push();
-if (100 <= frameCount && frameCount <= 400) {
-    new _$6().display();
+if (10001 <= frameCount && frameCount <= 10100) {
+    translate(new p5.Vector(0, 1 * (25 - 1 + 5.0)));
+translate(new p5.Vector(0, -1 * (50 - 26 + -5)));
+translate(new p5.Vector(0, 1 * (75 - 51 + 5)));
+translate(new p5.Vector(0, -1 * (75 - 76 + -5)));
+translate(new p5.Vector(0, 1 * (101 - 101 + 0)));
 }
 pop();
-    if (frameCount > 1000) {frameCount = 0;
+    if (frameCount > 10100) {frameCount = 0;
 }}
 
-class _car_body {
+class _shape1 {
     constructor() {
     }
     display() {
-fill("#FFFFFF");
-stroke("#000000");
-rect(0, 0, 95.4, 79.5);
+fill("rgb(204, 204, 15)");
+stroke("rgb(200, 100, 155)");
+quad(58, 73, 29.0, 28.61, -3, 94.0076, 28.16, 77.19458);
     }
 }
-class _wheel1 {
+class _shape2 {
     constructor() {
     }
     display() {
-fill("#FFFFFF");
-stroke("#000000");
-circle(80, 80, 33);
-    }
-}
-class _window1 {
-    constructor() {
-    }
-    display() {
-fill("#FFFFFF");
-stroke("#000000");
-triangle(30, 75, 58, 20, 86, 75);
-    }
-}
-class _car {
-    constructor() {
-    }
-    display() {
-fill("#FFFFFF");
-stroke("#000000");
-rect(0, 0, 95.4, 79.5);
-fill("#FFFFFF");
-stroke("#000000");
-triangle(30, 75, 58, 20, 86, 75);
-fill("#FFFFFF");
-stroke("#000000");
-circle(80, 80, 33);
-    }
-}
-class _$0 {
-    constructor() {
-    }
-    display() {
-fill("#FFFFFF");
-stroke("#000000");
-rect(0, 0, 95.4, 79.5);
-    }
-}
-class _$1 {
-    constructor() {
-    }
-    display() {
-fill("#FFFFFF");
-stroke("#000000");
-rect(0, 0, 95.4, 79.5);
-fill("#FFFFFF");
-stroke("#000000");
-triangle(30, 75, 58, 20, 86, 75);
-    }
-}
-class _$2 {
-    constructor() {
-    }
-    display() {
-fill("#FFFFFF");
-stroke("#000000");
-rect(0, 0, 95.4, 79.5);
-fill("#FFFFFF");
-stroke("#000000");
-triangle(30, 75, 58, 20, 86, 75);
-fill("#FFFFFF");
-stroke("#000000");
-circle(80, 80, 33);
-    }
-}
-class _car_body1 {
-    constructor() {
-    }
-    display() {
-fill("rgb(200, 100, 255)");
-stroke("#000000");
-rect(200, 200, 95.4, 79.5);
-    }
-}
-class _wheel11 {
-    constructor() {
-    }
-    display() {
-fill("#FFFFFF");
-stroke("rgb(10, 200, 155)");
-circle(280, 280, 33);
-    }
-}
-class _window11 {
-    constructor() {
-    }
-    display() {
-fill("rgb(0, 10, 100)");
-stroke("#000000");
-triangle(230, 275, 258, 220, 286, 275);
-    }
-}
-class _$3 {
-    constructor() {
-    }
-    display() {
-fill("rgb(200, 100, 255)");
-stroke("#000000");
-rect(200, 200, 95.4, 79.5);
-    }
-}
-class _car1 {
-    constructor() {
-    }
-    display() {
-fill("rgb(200, 100, 255)");
-stroke("#000000");
-rect(200, 200, 95.4, 79.5);
-fill("rgb(0, 10, 100)");
-stroke("#000000");
-triangle(230, 275, 258, 220, 286, 275);
-fill("#FFFFFF");
-stroke("rgb(10, 200, 155)");
-circle(280, 280, 33);
-    }
-}
-class _$4 {
-    constructor() {
-    }
-    display() {
-fill("rgb(200, 100, 255)");
-stroke("#000000");
-rect(200, 200, 95.4, 79.5);
-fill("rgb(0, 10, 100)");
-stroke("#000000");
-triangle(230, 275, 258, 220, 286, 275);
-    }
-}
-class _$5 {
-    constructor() {
-    }
-    display() {
-fill("rgb(200, 100, 255)");
-stroke("#000000");
-rect(200, 200, 95.4, 79.5);
-fill("rgb(0, 10, 100)");
-stroke("#000000");
-triangle(230, 275, 258, 220, 286, 275);
-fill("#FFFFFF");
-stroke("rgb(10, 200, 155)");
-circle(280, 280, 33);
-    }
-}
-class _star {
-    constructor() {
-    }
-    display() {
-fill("#FFFFFF");
-stroke("#000000");
-beginShape();
-vertex(30, 20);
-vertex(85, 20);
-vertex(85, 75);
-vertex(30, 75);
-endShape(CLOSE);
-    }
-}
-class _dog {
-    constructor() {
-    }
-    display() {
-fill("#000000");
-stroke("#000000");
-text("awooo", 80, 90);
-    }
-}
-class __0 {
-    constructor() {
-    }
-    display() {
-fill("#FFFFFF");
-stroke("#000000");
-line(100, 200, 300, 400);
-    }
-}
-class __1 {
-    constructor() {
-    }
-    display() {
-fill("#FFFFFF");
-stroke("#000000");
-line(100, 200, 300, 400);
-    }
-}
-class __2 {
-    constructor() {
-    }
-    display() {
-fill("#FFFFFF");
-stroke("#000000");
-rect(10, 20, 30, 40);
-    }
-}
-class _$6 {
-    constructor() {
-    }
-    display() {
-fill("#FFFFFF");
-stroke("#000000");
-line(100, 200, 300, 400);
-fill("#FFFFFF");
-stroke("#000000");
-rect(10, 20, 30, 40);
+fill("rgb(200, 100, 155)");
+stroke("rgb(0, 0, 0)");
+triangle(235, 332, 396, 315.57, 169, 164);
     }
 }

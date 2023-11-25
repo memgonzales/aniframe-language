@@ -442,6 +442,9 @@ def convert_resize_to_p5(name, factor, start_frame, end_frame):
     if name not in DRAW_CLASSES:
         DRAW_CLASSES[name] = OrderedDict()
 
+    if factor <= 0:
+        factor = 1
+
     script = f'scale(new p5.Vector(1 + ((frameCount - {start_frame} + 1) * {factor - 1}) / ({end_frame} - {start_frame} + 1), 1 + ((frameCount - {start_frame} + 1) * {factor - 1}) / ({end_frame} - {start_frame} + 1)));\n'
     try:
         DRAW_CLASSES[name].append([start_frame, end_frame, script])
@@ -565,13 +568,13 @@ def configure_max_num_frames(num_frames):
 # convert_object_assign_to_p5('car1', convert_object_add_to_p5('car1', 'wheel11'))
 
 # # convert_object_assign_to_p5('car1', 'car')
-# convert_moveY_to_p5('car1', 10, 200, 400)
-# convert_rotateCC_to_p5('car1', 45, 250, 400)
-# convert_resizeY_to_p5('car1', 2, 275, 400)
+# # convert_moveY_to_p5('car1', 10, 200, 400)
+# # convert_rotateCC_to_p5('car1', 45, 250, 400)
+# convert_resizeY_to_p5('car1', 3, 275, 400)
 # draw('car1', 100, 500)
 
 # convert_polygon_to_p5('star', [(30, 20), (85, 20), (85, 75), (30, 75)])
-# convert_shearY_to_p5('star', 45, 250, 300)
+# # convert_shearY_to_p5('star', 45, 250, 300)
 # draw('star', 1, 400)
 
 # convert_write_to_p5('dog', 'awooo', 80, 90)

@@ -10,8 +10,12 @@ hiss_incantation = ["You are a worm through time.",
 "in the eye."
 ]
 
+info(hiss_incantation)
+
 new_list3: List 
 start_fr = 10
+
+info(new_list3)
 
 func type_out(texts: List, start: Number):
     for i in texts:
