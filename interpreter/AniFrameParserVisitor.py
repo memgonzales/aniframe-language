@@ -1919,6 +1919,13 @@ class AniFrameParserVisitor(ParseTreeVisitor):
         
         if return_type == None:
             return None
+        if value['data_type'] == "Text" and return_type == "Color":
+            color = is_rgb(value['value']) or is_hexColor(value['value'])
+            if color:
+                colors = hexrgb_to_colors(value['value'])
+                return {'value': colors, 'data_type': "Color"}
+            else:
+                raiseError(ctx,ValueError,f"Return value data type does not match declared type")
         if value['data_type'] == return_type:
             return value
         else:
