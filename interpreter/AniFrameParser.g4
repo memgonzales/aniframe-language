@@ -153,7 +153,7 @@ function_declaration:
 		};
 
 formal_parameters: (formal_parameter COMMA_SYMBOL)* formal_parameter;
-formal_parameter: IDENTIFIER (COLON_SYMBOL DATA_TYPE)?;
+formal_parameter: IDENTIFIER COLON_SYMBOL DATA_TYPE;
 
 return_value_data_types: (return_value_data_type COMMA_SYMBOL)* return_value_data_type;
 return_value_data_type: DATA_TYPE;

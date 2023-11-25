@@ -396,7 +396,7 @@ def hexrgb_to_colors(value):
     if is_hexColor(value):
         colors[0] = int(value[1:3],16)
         colors[1] = int(value[3:5],16)
-        colors[2] = int(value[5:-1],16)
+        colors[2] = int(value[5:],16)
     elif is_rgb(value):
         regex = r'^rgb\(\s*(\d{1,3})\,\s*(\d{1,3})\,\s*(\d{1,3})\)$'
         vals = re.match(regex,value)
@@ -424,7 +424,14 @@ def is_rgb(value):
     else:
         return False
 
+def call_userFunc(name,ctx):
+    pass
+
 VARIABLES = defaultdict(lambda: defaultdict(default_value))
+function_ctr = -1
+user_functions = []
+user_function_names = []
+built_in_func_names = ['point','line','curve','circle','ellipse','triangle','rectangle','quad','polygon','write','move','moveX','moveY','turn','turnC','turnCC','shear','shearX','shearY','resize','resizeX','resizeY','fill','stroke','add','remove','rand_num','rand_int','sqrt','sin','cos','tan','asin','acos','atan','atan2','to_rad','to_deg','get_input','type','info','draw']
 
 class AniFrameParserVisitor(ParseTreeVisitor):
 
@@ -569,10 +576,10 @@ class AniFrameParserVisitor(ParseTreeVisitor):
 
             if expr1['data_type'] == '_':
                 #THROW ERROR
-                raiseError(ctx,ValueError,f'Identifier {expr1["identifier"]} has no value')
+                raiseError(ctx,ValueError,f'Identifier {expr1["identifier"]} has not been initialized')
             if expr2['data_type'] == '_':
                 #THROW ERROR
-                raiseError(ctx,ValueError,f'Identifier {expr2["identifier"]} has no value')
+                raiseError(ctx,ValueError,f'Identifier {expr2["identifier"]} has not been initialized')
             match operator:
                 case '+':
                     match expr1['data_type'],expr2['data_type']:
@@ -887,6 +894,18 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                             return {'value': check[0]['data_type'], 'data_type': 'Text'}
                         else:
                             raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'sqrt':
+                        check = True if len(params) == 1 else False
+                        if check:
+                            for param in params:
+                                if param['data_type'] != "Number":
+                                    check = False
+                                    break
+                        if check:
+                            return {'value': math.sqrt(params[0]['value']), 'data_type': 'Number'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
                     case 'sin':
                         check = True if len(params) == 1 else False
                         if check:
@@ -1147,6 +1166,9 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                         else:
                             #THROW ERROR
                             raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case True if func_name in user_function_names:
+                        #TODO
+                        pass
                     case _:
                         raiseError(ctx,ValueError,f"{func_name} is not a valid function")
     # Visit a parse tree produced by AniFrameParser#coordinates.
@@ -1218,12 +1240,17 @@ class AniFrameParserVisitor(ParseTreeVisitor):
     # Visit a parse tree produced by AniFrameParser#function_call.
     def visitFunction_call(self, ctx:AniFrameParser.Function_callContext):
         func_name = ctx.getChild(0).getText()
-        if ctx.getChild(2).getText() != ')':
-            params = self.visit(ctx.getChild(2))
-            return func_name,params
+        if func_name in user_function_names:
+            pass
+        # elif func_name not in built_in_func_names:
+        #     raiseError(ctx,ValueError,f'Function {func_name} is not defined')
         else:
-            params = []
-            return func_name,params
+            if ctx.getChild(2).getText() != ')':
+                params = self.visit(ctx.getChild(2))
+                return func_name,params
+            else:
+                params = []
+                return func_name,params
 
     # Visit a parse tree produced by AniFrameParser#actual_parameters.
     def visitActual_parameters(self, ctx:AniFrameParser.Actual_parametersContext):
@@ -1310,7 +1337,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                     VARIABLES[val]['value'] = hexrgb_to_colors(expr['value'])
                     return val, VARIABLES[val]
                 else:
-                    raiseError(ctx,TypeError,f'Invalid assignment statement')
+                    raiseError(ctx,TypeError,f'Invalid assignment statement. Text can not be converted to color')
             else:
                 if VARIABLES[val]['data_type'] == expr['data_type'] or VARIABLES[val]['data_type'] == '_':
                     VARIABLES[val]['value'] = expr['value']
@@ -1325,11 +1352,14 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                         mapping.convert_object_assign_to_p5(val,object_expr_iden)
                     return val,VARIABLES[val]
                 else:
-                    raiseError(ctx,TypeError,f'Invalid assignment statement')
+                    raiseError(ctx,TypeError,f'Invalid assignment statement. Data type mismatch')
 
 
         elif len(assignment) == 2 and not VARIABLES[val].get('constant'):
             #COMPOUND STATEMENTS
+            if VARIABLES[val]['data_type'] == '_':
+                #THROW ERROR
+                raiseError(ctx,ValueError,f'Identifier {val} has not been initialized')
             match assignment[0]:
                 case '+':
                     match VARIABLES[val]['data_type'],expr['data_type']:
@@ -1630,22 +1660,47 @@ class AniFrameParserVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by AniFrameParser#function_declaration_definition.
     def visitFunction_declaration_definition(self, ctx:AniFrameParser.Function_declaration_definitionContext):
-        return self.visitChildren(ctx)
+        global VARIABLES
+        global function_ctr
+        
+        if function_ctr == -1:
+            header = self.visitFunction_declaration(ctx.getChild(0),ctx)
+            return
+
+        storage = deepcopy(VARIABLES)
+        block = self.visit(ctx.getChild(1))
+        VARIABLES = storage
+        del storage
+        function_ctr -=1 
+        if block != None:
+            return block
+        else:
+            pass
+
+        
+
 
 
     # Visit a parse tree produced by AniFrameParser#function_declaration.
-    def visitFunction_declaration(self, ctx:AniFrameParser.Function_declarationContext):
-        return self.visitChildren(ctx)
+    def visitFunction_declaration(self, ctx:AniFrameParser.Function_declarationContext,parent = None):
+        func_name = ctx.getChild(1).getText()
+        #TODO
 
 
     # Visit a parse tree produced by AniFrameParser#formal_parameters.
     def visitFormal_parameters(self, ctx:AniFrameParser.Formal_parametersContext):
-        return self.visitChildren(ctx)
+        children = ctx.getChildCount()
+        params = []
+        for i in range(0,children,2):
+            params.append(ctx.getChild(i))
 
+        return params
 
     # Visit a parse tree produced by AniFrameParser#formal_parameter.
     def visitFormal_parameter(self, ctx:AniFrameParser.Formal_parameterContext):
-        return self.visitChildren(ctx)
+        txt = ctx.getText()
+        iden, dtype = txt.split(':')
+        return iden,dtype
 
 
     # Visit a parse tree produced by AniFrameParser#return_value_data_types.
