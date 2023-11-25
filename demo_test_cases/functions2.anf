@@ -1,0 +1,61 @@
+# animating an eating pac-man
+
+set FRAME_RATE to 5
+set CANVAS_BACKGROUND to "#000000"
+set CANVAS_HEIGHT to 521
+set CANVAS_WIDTH to 1980
+
+start_fr = 1
+base_angle = 45
+angle1 = base_angle
+angle2 = base_angle + 90
+
+pac_man_color = "#ffe737"
+
+pac_man_coord: Coord = {521, 200}
+
+func create_semi_circle(coord: Coord, circle_color: Color, filler: Color) returns Object:
+    semi: Object = circle(coord[0], coord[1], 200)
+    cover: Object = rectangle(coord[0]-100, coord[1], 200, 100)
+
+    semi.fill(circle_color)
+    semi.stroke(circle_color)
+
+    cover.fill(filler)
+    cover.stroke(filler)
+
+    return semi + cover
+
+func eating_ani(semi_circ1: Object, semi_circ2: Object, angle1: Number, angle2: Number, start: Number, end: Number):
+    if angle1 == base_angle:
+        angle1 -= base_angle
+        semi_circ1.turnC(base_angle, start, end) # angle at 0
+    
+    else if angle1 == 0:
+        angle1 += base_angle
+        semi_circ1.turnCC(base_angle, start, end)
+    
+    if angle2 == base_angle + 90:
+        angle2 += base_angle
+        semi_circ2.turnCC(base_angle, start, end) # angle at 180
+    
+    else if angle2 == 180:
+        angle2 -= base_angle
+        semi_circ1.turnC(base_angle, start, end)
+
+
+
+semi_circle1 = create_semi_circle(coord, pac_man_color, CANVAS_BACKGROUND)
+semi_circle1.turn(-angle1, start_fr, start_fr)
+
+semi_circle2 = create_semi_circle(coord, pac_man_color, CANVAS_BACKGROUND)
+semi_circle2.turnCC(angle2, start_fr, start_fr)
+
+
+repeat(100):
+    eating_ani(semi_circle1, semi_circle2, angle1, angle2, start_fr, 100)
+    start_fr += 1
+
+
+semi_circle1.draw(1, 100)
+semi_circle2.draw(1, 100)
