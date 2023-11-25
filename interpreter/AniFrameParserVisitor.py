@@ -540,7 +540,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                         print(f"rgb{result[0]['value'][0],result[0]['value'][1],result[0]['value'][2]}")
                     else:
                         print(result[0]['value'])
-                case 'len':
+                case 'length':
                     check = True if len(params) == 1 else False
                     if check:
                         check = True if params[0]['data_type'] == "List" else False
@@ -857,7 +857,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                 func_name,params = self.visit(ctx.getChild(0))
 
                 match func_name:
-                    case 'len':
+                    case 'length':
                         check = True if len(params) == 1 else False
                         if check:
                             check = True if params[0]['data_type'] == "List" else False
