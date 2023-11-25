@@ -27,6 +27,23 @@ def check_type(value):
 def default_value():
     return '_'
 
+def process_input(lines):
+    #TODO finish regex
+    num_regex = r""
+    txt_regex = r""
+    coord_regex = r""
+    result = []
+    for line in lines:
+        if re.match(num_regex,line):
+            result.append({'value': literal_eval(line),'data_type':"Number"})
+        elif re.match(txt_regex,line):
+            result.append({'value': line[1:-1],'data_type':"Text"})
+        elif re.match(coord_regex,line):
+            val = re.match(coord_regex,line)
+            result.append({'value': (literal_eval(val.group(1)),literal_eval(val.group(1))),'data_type':"Coord"})
+
+    return result
+
 def valid_dtype(dtype):
     dtypes = ['Object','Number','Color','Coord','List','Text']
 
@@ -845,15 +862,19 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                             # throw error
                             raiseError(ctx,TypeError,f"{operator} operator between {expr1['data_type']} and {expr2['data_type']} is not supported")
                 case "in":
-                    #TODO refine this
                     match expr2['data_type']:
                         case "List":
-                            res = 1 if expr1['value'] in expr2['value'] else 0
-                            return {'value': res, 'data_type': "Number"}
+                            try:
+                                res = 1 if expr1['value'] in expr2['value'] else 0
+                                return {'value': res, 'data_type': "Number"}
+                            except:
+                                raiseError(ctx,TypeError,f"{operator} operator between {expr1['data_type']} and {expr2['data_type']} is not supported")
                         case "Text":
                             if expr1['data_type'] == "Text":
                                 res = 1 if expr1['value'] in expr2['value'] else 0
                                 return {'value': res, 'data_type': "Number"}
+                            else:
+                                raiseError(ctx,TypeError,f"{operator} operator between {expr1['data_type']} and {expr2['data_type']} is not supported")
                         case _:
                             # throw error
                             raiseError(ctx,TypeError,f"{operator} operator between {expr1['data_type']} and {expr2['data_type']} is not supported")
@@ -916,13 +937,14 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                                 file.close()
                             except:
                                 raiseError(ctx,ValueError,f'File {params[0]["value"]} does not exist')
+                            #TODO Process
+                            lines = process_input(lines)
                             return {'value': lines, 'data_type': 'List'}
                         else:
                             raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
                     case 'type':
                         check = check_parameters('type',params,ctx)
                         if check:
-                            # print(check[0]['data_type'])
                             return {'value': check[0]['data_type'], 'data_type': 'Text'}
                         else:
                             raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
@@ -1365,7 +1387,6 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                 object_expr_iden = mapping.convert_object_expr_to_p5(expr['value'][0],expr['value'][1])
             else:
                 object_expr_iden = expr.get('identifier')
-        #TODO implement text to color convert
         if len(assignment) == 1:
             if 'constant' in VARIABLES[val]:
                 #THROW SOME ERROR SINCE CONSTANT
