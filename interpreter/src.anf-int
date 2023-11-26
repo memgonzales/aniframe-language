@@ -1,59 +1,42 @@
 function setup() {
-    createCanvas(500, 500);
-    frameRate(5);
+    createCanvas(400, 400);
+    frameRate(60);
 }function draw() {
-    background("#87ceeb");
+    background("#FFFFFF");
+push();
+if (1 <= frameCount && frameCount <= 1000) {
+    new _torso().display();
+}
+pop();
 push();
 if (1 <= frameCount && frameCount <= 100) {
-    new _bird_wing().display();
+    new _wing().display();
 }
-pop();
-push();
-if (1 <= frameCount && frameCount <= 6) {
-    new _bird().display();
+if (101 <= frameCount && frameCount <= 1000) {
+    translate(new p5.Vector(1 * (frameCount - 100 + 100), 1 * (frameCount - 100 + 0)));
+rotate((frameCount - 100) * radians(-180) / (1000 - 100 + 1));
+new _wing().display();
 }
-if (7 <= frameCount && frameCount <= 100) {
-    rotate((frameCount - 6) * radians(-180) / (100 - 6 + 1));
-new _bird().display();
-}
-if (101 <= frameCount && frameCount <= 10000000000000000159028911097599180468360808563945281389781327557747838772170381060813469985856815104) {
-    rotate((100 - 6) * radians(-180) / (100 - 6 + 1));
-}
-pop();
-push();
-if (1 <= frameCount && frameCount <= 50) {
-    translate(new p5.Vector(0, -1 * (frameCount - 1 + -100)));
-rotate((frameCount - 1) * radians(180) / (50 - 1 + 1));
-}
-if (51 <= frameCount && frameCount <= 10000000000000000159028911097599180468360808563945281389781327557747838772170381060813469985856815104) {
-    translate(new p5.Vector(0, -1 * (50 - 1 + -100)));
-rotate((50 - 1) * radians(180) / (50 - 1 + 1));
+if (1001 <= frameCount && frameCount <= 10000000000000000159028911097599180468360808563945281389781327557747838772170381060813469985856815104) {
+    translate(new p5.Vector(1 * (1000 - 100 + 100), 1 * (1000 - 100 + 0)));
+rotate((1000 - 100) * radians(-180) / (1000 - 100 + 1));
 }
 pop();
     if (frameCount > 10000000000000000159028911097599180468360808563945281389781327557747838772170381060813469985856815104) {frameCount = 0;
 }}
 
-class _bird_wing {
+class _torso {
     constructor() {
     }
     display() {
-fill("rgb(249, 220, 53)");
-stroke("rgb(0, 0, 1)");
-triangle(270, 250, 130, 250, 200, 100);
-    }
-}
-class _bird {
-    constructor() {
-    }
-    display() {
-fill("rgb(249, 220, 53)");
-stroke("rgb(0, 0, 1)");
-rect(100, 200, 200, 100);
-fill("rgb(254, 152, 0)");
-stroke("rgb(0, 0, 1)");
-triangle(300, 290, 360, 250, 300, 210);
 fill("#FFFFFF");
 stroke("#000000");
-triangle(270, 250, 130, 250, 200, 100);
+rect(100, 200, 200, 100);
+    }
+}
+class _wing {
+    constructor() {
+    }
+    display() {
     }
 }
