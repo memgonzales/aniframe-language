@@ -31,6 +31,8 @@ def process_input(lines,ctx):
     num_regex = r"^([+-]?[0-9]+)|([+-]?([0-9]*[.][0-9]+|[0-9]+[].])(([eE][+-]?[0-9]+)?|[0-9]+[eE][+-]?[0-9]+))$"
     result = []
     for line in lines:
+        if line == '':
+            continue
         if re.match(num_regex,line):
             result.append({'value': literal_eval(line),'data_type':"Number"})
         else:
@@ -930,6 +932,9 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                                 check = False
                         if check:
                             try:
+                                file = open(params[0]['value'],'a')
+                                file.write('\n')
+                                file.close()
                                 file = open(params[0]['value'],'r')
                                 lines = [line[:-1] for line in file.readlines()]
                                 file.close()
