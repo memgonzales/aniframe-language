@@ -51,15 +51,19 @@ if num > 0 && num < 400:
         if num > 100 && num < 300:
             while num <= 199 || num >= 301:
                 num = 5
+
+func fill_rand(shape: Object) returns Object:
+    shape.fill(colors[rand_num(0, length(colors)-1)])
+    shape.stroke(colors[rand_num(0, length(colors)-1)])
+
+    return shape
             
 if start_fr < ctr && start_fr:
     shape1.moveY(-num, start_fr, ctr)
     shape2.moveY(num-0.000, start_fr, ctr)
 
-    shape2.fill(rand_num(0, length(colors)))
-    shape2.stroke(rand_num(0, length(colors)))
-    shape1.fill(rand_num(0, length(colors)))
-    shape1.stroke(rand_num(0, length(colors)))
+    shape1 = fill_rand(shape1)
+    shape2 = fill_rand(shape2)
 
     start_fr += ctr
 
@@ -67,10 +71,8 @@ if start_fr < ctr && start_fr:
         shape1.moveY(+num, start_fr, ctr*2)
         shape2.moveY(num*-1, start_fr, ctr*2)
 
-        shape1.fill(rand_num(0, length(colors)))
-        shape1.stroke(rand_num(0, length(colors)))
-        shape2.fill(rand_num(0, length(colors)))
-        shape2.stroke(rand_num(0, length(colors)))
+        shape1 = fill_rand(shape1)
+        shape2 = fill_rand(shape2)
 
         start_fr += ctr
 
@@ -80,20 +82,16 @@ if start_fr < ctr && start_fr:
         
             start_fr += ctr
             
-            shape2.fill(rand_num(0, length(colors)))
-            shape2.stroke(rand_num(0, length(colors)))
-            shape1.fill(rand_num(0, length(colors)))
-            shape1.stroke(rand_num(0, length(colors)))
+            shape1 = fill_rand(shape1)
+            shape2 = fill_rand(shape2)
 
 
             if !(start_fr < 75):
                 shape1.moveY(num+0, start_fr, ctr*3)
                 shape2.moveY(-2*num+num, start_fr, 75) 
 
-                shape1.fill(rand_num(0, length(colors)))
-                shape1.stroke(rand_num(0, length(colors)))
-                shape2.fill(rand_num(0, length(colors)))
-                shape2.stroke(rand_num(0, length(colors)))
+                shape1 = fill_rand(shape1)
+                shape2 = fill_rand(shape2)
 
                 start_fr += ctr
             
@@ -101,10 +99,8 @@ if start_fr < ctr && start_fr:
                     shape1.moveY(0, start_fr, start_fr)
                     shape2.moveY(num-num, start_fr, start_fr) 
 
-                    shape2.fill(rand_num(0, length(colors)))
-                    shape2.stroke(rand_num(0, length(colors)))
-                    shape1.fill(rand_num(0, length(colors)))
-                    shape1.stroke(rand_num(0, length(colors)))
+                    shape1 = fill_rand(shape1)
+                    shape2 = fill_rand(shape2)
 
                 else:
                     shape1.moveY(num-2*num, start_fr, end_fr)
