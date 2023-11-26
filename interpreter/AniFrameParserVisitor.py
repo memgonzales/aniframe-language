@@ -1391,10 +1391,14 @@ class AniFrameParserVisitor(ParseTreeVisitor):
             VARIABLES[val]['data_type'] = '_' if 'data_type' not in VARIABLES[val] else VARIABLES[val]['data_type']
         
         if expr['data_type'] == "Object":
-            if not isinstance(expr['value'],OrderedDict):
-                object_expr_iden = mapping.convert_object_expr_to_p5(expr['value'][0],expr['value'][1])
-            else:
+            try:
                 object_expr_iden = expr.get('identifier')
+                if object_expr_iden == None:
+                    object_expr_iden = mapping.convert_object_expr_to_p5(expr['value'][0],expr['value'][1])
+                else:
+                    object_expr_iden = expr.get('identifier')
+            except:
+                object_expr_iden = mapping.convert_object_expr_to_p5(expr['value'][0],expr['value'][1])
         if len(assignment) == 1:
             if 'constant' in VARIABLES[val]:
                 #THROW SOME ERROR SINCE CONSTANT
