@@ -4,7 +4,10 @@ set CANVAS_WIDTH to 500
 set CANVAS_HEIGHT to 500
 set MAX_NUM_OF_FRAMES to 1000
 
-start_fr = 1
+
+x = get_input("kirby-input.txt")
+start_fr = x[0]
+info(start_fr)
 
 hoshi_no_kabi: Object
 kabi_color: Text = "#ffb6c1"
@@ -22,13 +25,13 @@ func make_part(x: Number, y: Number, width: Number, height: Number, colr: Color)
     return part
 
 
-l_eye = make_part(220, 210, 38, 90, "#000000")
-l_eye_shine = make_part(220, 185, 20, 40, "#ffffff")
+l_eye = make_part(220, 210, 38, 90, x[1])
+l_eye_shine = make_part(220, 185, 20, 40, x[2])
 
 l_eye.add(l_eye_shine) 
 
-r_eye = make_part(220+60, 210, 38, 90, "#000000")
-r_eye_shine = make_part((220+60), 185, 20, 40, "#ffffff")
+r_eye = make_part(220+60, 210, 38, 90, x[1])
+r_eye_shine = make_part((220+60), 185, 20, 40, x[2])
 
 r_eye.add(r_eye_shine)
 
@@ -80,6 +83,7 @@ repeat(4):
     wave_hand_back(frame + offset, offset)
 
     frame += 2 * offset
+    info(frame)
 
 l_foot.draw(1, 1000)
 r_foot.draw(1, 1000)
