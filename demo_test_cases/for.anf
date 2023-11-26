@@ -17,11 +17,13 @@ txt_box: Object
 i = 0
 j = 0
 
+info(hiss_incantation)
+
 for i in hiss_incantation:
     new_txt += i
     
     for j in hiss_incantation:
-        new_txt2 += i + j 
+        new_txt2 += i + j
 
 info(new_txt2)
 txt_box.write(new_txt2, 100, 100)
