@@ -1,7 +1,8 @@
 tri: Object = triangle(179.27, 20.6407, 19.70574, 27.07795, 14.58877, 87.39309)
 dot = point(rand_num(1, 200), rand_num(1, 200))
 stick = line(rand_num(1, 200), rand_num(1, 200), rand_num(1, 200), rand_num(1, 200))
-bump = curve(rand_num(1, 200), rand_num(1, 200), rand_num(1, 200), rand_num(1, 200))
+bump = curve(rand_num(1, 200), rand_num(1, 200), rand_num(1, 200), rand_num(1, 200),
+            rand_num(1, 200), rand_num(1, 200), rand_num(1, 200), rand_num(1, 200))
 
 colors1 = ["#89AC76", "rgb(041, 49, +51)", "rgb(134, 115, 161)", "#1E2460", "#2271B3",
     "rgb(203, 208, 204)", "#A18594", "#256D7B", "#20214F", "rgb(157, 161, 170)"]
@@ -42,6 +43,3 @@ while i > 0:
 
     
     i -= 1
-
-
-    
