@@ -1434,7 +1434,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
 
         elif len(assignment) == 2 and not VARIABLES[val].get('constant'):
             #COMPOUND STATEMENTS
-            if VARIABLES[val]['data_type'] == '_':
+            if VARIABLES[val]['data_type'] == '_' or VARIABLES[val]['value'] == '_':
                 #THROW ERROR
                 raiseError(ctx,ValueError,f'Identifier {val} has not been initialized')
             match assignment[0]:
