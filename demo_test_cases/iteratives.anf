@@ -1,45 +1,60 @@
+set FRAME_RATE to 5
+set CANVAS_BACKGROUND to "#dedede"
+set CANVAS_WIDTH to 1000
+set CANVAS_HEIGHT to 850
+
 tri: Object = triangle(179.27, 20.6407, 19.70574, 27.07795, 14.58877, 87.39309)
-dot = point(rand_num(1, 200), rand_num(1, 200))
-stick = line(rand_num(1, 200), rand_num(1, 200), rand_num(1, 200), rand_num(1, 200))
-bump = curve(rand_num(1, 200), rand_num(1, 200), rand_num(1, 200), rand_num(1, 200),
-            rand_num(1, 200), rand_num(1, 200), rand_num(1, 200), rand_num(1, 200))
+dot = point(500, 135)
+stick = line(623, 250, 644, 565)
+bump = curve(230, 150, 230, 272, 270, 272, 270, 150)
 
 colors1 = ["#89AC76", "rgb(041, 49, +51)", "rgb(134, 115, 161)", "#1E2460", "#2271B3",
     "rgb(203, 208, 204)", "#A18594", "#256D7B", "#20214F", "rgb(157, 161, 170)"]
 
 colors2 = ["rgb(237, 118, 14)", "#FFFF00", "#924E7D", "rgb(00, 187, 045)", "rgb(106, 95, 49)"]
 
-colors3: List
+colors3: Color = "#ffffff"
+
+j = 0
+
+info(j)
 
 repeat(2):
-    for i in colors1:
-        colors3 += colors1[i]
+    for j in colors1:
+        colors3 += j
 
-        for j in colors2:
-            colors3 += colors2[j]
+i = 3
 
-i = 10
+info(colors3)
 
 while i > 0:
-    for j in colors: 
-
+    for j in colors1:
+        ctr: Number = 0
+        info(i) 
+        info(j)
         if i % 4 == 0:
-            tri.move(56, 374, 1, 1000)
+            tri.move(1, 1, 1+ctr, 50+ctr)
         
         else if i % 4 == 1:
-            dot.move(374, 56, 1, 1000)
+            dot.move(1, 1, 1+ctr, 50+ctr)
 
         else if i % 4 == 2:
-            stick.move(56, -374, 1, 1000)
+            stick.move(1, -1, 1+ctr, 50+ctr)
         
         else if i % 4 == 3:
-            bump.move(-374, 56, 1, 1000)
+            bump.move(-1, 1, 1+ctr, 50+ctr)
 
-        for k in colors3:
-            tri.fill(colors3[k])
-            dot.stroke(colors3[k])
-            stick.stroke(colors3[k])
-            bump.stroke(colors3[k])
+        ctr += 100
 
-    
     i -= 1
+
+tri.fill(colors3)
+dot.fill("#000000")
+stick.stroke(colors3)
+bump.stroke("#000000")
+
+
+tri.draw(1, 1000)
+dot.draw(1, 1000)
+stick.draw(1, 1000)
+bump.draw(1, 1000)
