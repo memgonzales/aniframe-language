@@ -28,22 +28,13 @@ def default_value():
     return '_'
 
 def process_input(lines,ctx):
-    #TODO finish regex
-    num_regex = r""
-    txt_regex = r""
-    coord_regex = r""
+    num_regex = r"^([+-]?[0-9]+)|([+-]?([0-9]*[.][0-9]+|[0-9]+[].])(([eE][+-]?[0-9]+)?|[0-9]+[eE][+-]?[0-9]+))$"
     result = []
     for line in lines:
         if re.match(num_regex,line):
             result.append({'value': literal_eval(line),'data_type':"Number"})
-        elif re.match(txt_regex,line):
-            result.append({'value': line[1:-1],'data_type':"Text"})
-        elif re.match(coord_regex,line):
-            val = re.match(coord_regex,line)
-            result.append({'value': (literal_eval(val.group(1)),literal_eval(val.group(1))),'data_type':"Coord"})
         else:
-            raiseError(ctx,ValueError,f"User input {line} is invalid")
-
+            result.append({'value': line,'data_type':"Text"})
     return result
 
 def valid_dtype(dtype):
@@ -937,11 +928,10 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                         if check:
                             try:
                                 file = open(params[0]['value'],'r')
-                                lines = [line[:-2] for line in file.readlines()]
+                                lines = [line[:-1] for line in file.readlines()]
                                 file.close()
                             except:
                                 raiseError(ctx,ValueError,f'File {params[0]["value"]} does not exist')
-                            #TODO Process
                             lines = process_input(lines,ctx)
                             return {'value': lines, 'data_type': 'List'}
                         else:
