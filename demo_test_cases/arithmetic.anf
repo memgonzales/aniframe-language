@@ -1,60 +1,79 @@
-set FRAME_RATE to 1
+# clock
+set FRAME_RATE to 60
 set CANVAS_WIDTH to 500
 set CANVAS_HEIGHT to 500
+set CANVAS_BACKGROUND to "#dedede"
 
 txt: Text = "#FF"
 txt2: Text = "00" + "0"
 txt2 += "0"
 
-clock_color: Color = txt + txt2 + "rgb(0, 0, 255)" + "rgb(0, 0, 0)"
+txt+=txt2
+
+info(txt2)
+
+clock_color: Color = txt
+
+clock_color = clock_color + "rgb(0, 0, 255)" + "rgb(0, 0, 0)"
 
 clock_x: Number = 250
 clock_y: Number = 123
 clock_d: Number = clock_x-50
 
-clock_face: Object = circle(clock_x, clock_y, clock_d)
-clock_face.stroke(clock_color)
+info(clock_x)
+info(clock_y)
+info(clock_d)
+type(clock_x)
+
+clock: Object = circle(clock_x, clock_y, clock_d)
+clock.stroke(clock_color)
+
+type(clock)
+info(type(clock))
+info(clock)
 
 sec_hand: Object = rectangle(clock_x, clock_y, 10/2, -90)
-sec_hand.fill(255,0,0)
-sec_hand.stroke(255,0,0)
+sec_hand.fill("rgb(255,0,0)")
+sec_hand.stroke("rgb(255,0,0)")
 
 min_hand: Object = rectangle(clock_x, clock_y, -1*-90, 2*2.5)
 min_hand.fill("#000000")
 
-clock: Object 
-clock += sec_hand
-clock += min_hand
-
-
 green_color: Color = clock_color - "#000000" - "rgb(255, 0, 0)" + "#FFFF00"
 
-tree_coord: Coord = {0, 0}
+block_coord: Coord = {123, 234}
 clock_coord: Coord = {clock_x, clock_y}
+
+info(tree_coord)
+info(clock_coord)
+
+grass_block: Object = rectangle(block_coord[0], block_coord[1], 100, 100)
+grass_block.fill(green_color)
 
 clock_coord *= 2
 clock_coord = clock_coord * {1.5, -2}
-tree_coord -= clock_coord + {+74683, -31}
-tree_coord /= {1000, 10}
-
-tree_top: Object = rectangle(tree_coord[0], tree_coord[1], 100, 100)
-
-
-
-clock += tree_top
+block_coord -= clock_coord + {+74683, -31}
+block_coord /= {1000, 10}
 
 angles: List = [45]
 
 angles = angles + [45*2, +90+90, -90+360, 180*4/2]
 
-clock = clock - tree_top 
+info(angles)
+type(angles)
 
-tree_top.turn(angles[rand_int() % 5], 100, 200)
+grass_block.turn(angles[rand_int(0, length(angles)-1)], 100, 400)
 
 num: Number = 543
 
-tree_top.turn(angles[num % 5], 100, 200)
+grass_block.turn(angles[num % 5], 200, 400)
 
+info(tree_top)
+type(tree_top)
 
-draw(clock)
-draw(tree_top)
+sec_hand.turnC(360/60, 1, 4*5*(1+2))
+
+clock.draw(1, 1000)
+min_hand.draw(1, 1000)
+sec_hand.draw(1, 1000)
+grass_block.draw(1, 1000)
