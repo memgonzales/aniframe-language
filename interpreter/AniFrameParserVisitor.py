@@ -2056,7 +2056,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
     # Visit a parse tree produced by AniFrameParser#repeat_loop_with_return.
     def visitRepeat_loop_with_return(self, ctx:AniFrameParser.Repeat_loop_with_returnContext):
         value = self.visit(ctx.getChild(0))
-        for i in range(value):
+        for i in range(int(value)):
             val = self.visit(ctx.getChild(1))
             if val == False:
                 break
