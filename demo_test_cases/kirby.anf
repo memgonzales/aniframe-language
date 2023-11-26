@@ -6,10 +6,12 @@ set CANVAS_HEIGHT to 500
 start_fr = 1
 
 hoshi_no_kabi: Object
+kabi_color: Text = "#ffb6c1"
+cheeks_color: Text = "#cc4668"
 
 kabi_body = circle(250, 250, 270)
-kabi_body.fill("#ffb6c1")
-kabi_body.stroke("#ffb6c1")
+kabi_body.fill(kabi_color)
+kabi_body.stroke(kabi_color)
 
 func make_part(x: Number, y: Number, width: Number, height: Number, colr: Color) returns Object:
     part: Object = ellipse(x, y, width, height)
@@ -35,19 +37,35 @@ r_eye.add(r_eye_shine)
 
 smile: Object = curve(230, 150, 230, 272, 270, 272, 270, 150)
 smile.stroke("#000000")
-smile.fill("#ffb6c1")
+smile.fill(kabi_color)
 
-l_cheek = make_part(170, 260, 40, 20, "#cc4668")
-r_cheek = make_part(170+160, 260, 40, 20, "#cc4668")
+l_cheek: Object = ellipse(170, 260, 40, 20)
+r_cheek: Object = ellipse(170+160, 260, 40, 20)
 
-l_hand = make_part(130, 280, 100, 110, "#ffb6c1")
-r_hand = make_part(350, 150, 100, 110, "#ffb6c1")
+l_hand = ellipse(130, 280, 100, 110)
+r_hand = ellipse(350, 150, 100, 110)
 
-l_foot = make_part(160, 370, 135, 100, "#cc4668")
-r_foot = make_part(340, 370, 135, 100, "#cc4668")
+l_foot: Object = make_part(160, 370, 135, 100, cheeks_color)
+r_foot = make_part(340, 370, 135, 100, cheeks_color)
 
-hoshi_no_kabi = l_foot + r_foot+ l_hand + r_hand + kabi_body + l_eye + r_eye + smile + l_cheek + r_cheek
+
+kabi_eyes: Object = l_eye + r_eye
+
+kabi_cheeks: Object = l_cheek + r_cheek
+kabi_cheeks.fill(cheeks_color)
+kabi_cheeks.stroke(cheeks_color)
+
+hoshi_no_kabi: Object = l_hand + r_hand + kabi_body
+hoshi_no_kabi.fill(kabi_color)
+hoshi_no_kabi.stroke(kabi_color)
+
+l_foot.draw(1, 1000)
+r_foot.draw(1, 1000)
+l_eye.draw(1, 1000)
+r_eye.draw(1, 1000)
+kabi_cheeks.draw(1, 1000)
+hoshi_no_kabi.draw(1, 1000)
+smile.draw(1, 1000)
 
 # r_hand.move(10* tan(start_fr * -1), start_fr, 30)
 
-hoshi_no_kabi.draw(1, 1000)

@@ -3,6 +3,9 @@ set CANVAS_WIDTH to 500
 set CANVAS_HEIGHT to 500
 set FRAME_RATE to 10
 
+p_color: Text = "#C2B280"
+txt: Text = "I'm not lying"
+
 pinocchio: Object = circle(0, 250, 200)
 nose = rectangle(-650, 250, 800, 15)
 mouth = line(50, 290, 90, 290)
@@ -10,10 +13,12 @@ mouth = line(50, 290, 90, 290)
 eye = circle(50, 230, 20)
 eye.fill("#000000")
 
-pinocchio.add(eye)
+pinocchio += (mouth)
+pinocchio.fill(p_color)
 
-nose.moveX(20, 1, 100)
+nose.fill(p_color)
+nose.moveX(20, 1, 500)
 
-nose.draw(1, 100)
-pinocchio.draw(1, 100)
-mouth.draw(1, 100)
+nose.draw(1, 500)
+pinocchio.draw(1, 500)
+eye.draw(1, 500)
