@@ -13,7 +13,7 @@ function P5() {
     */
     return (
         <div className="p5">
-            <script type="text/p5" data-autoplay src="http://127.0.0.1:8080/static/sample.js" data-p5-version="1.8.0" data-height="1000" data-preview-width="2000">
+            <script type="text/p5" data-autoplay src="http://127.0.0.1:8080/static/sample.js" data-p5-version="1.8.0" data-height="1000" data-preview-width="1000">
             </script>
         </div>
     );
