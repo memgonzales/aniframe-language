@@ -267,7 +267,7 @@ def convert_object_expr_to_p5(function_name, param):
             convert_line_to_p5(mock_identifier, param[0], param[1], param[2], param[3])
 
         case 'curve':
-            convert_curve_to_p5(mock_identifier, param[0], param[1], param[2], param[3], param[4], param[5])
+            convert_curve_to_p5(mock_identifier, param[0], param[1], param[2], param[3], param[4], param[5], param[6], param[7])
 
         case 'circle':
             convert_circle_to_p5(mock_identifier, param[0], param[1], param[2])
