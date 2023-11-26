@@ -462,7 +462,7 @@ VARIABLES = defaultdict(lambda: defaultdict(default_value))
 function_ctr = -1
 user_functions = defaultdict()
 user_function_names = []
-built_in_func_names = ['point','line','curve','circle','ellipse','triangle','rectangle','quad','polygon','write','move','moveX','moveY','turn','turnC','turnCC','shear','shearX','shearY','resize','resizeX','resizeY','fill','stroke','add','remove','rand_num','rand_int','sqrt','sin','cos','tan','asin','acos','atan','atan2','to_rad','to_deg','get_input','type','info','draw']
+built_in_func_names = ['point','line','curve','circle','ellipse','triangle','rectangle','quad','polygon','write','move','moveX','moveY','turn','turnC','turnCC','shear','shearX','shearY','resize','resizeX','resizeY','fill','stroke','add','remove','rand_num','rand_int','sqrt','sin','cos','tan','asin','acos','atan','atan2','to_rad','to_deg','get_input','type','info','draw','length']
 
 class AniFrameParserVisitor(ParseTreeVisitor):
 
