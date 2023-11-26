@@ -229,14 +229,19 @@ def convert_fill_to_p5(object, r, g, b):
         for shape in CLASSES[clean_identifier(object)]['display()']:
             shape['fill'] = f'rgb({r}, {g}, {b})'
     except:
-        pass
+        convert_object_new_to_p5(object)
+        for shape in CLASSES[clean_identifier(object)]['display()']:
+            shape['fill'] = f'rgb({r}, {g}, {b})'
+        
 
 def convert_stroke_to_p5(object, r, g, b):
     try:
         for shape in CLASSES[clean_identifier(object)]['display()']:
             shape['stroke'] = f'rgb({r}, {g}, {b})'
     except:
-        pass
+        convert_object_new_to_p5(object)
+        for shape in CLASSES[clean_identifier(object)]['display()']:
+            shape['stroke'] = f'rgb({r}, {g}, {b})'
 
 def convert_object_assign_to_p5(base_object, new_object):
     base_object = clean_identifier(base_object)
