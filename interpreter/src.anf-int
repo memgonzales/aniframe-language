@@ -1,89 +1,59 @@
 function setup() {
     createCanvas(500, 500);
-    frameRate(10);
+    frameRate(5);
 }function draw() {
-    background("#dedede");
+    background("#87ceeb");
 push();
-if (1 <= frameCount && frameCount <= 1000) {
-    scale(new p5.Vector(1 + ((frameCount - 1 + 1) * -0.5) / (1000 - 1 + 1), 1 + ((frameCount - 1 + 1) * -0.5) / (1000 - 1 + 1)));
-}
-if (1001 <= frameCount && frameCount <= 10000000000000000159028911097599180468360808563945281389781327557747838772170381060813469985856815104) {
-    scale(new p5.Vector(1 + ((1000 - 1 + 1) * -0.5) / (1000 - 1 + 1), 1 + ((1000 - 1 + 1) * -0.5) / (1000 - 1 + 1)));
+if (1 <= frameCount && frameCount <= 100) {
+    new _bird_wing().display();
 }
 pop();
 push();
-if (1 <= frameCount && frameCount <= 1000) {
-    scale(new p5.Vector(1 + ((frameCount - 1 + 1) * -0.5) / (1000 - 1 + 1), 1 + ((frameCount - 1 + 1) * -0.5) / (1000 - 1 + 1)));
+if (1 <= frameCount && frameCount <= 6) {
+    new _bird().display();
 }
-if (1001 <= frameCount && frameCount <= 10000000000000000159028911097599180468360808563945281389781327557747838772170381060813469985856815104) {
-    scale(new p5.Vector(1 + ((1000 - 1 + 1) * -0.5) / (1000 - 1 + 1), 1 + ((1000 - 1 + 1) * -0.5) / (1000 - 1 + 1)));
+if (7 <= frameCount && frameCount <= 100) {
+    rotate((frameCount - 6) * radians(-180) / (100 - 6 + 1));
+new _bird().display();
+}
+if (101 <= frameCount && frameCount <= 10000000000000000159028911097599180468360808563945281389781327557747838772170381060813469985856815104) {
+    rotate((100 - 6) * radians(-180) / (100 - 6 + 1));
 }
 pop();
 push();
-if (1 <= frameCount && frameCount <= 1000) {
-    new _hoshi_no_kabi().display();
+if (1 <= frameCount && frameCount <= 50) {
+    translate(new p5.Vector(0, -1 * (frameCount - 1 + -100)));
+rotate((frameCount - 1) * radians(180) / (50 - 1 + 1));
+}
+if (51 <= frameCount && frameCount <= 10000000000000000159028911097599180468360808563945281389781327557747838772170381060813469985856815104) {
+    translate(new p5.Vector(0, -1 * (50 - 1 + -100)));
+rotate((50 - 1) * radians(180) / (50 - 1 + 1));
 }
 pop();
     if (frameCount > 10000000000000000159028911097599180468360808563945281389781327557747838772170381060813469985856815104) {frameCount = 0;
 }}
 
-class _hoshi_no_kabi {
+class _bird_wing {
     constructor() {
     }
     display() {
-fill("#FFFFFF");
-stroke("#000000");
-ellipse(160, 370, 135, 100);
-fill("#FFFFFF");
-stroke("#000000");
-ellipse(340, 370, 135, 100);
-fill("#FFFFFF");
-stroke("#000000");
-ellipse(130, 280, 100, 110);
-fill("#FFFFFF");
-stroke("#000000");
-ellipse(350, 150, 100, 110);
-fill("rgb(255, 182, 193)");
-stroke("rgb(255, 182, 193)");
-circle(250, 250, 270);
-fill("#FFFFFF");
-stroke("#000000");
-ellipse(220, 210, 38, 90);
-fill("#FFFFFF");
-stroke("#000000");
-ellipse(440, 370, 38, 80);
-fill("#FFFFFF");
-stroke("#000000");
-ellipse(280, 210, 38, 90);
-fill("#FFFFFF");
-stroke("#000000");
-ellipse(560, 370, 38, 80);
-fill("rgb(255, 182, 193)");
-stroke("rgb(0, 0, 0)");
-curve(230, 150, 230, 272, 270, 272);
-fill("#FFFFFF");
-stroke("#000000");
-ellipse(170, 260, 40, 20);
-fill("#FFFFFF");
-stroke("#000000");
-ellipse(330, 260, 40, 20);
+fill("rgb(249, 220, 53)");
+stroke("rgb(0, 0, 1)");
+triangle(270, 250, 130, 250, 200, 100);
     }
 }
-class _l_eye_shine {
+class _bird {
     constructor() {
     }
     display() {
+fill("rgb(249, 220, 53)");
+stroke("rgb(0, 0, 1)");
+rect(100, 200, 200, 100);
+fill("rgb(254, 152, 0)");
+stroke("rgb(0, 0, 1)");
+triangle(300, 290, 360, 250, 300, 210);
 fill("#FFFFFF");
 stroke("#000000");
-ellipse(440, 370, 38, 80);
-    }
-}
-class _r_eye_shine {
-    constructor() {
-    }
-    display() {
-fill("#FFFFFF");
-stroke("#000000");
-ellipse(560, 370, 38, 80);
+triangle(270, 250, 130, 250, 200, 100);
     }
 }

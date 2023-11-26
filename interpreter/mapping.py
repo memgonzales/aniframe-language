@@ -16,6 +16,8 @@ CANVAS_BACKGROUND = DEFAULT_FILL
 VARIABLES = defaultdict(OrderedDict)
 CLASSES = defaultdict(OrderedDict)
 DRAW_CLASSES = defaultdict(OrderedDict)
+DRAW_CLASSES_ORDER = []
+DRAW_CLASSES_ORDERED = defaultdict(OrderedDict)
 
 # COUNTERS
 EXPR_NO_IDENTIFIER_CTR = 0
@@ -111,7 +113,15 @@ def print_display_object(object):
 def print_display():
     ret = ''
 
-    for _, object in DRAW_CLASSES.items():
+    # Order based on DRAW_CLASSES_ORDER
+    for object in DRAW_CLASSES_ORDER:
+        DRAW_CLASSES_ORDERED[object] = DRAW_CLASSES[object]
+
+    for key, value in DRAW_CLASSES.items():
+        if key not in DRAW_CLASSES_ORDERED:
+            DRAW_CLASSES_ORDERED[key] = value
+
+    for _, object in DRAW_CLASSES_ORDERED.items():
         ret += 'push();\n'
         ret += print_display_object(object)
         ret += 'pop();\n'
@@ -120,8 +130,10 @@ def print_display():
 
 def print_classes():
     ret = '\n'
+
     for class_name, methods in CLASSES.items():
         if class_name in DRAW_CLASSES:
+            methods = CLASSES[class_name]
             ret += f'class {class_name} {{\n'
 
             for method, body in methods.items():
@@ -501,6 +513,8 @@ def draw(name, start_frame, end_frame):
         DRAW_CLASSES[name].append([start_frame, end_frame, script])
     except:
         DRAW_CLASSES[name] = [[start_frame, end_frame, script]]
+
+    DRAW_CLASSES_ORDER.append(name)
 
 # ==============
 # CONFIGURABLES
