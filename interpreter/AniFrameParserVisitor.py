@@ -121,7 +121,7 @@ def assign_member_value(val,idx,expr,assignment,ctx):
             case '%':
                 match VARIABLES[val]['value'][idx]['data_type'],dtype:
                     case "Number","Number":
-                        VARIABLES[val]['value'][idx]['value'] = VARIABLES[val]['value'][idx]['value'] % expr['value']
+                        VARIABLES[val]['value'][idx]['value'] = int(VARIABLES[val]['value'][idx]['value']) % int(expr['value'])
                     case _:
                         # throw error
                         raiseError(ctx,TypeError,f"{assignment} operator between {VARIABLES[val]['value'][idx]['data_type']} and {dtype} is not supported")
@@ -1529,7 +1529,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                 case '%':
                     match VARIABLES[val]['data_type'],expr['data_type']:
                         case "Number","Number":
-                            VARIABLES[val]['value'] = VARIABLES[val]['value'] % expr['value']
+                            VARIABLES[val]['value'] = int(VARIABLES[val]['value']) % int(expr['value'])
                             return val,VARIABLES[val]
                         case _:
                             #throw error
