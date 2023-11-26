@@ -2,10 +2,6 @@ func draw_bird_torso(x: Number, y: Number) returns Object:
     x = (-1 * (x * 1 + 1 - 1)) * -1
     return rectangle(x, y, 200, 100)
 
-func display_info(obj: Object):
-    info(obj)
-
-
 func draw_bird_wing(x: Number) returns Object:
     y = x - 20
     z = (x - 10) * 0.5
@@ -38,7 +34,7 @@ func make_list(x: Number, y: Number) returns List:
 
 func factorial(x: Number) returns Number:
     if x >= 1:
-        return x * factorial(x - 1)
+        return factorial(x - 1) * x
     
     return 1
 
@@ -51,8 +47,6 @@ func fib(x: Number) returns Number:
 
 list = make_list(100, 200)
 torso = draw_bird_torso(list[0], list[1])
-display_info(torso)
-
 
 wing = flap_wing(270)
 
