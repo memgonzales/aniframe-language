@@ -1,28 +1,22 @@
 function setup() {
-    createCanvas(1000, 1000);
+    createCanvas(7499, 500);
     frameRate(60);
 }function draw() {
-    background("#dedede");
+    background("#FFFFFF");
 push();
 if (1 <= frameCount && frameCount <= 1000) {
-    new _bg().display();
+    new _txt_box().display();
 }
 pop();
     if (frameCount > 10000000000000000159028911097599180468360808563945281389781327557747838772170381060813469985856815104) {frameCount = 0;
 }}
 
-class _bg {
+class _txt_box {
     constructor() {
     }
     display() {
-fill("rgb(172, 163, 199)");
+fill("#000000");
 stroke("#000000");
-beginShape();
-vertex(442.2, 290.947);
-vertex(216, 485.719);
-vertex(128.38, 415.4233);
-vertex(210.76, 123.145);
-vertex(251.38, 459);
-endShape(CLOSE);
+text("_You are a worm through time.You are a worm through time.You are a worm through time.The thunder song distorts you.You are a worm through time.Happiness comes.You are a worm through time.White pearlsYou are a worm through time.butYou are a worm through time.rgb(255,255,153)You are a worm through time.andYou are a worm through time.#bD0429You are a worm through time.in the eye.The thunder song distorts you.You are a worm through time.The thunder song distorts you.The thunder song distorts you.The thunder song distorts you.Happiness comes.The thunder song distorts you.White pearlsThe thunder song distorts you.butThe thunder song distorts you.rgb(255,255,153)The thunder song distorts you.andThe thunder song distorts you.#bD0429The thunder song distorts you.in the eye.Happiness comes.You are a worm through time.Happiness comes.The thunder song distorts you.Happiness comes.Happiness comes.Happiness comes.White pearlsHappiness comes.butHappiness comes.rgb(255,255,153)Happiness comes.andHappiness comes.#bD0429Happiness comes.in the eye.White pearlsYou are a worm through time.White pearlsThe thunder song distorts you.White pearlsHappiness comes.White pearlsWhite pearlsWhite pearlsbutWhite pearlsrgb(255,255,153)White pearlsandWhite pearls#bD0429White pearlsin the eye.butYou are a worm through time.butThe thunder song distorts you.butHappiness comes.butWhite pearlsbutbutbutrgb(255,255,153)butandbut#bD0429butin the eye.rgb(255,255,153)You are a worm through time.rgb(255,255,153)The thunder song distorts you.rgb(255,255,153)Happiness comes.rgb(255,255,153)White pearlsrgb(255,255,153)butrgb(255,255,153)rgb(255,255,153)rgb(255,255,153)andrgb(255,255,153)#bD0429rgb(255,255,153)in the eye.andYou are a worm through time.andThe thunder song distorts you.andHappiness comes.andWhite pearlsandbutandrgb(255,255,153)andandand#bD0429andin the eye.#bD0429You are a worm through time.#bD0429The thunder song distorts you.#bD0429Happiness comes.#bD0429White pearls#bD0429but#bD0429rgb(255,255,153)#bD0429and#bD0429#bD0429#bD0429in the eye.in the eye.You are a worm through time.in the eye.The thunder song distorts you.in the eye.Happiness comes.in the eye.White pearlsin the eye.butin the eye.rgb(255,255,153)in the eye.andin the eye.#bD0429in the eye.in the eye.", 100, 100);
     }
 }
