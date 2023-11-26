@@ -1,42 +1,28 @@
 function setup() {
-    createCanvas(400, 400);
+    createCanvas(1000, 1000);
     frameRate(60);
 }function draw() {
-    background("#FFFFFF");
+    background("#dedede");
 push();
 if (1 <= frameCount && frameCount <= 1000) {
-    new _torso().display();
-}
-pop();
-push();
-if (1 <= frameCount && frameCount <= 100) {
-    new _wing().display();
-}
-if (101 <= frameCount && frameCount <= 1000) {
-    translate(new p5.Vector(1 * (frameCount - 100 + 100), 1 * (frameCount - 100 + 0)));
-rotate((frameCount - 100) * radians(-180) / (1000 - 100 + 1));
-new _wing().display();
-}
-if (1001 <= frameCount && frameCount <= 10000000000000000159028911097599180468360808563945281389781327557747838772170381060813469985856815104) {
-    translate(new p5.Vector(1 * (1000 - 100 + 100), 1 * (1000 - 100 + 0)));
-rotate((1000 - 100) * radians(-180) / (1000 - 100 + 1));
+    new _bg().display();
 }
 pop();
     if (frameCount > 10000000000000000159028911097599180468360808563945281389781327557747838772170381060813469985856815104) {frameCount = 0;
 }}
 
-class _torso {
+class _bg {
     constructor() {
     }
     display() {
-fill("#FFFFFF");
+fill("rgb(172, 163, 199)");
 stroke("#000000");
-rect(100, 200, 200, 100);
-    }
-}
-class _wing {
-    constructor() {
-    }
-    display() {
+beginShape();
+vertex(442.2, 290.947);
+vertex(216, 485.719);
+vertex(128.38, 415.4233);
+vertex(210.76, 123.145);
+vertex(251.38, 459);
+endShape(CLOSE);
     }
 }

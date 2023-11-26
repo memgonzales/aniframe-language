@@ -1,11 +1,14 @@
 set CANVAS_WIDTH to 1000
 set CANVAS_HEIGHT to 1000
+set CANVAS_BACKGROUND to "#DEDEDE"
 
 txt1: Text = "#9585b7"
 __: Text = "rgb(195, 193, 216)"
 
 primary_color: Color = txt1
 primary_color = primary_color + __
+
+info(primary_color)
 
 coords = [{442.20, 290.947}, {216, 485.719}, {128.38, 415.4233}, {210.76, 123.145}, {251.38, 459}]
 
@@ -19,5 +22,13 @@ if check_txt == 0:
     if check_txt < 16777215:      
         info(bg)
         bg.fill(primary_color)
+    if check_txt > 1000:
+        info("hey i'm here!")
+    else if check_txt < 6:
+        info("yo i'm also here!")
+    else if check_txt == 0:
+        type(check_txt)
+    else:
+        info("If I appear, uh-oh")
 
 bg.draw(1, 1000)
