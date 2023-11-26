@@ -316,7 +316,7 @@ def check_parameters(name,params,ctx):
                     if param['data_type'] != "Number":
                         check = False
                         break
-                if params[0]['data_type'] == "Text":
+                if params[0]['data_type'] != "Text":
                     check = False
             if check:
                 params = [params[0]['value'],params[1]['value'],params[2]['value']]
@@ -1212,6 +1212,19 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                         if check:
                             params = [coord['value'] for coord in param['value'] for param in params]
                             return {'value': [func_name,params], 'data_type': 'Object'}
+                        else:
+                            #THROW ERROR
+                            raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
+                    case 'write':
+                        check = True if len(params) == 3 else False
+                        if check:
+                            if params[0]['data_type'] != "Text":
+                                check = False
+                            if params[1]['data_type'] != "Number" or params[2]['data_type'] != "Number":
+                                check = False
+                        if check:
+                            params = [params[0]['value'],params[1]['value'],params[2]['value']]
+                            return {'value': [func_name,params], 'data_type':'Object'}
                         else:
                             #THROW ERROR
                             raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
