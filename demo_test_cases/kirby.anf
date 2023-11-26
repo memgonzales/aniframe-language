@@ -40,7 +40,7 @@ l_cheek: Object = ellipse(170, 260, 40, 20)
 r_cheek: Object = ellipse(170+160, 260, 40, 20)
 
 l_hand = ellipse(130, 280, 100, 110)
-r_hand = ellipse(350, 150, 100, 110)
+r_hand = ellipse(360, 160, 100, 110)
 
 l_foot: Object = make_part(160, 370, 135, 100, cheeks_color)
 r_foot = make_part(340, 370, 135, 100, cheeks_color)
@@ -51,17 +51,22 @@ kabi_cheeks: Object = l_cheek + r_cheek
 kabi_cheeks.fill(cheeks_color)
 kabi_cheeks.stroke(cheeks_color)
 
-hoshi_no_kabi: Object = l_hand + r_hand + kabi_body
+hoshi_no_kabi: Object = l_hand + kabi_body
 hoshi_no_kabi.fill(kabi_color)
 hoshi_no_kabi.stroke(kabi_color)
 
+r_hand.fill(kabi_color)
+r_hand.stroke(kabi_color)
+
+repeat(10):
+    r_hand.move(1, 2, start_fr, 30)
+
 l_foot.draw(1, 1000)
 r_foot.draw(1, 1000)
+r_hand.draw(1, 1000)
 hoshi_no_kabi.draw(1, 1000)
 l_eye.draw(1, 1000)
 r_eye.draw(1, 1000)
 kabi_cheeks.draw(1, 1000)
 smile.draw(1, 1000)
-
-# r_hand.move(10* tan(start_fr * -1), start_fr, 30)
 
