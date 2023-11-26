@@ -1108,6 +1108,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                                     break
                             
                         if check:
+                            params = [param['value'] for param in params]
                             return {'value': [func_name,params], 'data_type': 'Object'}
                         else:
                             #THROW ERROR
