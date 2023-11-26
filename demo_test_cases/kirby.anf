@@ -21,14 +21,14 @@ func make_part(x: Number, y: Number, width: Number, height: Number, colr: Color)
 
 l_eye = make_part(220, 210, 38, 90, "#000000")
 l_eye_shine = make_part(220*2, 210*2-50, 38, 80, "#ffffff")
-l_eye_shine.resize(1/2)
+l_eye_shine.resize(1/2, 1, 1000)
 
 l_eye += l_eye_shine
 
 
 r_eye = make_part(220+60, 210, 38, 90, "#000000")
 r_eye_shine = make_part((220+60)*2, 210*2-50, 38, 80, "#ffffff")
-r_eye_shine.resize(1/2)
+r_eye_shine.resize(1/2, 1, 1000)
 
 r_eye.add(r_eye_shine)
 
@@ -41,15 +41,13 @@ l_cheek = make_part(170, 260, 40, 20, "#cc4668")
 r_cheek = make_part(170+160, 260, 40, 20, "#cc4668")
 
 l_hand = make_part(130, 280, 100, 110, "#ffb6c1")
-r_hand = ellipse(350, 150, 100, 110, "#ffb6c1")
+r_hand = make_part(350, 150, 100, 110, "#ffb6c1")
 
-l_foot = ellipse(160, 370, 135, 100, "#cc4668")
-r_foot = ellipse(340, 370, 135, 100, "#cc4668")
+l_foot = make_part(160, 370, 135, 100, "#cc4668")
+r_foot = make_part(340, 370, 135, 100, "#cc4668")
 
 hoshi_no_kabi = l_foot + r_foot+ l_hand + r_hand + kabi_body + l_eye + r_eye + smile + l_cheek + r_cheek
 
-r_hand.move(10* tan(start_fr * -1), start_fr, 30)
+# r_hand.move(10* tan(start_fr * -1), start_fr, 30)
 
 hoshi_no_kabi.draw(1, 1000)
-
-

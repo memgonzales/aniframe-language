@@ -3,15 +3,9 @@ set CANVAS_WIDTH to 500
 set CANVAS_HEIGHT to 500
 set FRAME_RATE to 10
 
-head: Object = circle(0, 250, 200)
-pinocchio: Object
+pinocchio: Object = circle(0, 250, 200)
 nose = rectangle(-650, 250, 800, 15)
-
-nose.add(head)
-pinocchio += nose
-
 mouth = line(50, 290, 90, 290)
-pinocchio += mouth
 
 eye = circle(50, 230, 20)
 eye.fill("#000000")
@@ -20,4 +14,6 @@ pinocchio.add(eye)
 
 nose.moveX(20, 1, 100)
 
+nose.draw(1, 100)
 pinocchio.draw(1, 100)
+mouth.draw(1, 100)
