@@ -1,32 +1,29 @@
-set CANVAS_WIDTH to 500
+set CANVAS_WIDTH to 7499
+set CANVAS_HEIGHT to 500
 
 hiss_incantation = ["You are a worm through time.", 
 "The thunder song distorts you.", 
 "Happiness comes.", 
 "White pearls", "but", 
-255,255,153, 
+"rgb(255,255,153)", 
 "and", 
 "#bD0429", 
 "in the eye."
 ]
 
-new_list3: List 
-start_fr = 10
-
-func type_out(texts: List, start: Number):
-    for i in texts:
-        write(texts[i], start, start)
-        start += 1
-
+new_txt: Text
+new_txt2: Text
+txt_box: Object
+i = 0
+j = 0
 
 for i in hiss_incantation:
-    new_list += hiss_incantation[i]
+    new_txt += i
     
-    for j in new_list:
-        new_list2 += hiss_incantation[i] + new_list[j] 
+    for j in hiss_incantation:
+        new_txt2 += i + j 
 
-        for k in new_list2:
-            new_list3 += hiss_incantation[i] + new_list[j] + new_list2[k]
+info(new_txt2)
+txt_box.write(new_txt2, 100, 100)
 
-type_out(new_list3, start_fr)
-    
+txt_box.draw(1, 1000)
