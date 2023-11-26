@@ -410,7 +410,7 @@ def hexrgb_to_colors(value):
         colors[1] = int(value[3:5],16)
         colors[2] = int(value[5:],16)
     elif is_rgb(value):
-        regex = r'^rgb\(\s*(\d{1,3})\,\s*(\d{1,3})\,\s*(\d{1,3})\)$'
+        regex = r'^rgb\(\s*([+]?\d{1,3})\,\s*([+]?\d{1,3})\,\s*([+]?\d{1,3})\)$'
         vals = re.match(regex,value)
         for i in range(1,4):
             colors[i-1] = int(vals.group(i))
@@ -426,11 +426,11 @@ def rgb_to_colors(value):
     return colors
 
 def is_rgb(value):
-    regex = r'^rgb\(\s*(\d{1,3})\,\s*(\d{1,3})\,\s*(\d{1,3})\)$'
+    regex = r'^rgb\(\s*([+]?\d{1,3})\,\s*([+]?\d{1,3})\,\s*([+]?\d{1,3})\)$'
     vals = re.match(regex,value)
     if  vals != None:
         for i in range(1,4):
-            if not (int(vals.group(i)) >= 0 and int(vals.group(i)) <= 255):
+            if not int(vals.group(i)) >= 0 and int(vals.group(i)) <= 255:
                 return False
         return True
     else:
