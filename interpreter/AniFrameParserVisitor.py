@@ -164,12 +164,14 @@ def check_parameters(name,params,ctx):
                 if params[0]['data_type'] == "List":
                     check = False
                 if params[0]['data_type'] == "Object":
-                    if isinstance(params[0]['value'],OrderedDict):
-                        params = params[0].get('identifier')
-                    else:
-                        params = mapping.convert_object_expr_to_p5(params[0]['value'][0],params[0]['value'][1])
+                    try:
+                        iden = params[0].get('identifier')
+                        if iden == None:
+                            iden = mapping.convert_object_expr_to_p5(params[0]['value'][0],params[0]['value'][1])
+                    except:
+                        iden = mapping.convert_object_expr_to_p5(params[0]['value'][0],params[0]['value'][1])
             if check:
-                return [params]
+                return [iden]
             else:
                 #THROW ERROR
                 raiseError(ctx,TypeError,f'Invalid data types for add')
@@ -1731,10 +1733,10 @@ class AniFrameParserVisitor(ParseTreeVisitor):
             return
 
         storage = deepcopy(VARIABLES)
+        #print(storage['x'])
         return_val = self.visitFunction_block(ctx.getChild(1),params,retval)
         VARIABLES = deepcopy(storage)
         del storage
-
         if return_val != None:
             return return_val
         else:
