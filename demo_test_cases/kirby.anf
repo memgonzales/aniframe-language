@@ -2,6 +2,7 @@ set FRAME_RATE to 10
 set CANVAS_BACKGROUND to "#dedede"
 set CANVAS_WIDTH to 500
 set CANVAS_HEIGHT to 500
+set MAX_NUM_OF_FRAMES to 1000
 
 start_fr = 1
 
@@ -40,7 +41,6 @@ l_cheek: Object = ellipse(170, 260, 40, 20)
 r_cheek: Object = ellipse(170+160, 260, 40, 20)
 
 l_hand = ellipse(130, 280, 100, 110)
-r_hand = ellipse(360, 160, 100, 110)
 
 l_foot: Object = make_part(160, 370, 135, 100, cheeks_color)
 r_foot = make_part(340, 370, 135, 100, cheeks_color)
@@ -55,11 +55,31 @@ hoshi_no_kabi: Object = l_hand + kabi_body
 hoshi_no_kabi.fill(kabi_color)
 hoshi_no_kabi.stroke(kabi_color)
 
-r_hand.fill(kabi_color)
-r_hand.stroke(kabi_color)
+func make_hand() returns Object:
+    sugoi = ellipse(360, 160, 100, 110)
+    sugoi.fill(kabi_color)
+    sugoi.stroke(kabi_color)
 
-repeat(10):
-    r_hand.move(1, 2, start_fr, 30)
+    return sugoi 
+
+r_hand = make_hand()
+
+func wave_hand(frame: Number, offset: Number):
+    repeat(sqrt(10/10) * 3.5):
+        r_hand.move(1, 2, frame, frame + offset)
+
+func wave_hand_back(fr: Number, offset: Number):
+    repeat(sqrt(10/10) * 3.5):
+        r_hand.move(-1, -2, fr, fr + offset)
+
+frame = start_fr
+offset = 12
+
+repeat(4):
+    wave_hand(frame, offset)
+    wave_hand_back(frame + offset, offset)
+
+    frame += 2 * offset
 
 l_foot.draw(1, 1000)
 r_foot.draw(1, 1000)
