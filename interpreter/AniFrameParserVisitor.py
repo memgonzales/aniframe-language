@@ -1260,6 +1260,8 @@ class AniFrameParserVisitor(ParseTreeVisitor):
             if val['data_type'] == "List":
                 #throw error
                 raiseError(ctx,ValueError,f'List cannot be inside of list')
+            if val['data_type'] == "Object":
+                raiseError(ctx,ValueError,f'Object cannot be inside of list')
             res.append(val)
         
         return {'value': res, 'data_type': "List"}
@@ -1564,8 +1566,12 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                 case 'FRAME_RATE':
                     mapping.configure_frame_rate(VARIABLES[configurable]['value'])
                 case 'CANVAS_WIDTH':
+                    if VARIABLES[configurable]['value'] >= 7500:
+                        raiseError(ctx,ValueError,f"{configurable} can not exceed 7500")
                     mapping.configure_canvas_width(VARIABLES[configurable]['value'])
                 case 'CANVAS_HEIGHT':
+                    if VARIABLES[configurable]['value'] >= 7500:
+                        raiseError(ctx,ValueError,f"{configurable} can not exceed 7500")
                     mapping.configure_canvas_height(VARIABLES[configurable]['value'])
                 case 'MAX_NUM_OF_FRAMES':
                     mapping.configure_max_num_frames(VARIABLES[configurable]['value'])
