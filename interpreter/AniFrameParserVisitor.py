@@ -1323,7 +1323,6 @@ class AniFrameParserVisitor(ParseTreeVisitor):
         if func_name in user_function_names:
             new_params = check_user_params(func_name,params,ctx)
             return func_name,new_params
-        
         else:
             return func_name,params
     # Visit a parse tree produced by AniFrameParser#actual_parameters.
@@ -1539,7 +1538,7 @@ class AniFrameParserVisitor(ParseTreeVisitor):
         else:
             #THROW ERROR
             raiseError(ctx,ValueError,f'Invalid assignment operator')
-        
+        return val,VARIABLES[val]
 
     # Visit a parse tree produced by AniFrameParser#config_statement.
     def visitConfig_statement(self, ctx:AniFrameParser.Config_statementContext):
