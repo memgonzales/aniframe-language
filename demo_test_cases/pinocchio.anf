@@ -5,6 +5,7 @@ set FRAME_RATE to 10
 
 p_color: Text = "#C2B280"
 txt: Text = "I'm not lying"
+txt_box: Object
 
 pinocchio: Object = circle(0, 250, 200)
 nose = rectangle(-650, 250, 800, 15)
@@ -19,6 +20,9 @@ pinocchio.fill(p_color)
 nose.fill(p_color)
 nose.moveX(20, 1, 500)
 
+txt_box.write(txt, 120, 120)
+
 nose.draw(1, 500)
 pinocchio.draw(1, 500)
 eye.draw(1, 500)
+txt_box.draw(1, 500)
