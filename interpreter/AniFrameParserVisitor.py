@@ -499,7 +499,10 @@ class AniFrameParserVisitor(ParseTreeVisitor):
 
             if VARIABLES.get(var_name) == None:
                 raiseError(ctx,ValueError,f'identifier {var_name} does not exist')
-            result  = check_parameters(func_name,result,ctx)
+            try:
+                result  = check_parameters(func_name,result,ctx)
+            except:
+                raiseError(ctx,ValueError,f"Invalid parameters for {func_name}")
             if result == None:
                 raiseError(ctx,ValueError,f'{func_name} parameters are invalid')
 
