@@ -17,6 +17,12 @@ colors = ["#89AC76", "rgb(041, 49, +51)", "rgb(134, 115, 161)", "#1E2460", "#227
     "rgb(203, 208, 204)", "#A18594", "#256D7B", "#20214F", "rgb(157, 161, 170)",
     "rgb(237, 118, 14)", "#FFFF00", "#924E7D", "rgb(00, 187, 045)", "rgb(106, 95, 49)"]
 
+info(length(colors))
+colors.add("#DEDEDE")
+info(colors)
+colors.remove(3)
+info(colors)
+info("=========")
 
 start_fr = 1 
 end_fr = 100
