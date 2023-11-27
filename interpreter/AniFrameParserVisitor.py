@@ -1545,6 +1545,8 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                     raiseError(ctx,TypeError,f"{assignment[0]}= compound operator is not supported")
         else:
             #THROW ERROR
+            if VARIABLES[val].get('constant') != None:
+                raiseError(ctx,ValueError,f"Variable {val} is a constant variable.")
             raiseError(ctx,ValueError,f'Invalid assignment operator')
         return val,VARIABLES[val]
 
