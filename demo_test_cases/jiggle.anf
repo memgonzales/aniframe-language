@@ -43,6 +43,9 @@ else if num < 600:
 else:
     info("Hmmm...")
 
+# const x = 5
+# x = 3
+
 if num > 400 || num < 0:
     repeat 5:
         if num > 400 || num < 0:
