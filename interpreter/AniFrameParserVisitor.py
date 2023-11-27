@@ -163,8 +163,9 @@ def check_parameters(name,params,ctx):
                             iden = mapping.convert_object_expr_to_p5(params[0]['value'][0],params[0]['value'][1])
                     except:
                         iden = mapping.convert_object_expr_to_p5(params[0]['value'][0],params[0]['value'][1])
+                    return [iden]
             if check:
-                return [iden]
+                return params
             else:
                 #THROW ERROR
                 raiseError(ctx,TypeError,f'Invalid data types for add')
@@ -176,7 +177,7 @@ def check_parameters(name,params,ctx):
                         check = False
                         break
             if check:
-                return [int(params[0])]
+                return [int(params[0]['value'])]
             else:
                 #THROW ERROR
                 raiseError(ctx,TypeError,f'Invalid index ')
