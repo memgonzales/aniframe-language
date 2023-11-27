@@ -8,6 +8,7 @@ set MAX_NUM_OF_FRAMES to 1000
 x = get_input("kirby-input.txt")
 start_fr = x[0]
 info(start_fr)
+type(start_fr)
 
 hoshi_no_kabi: Object
 kabi_color: Text = "#ffb6c1"
