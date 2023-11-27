@@ -526,6 +526,8 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                 match func_name:
                     case 'add':
                         # result[0] should be identifier of object
+                        if type(result[0]) != str:
+                            raiseError(ctx,ValueError,f"Cannot add {result[0]['value']} to object")
                         iden = mapping.convert_object_add_to_p5(var_name,result[0])
                         mapping.convert_object_assign_to_p5(var_name,iden)
                     case 'draw':
