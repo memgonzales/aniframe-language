@@ -68,9 +68,6 @@ num: Number = 543
 
 grass_block.turn(angles[num % 5], 200, 400)
 
-info(tree_top)
-type(tree_top)
-
 sec_hand.turnC(360/60, 1, 4*5*(1+2))
 
 clock.draw(1, 1000)
