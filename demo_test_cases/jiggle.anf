@@ -18,9 +18,13 @@ colors = ["#89AC76", "rgb(041, 49, +51)", "rgb(134, 115, 161)", "#1E2460", "#227
     "rgb(237, 118, 14)", "#FFFF00", "#924E7D", "rgb(00, 187, 045)", "rgb(106, 95, 49)"]
 
 info(length(colors))
+info("=========")
 colors.add("#DEDEDE")
+info(length(colors))
 info(colors)
+info("=========")
 colors.remove(3)
+info(length(colors))
 info(colors)
 info("=========")
 
