@@ -24,6 +24,15 @@ num: Number = 401
 
 ctr: Number = 25
 
+if num < 401:
+    info("Hey! shouldn't be printed!")
+else if num < 500:
+    info("I'm printed!")
+else if num < 600:
+    info("Not me...")
+else:
+    info("Hmmm...")
+
 if num > 400 || num < 0:
     repeat 5:
         if num > 400 || num < 0:
