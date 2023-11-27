@@ -11,8 +11,8 @@ hiss_incantation = ["You are a worm through time.",
 "in the eye."
 ]
 
-new_txt: Text
-new_txt2: Text
+new_txt: Text = ""
+new_txt2: Text = ""
 txt_box: Object
 i = 0
 j = 0

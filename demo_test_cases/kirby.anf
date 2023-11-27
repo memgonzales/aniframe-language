@@ -78,7 +78,7 @@ func wave_hand_back(fr: Number, offset: Number):
 frame = start_fr
 offset = 12
 
-repeat(4):
+repeat(3):
     wave_hand(frame, offset)
     wave_hand_back(frame + offset, offset)
 
