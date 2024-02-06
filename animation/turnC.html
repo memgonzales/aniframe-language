@@ -17,16 +17,15 @@
     </head>
 
     <body>
-        <h1 class="code">turnY()</h1>
+        <h1 class="code">turnC()</h1>
         <br />
-        <p>Rotates an object around the <i>y</i>-axis</p>
-        <div class="code">turnY(x, f1, f2)</div>
+        <p>Rotates an object clockwise around the <i>x</i>-axis</p>
+        <div class="code">turnC(x, f1, f2)</div>
         <table class="table half">
             <tr>
                 <td class="code">x</td>
                 <td>
-                    Angle of rotation (in degrees, clockwise) around the
-                    <i>y</i>-axis
+                    Angle of rotation (in degrees, clockwise)
                 </td>
             </tr>
             <tr>
@@ -40,6 +39,11 @@
         </table>
 
         <p>Example:</p>
-        <div class="code"></div>
+        <div class="code">
+            <pre>shape = triangle(30, 75, 58, 20, 86, 75)
+shape.turnC(45, 1, 80)
+                                                                                            
+shape.draw(1, 1000)</pre>
+        </div>
     </body>
 </html>

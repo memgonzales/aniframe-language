@@ -20,22 +20,22 @@
         <h1 class="code">shear()</h1>
         <br />
         <p>Shears an object</p>
-        <div class="code">shear(x, y, f1, f2)</div>
+        <div class="code">shear(x, f1, f2)</div>
         <table class="table half">
             <tr>
                 <td class="code">x</td>
                 <td>
                     Angle of shear (in degrees, clockwise) with respect to the
-                    <i>x</i>-axis
+                    <i>x and y</i>-axes
                 </td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td class="code">y</td>
                 <td>
                     Angle of shear (in degrees, clockwise) with respect to the
                     <i>y</i>-axis
                 </td>
-            </tr>
+            </tr> -->
             <tr>
                 <td class="code">f1</td>
                 <td>Start frame</td>
@@ -47,6 +47,11 @@
         </table>
 
         <p>Example:</p>
-        <div class="code"></div>
+        <div class="code">
+            <pre>shape = triangle(30, 75, 58, 20, 86, 75)
+shape.shear(45, 90, 1, 80)
+                            
+shape.draw(1, 1000)</pre>
+        </div>
     </body>
 </html>
