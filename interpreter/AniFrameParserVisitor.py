@@ -1038,14 +1038,14 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                             #THROW ERROR
                             raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
                     case 'atan2':
-                        check = True if len(params) == 1 else False
+                        check = True if len(params) == 2 else False
                         if check:
                             for param in params:
                                 if param['data_type'] != "Number":
                                     check = False
                                     break
                         if check:
-                            return {'value': math.atan2(params[0]['value']), 'data_type': 'Number'}
+                            return {'value': math.atan2(params[0]['value'], params[1]['value']), 'data_type': 'Number'}
                         else:
                             #THROW ERROR
                             raiseError(ctx,ValueError,f'Wrong parameters for {func_name}')
