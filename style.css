@@ -15,3 +15,7 @@ div.code {
 .half {
     width: 50%;
 }
+
+ol.bold li::marker {
+    font-weight: bold;
+}
