@@ -1559,7 +1559,19 @@ class AniFrameParserVisitor(ParseTreeVisitor):
                 if is_rgb(value['value']) or is_hexColor(value['value']):
                     VARIABLES[configurable]['data_type'] = configurable
                     VARIABLES[configurable]['value'] = hexrgb_to_colors(value['value'])
-                    hexc = "#" + hex(VARIABLES[configurable]['value'][0])[2:] + hex(VARIABLES[configurable]['value'][1])[2:] + hex(VARIABLES[configurable]['value'][2])[2:]
+
+                    part1 = hex(VARIABLES[configurable]['value'][0])[2:]
+                    part2 = hex(VARIABLES[configurable]['value'][1])[2:]
+                    part3 = hex(VARIABLES[configurable]['value'][2])[2:]
+
+                    if len(part1) == 1:
+                        part1 = '0' + part1
+                    if len(part2) == 1:
+                        part2 = '0' + part2
+                    if len(part3) == 1:
+                        part3 = '0' + part3
+
+                    hexc = "#" + part1 + part2 + part3
                     mapping.configure_canvas_background(hexc)
                 else:
                     raiseError(ctx,ValueError,f'Invalid value for {configurable}')
