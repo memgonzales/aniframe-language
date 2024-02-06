@@ -5,3 +5,9 @@ body {
 .code {
     font-family: Consolas;
 }
+
+div.code {
+    background-color: #f2efef;
+    width: 50%;
+    padding: 1em;
+}
