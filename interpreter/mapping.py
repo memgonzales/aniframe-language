@@ -194,8 +194,8 @@ def convert_line_to_p5(name, x1, y1, x2, y2):
 def convert_curve_to_p5(name, x1, y1, x2, y2, x3, y3, x4, y4):
     convert_shape_to_p5(clean_identifier(name), f'curve({x1}, {y1}, {x2}, {y2}, {x3}, {y3}, {x4}, {y4})')
 
-def convert_circle_to_p5(name, x, y, radius):
-    convert_shape_to_p5(clean_identifier(name), f'circle({x}, {y}, {radius})')
+def convert_circle_to_p5(name, x, y, diameter):
+    convert_shape_to_p5(clean_identifier(name), f'circle({x}, {y}, {diameter})')
 
 def convert_ellipse_to_p5(name, x, y, width, height):
     convert_shape_to_p5(clean_identifier(name), f'ellipse({x}, {y}, {width}, {height})')
