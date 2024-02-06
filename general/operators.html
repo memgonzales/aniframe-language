@@ -76,7 +76,10 @@
                             Color mixing. Mixing two colors is defined asthe
                             resulting color when their red color values are
                             averaged, their green color values are averaged, and
-                            their blue color values are averaged
+                            their blue color values are averaged.  <br>
+                            <b>NOTE:</b> One of 
+                            the operands must be explicitly declared a Color to 
+                            avoid text concatenation instead.
                         </td>
                         <td>&mdash;</td>
                         <td>&mdash;</td>
@@ -109,7 +112,44 @@
                 </table>
 
                 <p>Example:</p>
-                <div class="code"></div>
+                <div class="code">
+                    <pre>house: Object
+square = rectangle(33, 70, 50, 50)
+roof = triangle(30, 75, 58, 20, 86, 75)
+
+house = square + roof
+
+x = 100
+y = 3
+
+txt = "frame"
+new_txt = "Ani" + txt
+
+color1: Color = "#FFFF00"
+color2 = "rgb(0, 0, 255)"
+
+coord_a = {5, 6}
+
+list1 = ["a", "b", "c"]
+list2 = [1, 2, 3]
+
+list3 = list1 + list2
+
+info(x + y)
+info(new_txt)
+info(color1 + color2)
+info(coord_a + {6, 4})
+info(list3)
+
+house.draw(1, 1000)
+
+<b>Output:</b>
+103
+Aniframe
+rgb(127, 127, 127)
+(11, 10)
+[{'value': 'a', 'data_type': 'Text'}, {'value': 'b', 'data_type': 'Text'}, {'value': 'c', 'data_type': 'Text'}, {'value': 1, 'data_type': 'Number'}, {'value': 2, 'data_type': 'Number'}, {'value': 3, 'data_type': 'Number'}]</pre>
+                </div>
             </li>
 
             <br /><br />
@@ -163,7 +203,10 @@
                             operand (color) is computed by subtracting the red,
                             green, and blue values from 255. The inverse of the
                             second operand is mixed with the first operand, and
-                            the resulting color is returned
+                            the resulting color is returned. <br>
+                            <b>NOTE:</b> One of 
+                            the operands must be explicitly declared a Color to 
+                            avoid subtraction of text, which is invalid.
                         </td>
                         <td>&mdash;</td>
                         <td>&mdash;</td>
@@ -196,7 +239,24 @@
                 </table>
 
                 <p>Example:</p>
-                <div class="code"></div>
+                <div class="code">
+                    <pre>x = 100
+y = 3
+
+color1 = "#00FF00"
+color2: Color = "rgb(0, 0, 255)"
+
+coord_a = {5, 6}
+
+info(x - y)
+info(color1 - color2)
+info(coord_a - {6, 4})
+
+<b>Output:</b>
+97
+rgb(0, 127, 127)
+(-1, 2)</pre>
+                </div>
             </li>
 
             <br /><br />
@@ -276,7 +336,19 @@
                 </table>
 
                 <p>Example:</p>
-                <div class="code"></div>
+                <div class="code">
+                    <pre>x = 100
+y = 3
+coord_a = {5, 6}
+coord_b = {6, 4}
+
+info(x * y)
+info(coord_a * coord_b)
+
+<b>Output:</b>
+300
+(30, 24)</pre>
+                </div>
             </li>
 
             <br /><br />
@@ -356,7 +428,18 @@
                 </table>
 
                 <p>Example:</p>
-                <div class="code"></div>
+                <div class="code">
+                    <pre>x = 100
+y = 3
+coord_a = {5, 6}
+
+info(x / y)
+info(coord_a / {6, 4})
+
+<b>Output:</b>
+33.333333333333336
+(0.8333333333333334, 1.5)</pre>
+                </div>
             </li>
 
             <br /><br />
@@ -429,7 +512,15 @@
                 </table>
 
                 <p>Example:</p>
-                <div class="code"></div>
+                <div class="code">
+                    <pre>x = 100
+y = 3
+
+info(x % y)
+
+<b>Output:</b>
+1</pre>
+                </div>
             </li>
         </ol>
 

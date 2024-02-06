@@ -33,12 +33,45 @@
 
         <br />
 
+        <p>Example:</p>
+        <div class="code">
+            <pre>func fibonacci(x: Number) returns Number:
+    if x <= 1:
+        return x 
+    else:
+        return fibonacci(x - 1) + fibonacci(x - 2)
+            
+info(fibonacci(10))
+
+<b>Output:</b>
+55</pre>
+        </div>
+
+        <br>
+
         <p>
             For a non-returning function, remove the
             <span class="code">returns</span> subclause in the function header,
             as well as the <span class="code">clause</span> in the function
             body.
         </p>
+
+        <p>Example:</p>
+        <div class="code">
+            <pre>func printMe(txt: Text):
+    txt2: Text = "00" + "0"
+    txt2 += "0"
+    txt += txt2
+            
+    info(txt)
+            
+printMe("#FF")
+
+<b>Output:</b>
+#FF0000</pre>
+        </div>
+
+        <br>
 
         <p>
             <b>IMPORTANT:</b> Since <span class="code">draw</span> commands
@@ -48,6 +81,23 @@
         </p>
 
         <p>Example:</p>
-        <div class="code"></div>
+        <div class="code">
+            <pre>func draw_circles(x: Number) returns Number:
+    if x == 0:
+        return 0
+                
+    y += 30
+    circles += circles(60, y, 20)
+    draw_circles(x-1)
+
+    return 0
+            
+circles: Object = circle(60, 20, 20)
+y = 20
+
+draw_circles(3-1)
+
+circles.draw(1, 1000)</pre>
+        </div>
     </body>
 </html>
