@@ -20,11 +20,11 @@
         <h1>Operators</h1>
         <br />
 
-        <h3>Arithmetic & Animation-Specific Operators</h3>
+        <h3>A. Arithmetic & Animation-Specific Operators</h3>
         <br />
-        <ol>
+        <ol class="bold">
             <li>
-                <span class="code">+</span>
+                <span class="code"><b>+</b></span>
                 <table class="table">
                     <tr>
                         <td></td>
@@ -38,7 +38,7 @@
                     <tr>
                         <td class="code">Object</td>
                         <td>
-                            Object Stacking. The second operand (object) is
+                            Object stacking. The second operand (object) is
                             stacked on top of the first operand (object), and a
                             composite object is returned.
                         </td>
@@ -47,9 +47,64 @@
                         <td>&mdash;</td>
                         <td>&mdash;</td>
                         <td>&mdash;</td>
+                        <td>&mdash;</td>
                     </tr>
                     <tr>
-                        <td class="code"></td>
+                        <td class="code">Number</td>
+                        <td>&mdash;</td>
+                        <td>Numerical addition</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Text</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>Text concatenation</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Color</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>
+                            Color mixing. Mixing two colors is defined asthe
+                            resulting color when their red color values are
+                            averaged, their green color values are averaged, and
+                            their blue color values are averaged
+                        </td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Coordinates</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>
+                            Coordinate addition. The <i>x</i>-coordinate of the
+                            resulting coordinate pair is the sum of the
+                            <i>x</i>-coordinates of the operands. The
+                            <i>y</i>-coordinate of the resulting coordinate pair
+                            is the sum of the <i>y</i>-coordinates of the
+                            operands.
+                        </td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">List</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>List concatenation</td>
                     </tr>
                 </table>
 
@@ -57,22 +112,479 @@
                 <div class="code"></div>
             </li>
 
-            <br />
+            <br /><br />
             <li>
-                <span class="code">-</span>
+                <span class="code"><b>-</b></span>
+                <table class="table">
+                    <tr>
+                        <td></td>
+                        <td class="code">Object</td>
+                        <td class="code">Number</td>
+                        <td class="code">Text</td>
+                        <td class="code">Color</td>
+                        <td class="code">Coord</td>
+                        <td class="code">List</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Object</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Number</td>
+                        <td>&mdash;</td>
+                        <td>Numerical subtraction</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Text</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Color</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>
+                            Color mixing with inverse. The inverse of the second
+                            operand (color) is computed by subtracting the red,
+                            green, and blue values from 255. The inverse of the
+                            second operand is mixed with the first operand, and
+                            the resulting color is returned
+                        </td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Coordinates</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>
+                            Coordinate subtraction. The <i>x</i>-coordinate of
+                            the resulting coordinate pair is the difference of
+                            the <i>x</i>-coordinates of the operands. The
+                            <i>y</i>-coordinate of the resulting coordinate pair
+                            is the difference of the <i>y</i>-coordinates of the
+                            operands.
+                        </td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">List</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                </table>
+
+                <p>Example:</p>
+                <div class="code"></div>
+            </li>
+
+            <br /><br />
+            <li>
+                <span class="code"><b>*</b></span>
+                <table class="table">
+                    <tr>
+                        <td></td>
+                        <td class="code">Object</td>
+                        <td class="code">Number</td>
+                        <td class="code">Text</td>
+                        <td class="code">Color</td>
+                        <td class="code">Coord</td>
+                        <td class="code">List</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Object</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Number</td>
+                        <td>&mdash;</td>
+                        <td>Numerical multiplication</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Text</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Color</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Coordinates</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>
+                            Coordinate multiplication. The <i>x</i>-coordinate
+                            of the resulting coordinate pair is the product of
+                            the <i>x</i>-coordinates of the operands. The
+                            <i>y</i>-coordinate of the resulting coordinate pair
+                            is the product of the <i>y</i>-coordinates of the
+                            operands.
+                        </td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">List</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                </table>
+
+                <p>Example:</p>
+                <div class="code"></div>
+            </li>
+
+            <br /><br />
+            <li>
+                <span class="code"><b>/</b></span>
+                <table class="table">
+                    <tr>
+                        <td></td>
+                        <td class="code">Object</td>
+                        <td class="code">Number</td>
+                        <td class="code">Text</td>
+                        <td class="code">Color</td>
+                        <td class="code">Coord</td>
+                        <td class="code">List</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Object</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Number</td>
+                        <td>&mdash;</td>
+                        <td>Numerical division</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Text</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Color</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Coordinates</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>
+                            Coordinate division. The <i>x</i>-coordinate of the
+                            resulting coordinate pair is the quotient of the
+                            <i>x</i>-coordinates of the operands. The
+                            <i>y</i>-coordinate of the resulting coordinate pair
+                            is the quotient of the <i>y</i>-coordinates of the
+                            operands.
+                        </td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">List</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                </table>
+
+                <p>Example:</p>
+                <div class="code"></div>
+            </li>
+
+            <br /><br />
+            <li>
+                <span class="code"><b>%</b></span>
+                <table class="table">
+                    <tr>
+                        <td></td>
+                        <td class="code">Object</td>
+                        <td class="code">Number</td>
+                        <td class="code">Text</td>
+                        <td class="code">Color</td>
+                        <td class="code">Coord</td>
+                        <td class="code">List</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Object</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Number</td>
+                        <td>&mdash;</td>
+                        <td>Numerical modulo</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Text</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Color</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">Coordinates</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                    <tr>
+                        <td class="code">List</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                        <td>&mdash;</td>
+                    </tr>
+                </table>
+
+                <p>Example:</p>
+                <div class="code"></div>
             </li>
         </ol>
 
         <br />
 
-        <h3>Relational Operators</h3>
+        <h3>B. Compound Operators</h3>
+        <br />
+        <p>
+            <span class="code">+=</span>, <span class="code">-=</span>,
+            <span class="code">*=</span>, <span class="code">/=</span>, and
+            <span class="code">%=</span> are supported.
+        </p>
+
+        <p>Example:</p>
+        <div class="code"></div>
 
         <br />
 
-        <h3>Logical Operators</h3>
+        <h3>C. Relational Operators</h3>
+        <br />
+        <p>
+            <span class="code">&lt;</span>, <span class="code">&lt;=</span>,
+            <span class="code">&gt;</span>, <span class="code">&gt;=</span>,
+            <span class="code">!=</span>, and <span class="code">==</span> are
+            supported.
+        </p>
+
+        <p>These operations are defined for the following operands:</p>
+        <ol>
+            <li>Two numbers</li>
+            <li>
+                Two strings, in which case lexicographical ordering is followed
+            </li>
+            <li>
+                Two coordinates, in which case the <i>x</i>-coordinates are
+                compared first, followed by the <i>y</i>-coordinates
+            </li>
+        </ol>
+
+        <p>Example:</p>
+        <div class="code"></div>
 
         <br />
 
-        <h3>Operator Precedence</h3>
+        <h3>D. Logical Operators</h3>
+        <br />
+        <p>
+            <span class="code">&amp;&amp;</span>, <span class="code">||</span>,
+            and <span class="code">!</span> are supported. Short-circuiting is
+            also enforced.
+        </p>
+
+        <p>
+            These operations are defined only when both operands are numbers
+            (or, in the case of <span class="code">||</span>, if the sole
+            operand is a number):
+        </p>
+
+        <ol>
+            <li>
+                <span class="code">&amp;&amp;</span> returns 1 only if both
+                operands are nonzero; otherwise, 0 is returned
+            </li>
+
+            <li>
+                <span class="code">||</span> returns 0 only if both operands are
+                0; otherwise, 1 is returned
+            </li>
+
+            <li>
+                <span class="code">!</span> returns 0 if the operand is nonzero;
+                it returns 1 if the operand is 0
+            </li>
+        </ol>
+
+        <p>Example:</p>
+        <div class="code"></div>
+
+        <br />
+
+        <br />
+
+        <h3>E. Operator Precedence</h3>
+        <br />
+        <p>Note that:</p>
+        <ul>
+            <li>All binary operators follow an infix operator position</li>
+            <li>The associativity of all binary operators is left-to-right</li>
+            <li>The associativity of all unary operators is right-to-left</li>
+            <li>
+                The order of operand evaluation for all binary operators is
+                left-to-right
+            </li>
+        </ul>
+
+        <table class="table" style="text-align: center">
+            <tr>
+                <td><b>Highest Precedence</b></td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="code">()</span> (grouping symbols),
+                    <span class="code">[]</span> (enclosing symbols for
+                    <span class="code">List</span>),
+                    <span class="code">{}</span> (enclosing symbols for
+                    <span class="code">Coord</span>)
+                </td>
+            </tr>
+            <tr>
+                <td><span class="code">.</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="code">+</span> (unary),
+                    <span class="code">-</span> (unary),
+                    <span class="code">!</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="code">*</span>, <span class="code">/</span>,
+                    <span class="code">%</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="code">+</span> (binary),
+                    <span class="code">-</span> (binary)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="code">&lt;</span>,
+                    <span class="code">&lt;=</span>,
+                    <span class="code">&gt;</span>,
+                    <span class="code">&gt;=</span>,
+                    <span class="code">!=</span>, <span class="code">==</span>,
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="code">&amp;&amp;</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="code">||</span>
+                </td>
+            </tr>
+            <tr>
+                <td><span class="code">=</span> (assignment)</td>
+            </tr>
+            <tr>
+                <td><b>Lowerst Precedence</b></td>
+            </tr>
+        </table>
     </body>
 </html>
