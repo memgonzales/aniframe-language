@@ -535,7 +535,32 @@ info(x % y)
         </p>
 
         <p>Example:</p>
-        <div class="code"></div>
+        <div class="code">
+            <pre>x = 100
+y = 3
+
+x += y
+info(x)
+
+x -= y
+info(x)
+
+x *= y
+info(x)
+
+x /= y
+info(x)
+
+x %= y
+info(x)
+
+<b>Output:</b>
+103
+100  
+300  
+100.0
+1</pre>
+        </div>
 
         <br />
 
@@ -561,7 +586,16 @@ info(x % y)
         </ol>
 
         <p>Example:</p>
-        <div class="code"></div>
+        <div class="code">
+            <pre>info(-48.3 <= 0)
+info("banana" < "Aniframe")
+info({5, 6} != {6, 4})
+
+<b>Output:</b>
+1
+0
+1</pre>
+        </div>
 
         <br />
 
@@ -597,7 +631,16 @@ info(x % y)
         </ol>
 
         <p>Example:</p>
-        <div class="code"></div>
+        <div class="code">
+            <pre>info(-48.3 && 0)
+info(-48.3 || 0)
+info(!(-48.3 && 0))
+
+<b>Output:</b>
+0
+1
+1</pre>
+        </div>
 
         <br />
 
@@ -674,7 +717,7 @@ info(x % y)
                 <td><span class="code">=</span> (assignment)</td>
             </tr>
             <tr>
-                <td><b>Lowerst Precedence</b></td>
+                <td><b>Lowest Precedence</b></td>
             </tr>
         </table>
     </body>
