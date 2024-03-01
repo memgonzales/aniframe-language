@@ -19,3 +19,7 @@ div.code {
 ol.bold li::marker {
     font-weight: bold;
 }
+
+pre {
+    margin-bottom: 0;
+}
