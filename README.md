@@ -49,3 +49,4 @@ This is the major course output in a theory of programming languages class for m
 [badge-django]: https://img.shields.io/badge/django-%23092E20.svg?style=flat&logo=django&logoColor=white
 [badge-django-rest]: https://img.shields.io/badge/DJANGO-REST-ff1709?style=flat&logo=django&logoColor=white&color=ff1709&labelColor=gray
 [badge-react]: https://img.shields.io/badge/react-%2320232a.svg?style=flat&logo=react&logoColor=%2361DAFB
+[badge-github-actions]: https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=github-actions&logoColor=white
