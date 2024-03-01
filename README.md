@@ -19,15 +19,20 @@ If you find AniFrame useful, please consider citing:
 ```
 ```
 
-## Documentation
-
-Refer to https://aniframe-docs.vercel.app/
+![aniframe_kirby](https://github.com/memgonzales/aniframe-language/assets/44253974/bdcf7a0b-b5fa-40ad-a4f6-7492b7e922f4)
 
 ## Installing AniFrame
 
 ### A. Installing the Parser, Lexer & Interpreter
 
 ### B. Installing the Browser Environment
+
+## Quick Start
+
+## Documentation
+
+Refer to https://aniframe-docs.vercel.app/
+
 
 ## Authors
 
