@@ -3,7 +3,7 @@
 ![badge][badge-django]
 ![badge][badge-django-rest]
 ![badge][badge-react] <br>
-[![Actions Status](https://github.com/bioinfodlsu/phage-host-prediction/workflows/Check%20for%20syntax%20errors/badge.svg)](https://github.com/bioinfodlsu/phage-host-prediction/actions)
+[![Actions Status](https://github.com/memgonzales/aniframe-language/workflows/Check%20for%20syntax%20errors/badge.svg)](https://github.com/memgonzales/aniframe-language/actions)
 ![badge][badge-github-actions]
 
 
