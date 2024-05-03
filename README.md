@@ -29,10 +29,11 @@ If you find AniFrame useful, please consider citing:
 
 ## Quick Start
 
-## Documentation
+## Language Documentation
 
 Refer to https://aniframe-docs.vercel.app/
 
+## Gallery
 
 ## Authors
 
