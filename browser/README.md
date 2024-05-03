@@ -8,17 +8,19 @@
 
 ## Setup Intructions
 1. Clone the repository 
-2. Set up the p5.js widget locally:
-```
- cd browser/p5-widget/p5.js-widget
- npm install
- ```
-To run the p5.js widget:
-```
- cd browser/p5-widget/p5.js-widget
- npm start
- ```
-3. In a separate terminal, create your environment 
+1. Set up the p5.js widget locally:
+   
+   ```
+   cd browser/p5-widget/p5.js-widget
+   npm install
+   ```
+   
+   To run the p5.js widget:
+   ```
+   cd browser/p5-widget/p5.js-widget
+   npm start
+   ```
+1. In a separate terminal, create your environment 
  ```
  cd browser
  python -m venv env
