@@ -26,28 +26,28 @@
    ```
 ---
 ### B. Configuring AniFrame Browser
-1. In a separate terminal, create your environment 
+1. In a separate terminal, create your environment: 
    ```
    cd browser
    python -m venv env
    ```
    
-1. Activate your environment 
+1. Activate your environment:
    ```
    env\Scripts\activate.bat
    ```
    
-1. Navigate to the aniframe base folder that contains the requirements.txt file.
+1. Navigate to the aniframe base folder that contains the `requirements.txt` file:
    ```
    cd aniframe
    ```
    
-1. Install all requirements
+1. Install all requirements:
    ```
    pip install -r requirements.txt
    ```
    
-1. Make migrations
+1. Make migrations:
    ```
    python manage.py makemigrations
    ```
@@ -57,32 +57,32 @@
    ?: (staticfiles.W004) The directory '/Users/faruq/Desktop/test/React-Django/project1/frontend/build/static' in the STATICFILES_DIRS setting does not exist.
    ```
 
-1. Migrate changes
+1. Migrate changes:
    ```
    python manage.py migrate
    ```
    
-1. Navigate to the front end folder 
+1. Navigate to the front end folder:
    ```
    cd frontend
    ```
    
-1. Install npm
+1. Install npm:
    ```
    npm install
    ```
    
-1. Build the files
+1. Build the files:
    ```
    npm run build
    ```
    
-1. Navigate back to the root directory
+1. Navigate back to the root directory:
    ```
    cd ..
    ```
    
-1. Run the following command to run the code in development mode
+1. Run the following command to run the code in development mode:
    ```
    python manage.py runserver
    ```
@@ -103,7 +103,7 @@ Cross-origin resource sharing (CORS) is needed for AniFrame to read user-input f
 ### D. Viewing New Changes
 New changes made to the model or frontend of AniFrame are only reflected upon restarting the browser.
 
-1. Navigate to the root directory
+1. Navigate to the root directory:
    ```
    cd ..
    ```
