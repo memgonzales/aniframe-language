@@ -27,7 +27,31 @@ If you find AniFrame useful, please consider citing:
 
 ### B. Installing the Browser Environment
 
+Refer to installation instructions [here](https://github.com/memgonzales/aniframe-language/blob/main/browser/README.md)
+
 ## Quick Start
+1. Run the p5.js widget:
+   ```
+   cd browser/p5-widget/p5.js-widget
+   npm start
+   ```
+   
+1. In a separate terminal, activate the virtual environment:
+   ```
+   cd browser
+   env\Scripts\activate.bat
+   ```
+   
+1. Run the code in development mode:
+   ```
+   cd aniframe
+   python manage.py runserver
+   ```
+   
+1. Open [http://127.0.0.1:8000/]( http://127.0.0.1:8000/) to view the application in the browser.
+
+1. Remember to activate the CORS-enabling extension for the AniFrame webpage before testing the application.
+   
 
 ## Language Documentation
 
