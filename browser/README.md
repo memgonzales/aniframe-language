@@ -1,4 +1,4 @@
-# Aniframe Browser
+# AniFrame Browser
 
 ## Tools Used
 - Frontend: ReactJS 
@@ -92,7 +92,7 @@
 ---
 
 ### C. Enabling CORS
-Cross-origin resource sharing (CORS) is needed for AniFrame to read user-input files, but it is disabled on browsers by default. This can be rectified by using a browser extension.
+Cross-origin resource sharing (CORS) is needed for AniFrame to read user-input files, but it is disabled on browsers by default. This can be rectified with a browser extension.
 
 1. Install a CORS-enabling extension such as [this one for Google Chrome](https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf).
 
