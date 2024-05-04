@@ -36,14 +36,10 @@ Refer to installation instructions [here](https://github.com/memgonzales/anifram
    npm start
    ```
    
-1. In a separate terminal, activate the virtual environment:
+1. In a separate terminal, activate the virtual environment and run AniFrame:
    ```
    cd browser
    env\Scripts\activate.bat
-   ```
-   
-1. Run the code in development mode:
-   ```
    cd aniframe
    python manage.py runserver
    ```
