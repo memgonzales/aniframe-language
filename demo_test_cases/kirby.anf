@@ -1,4 +1,4 @@
-set FRAME_RATE to 10
+set FRAME_RATE to 24
 set CANVAS_BACKGROUND to "#dedede"
 set CANVAS_WIDTH to 500
 set CANVAS_HEIGHT to 500
