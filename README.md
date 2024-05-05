@@ -9,19 +9,33 @@
 
 AniFrame is an open-source domain-specific language for two-dimensional drawing and frame-based animation for novice programmers. 
 
-The language's core principles and features are as follows:
+**This work was accepted for full paper presentation at the 24<sup>th</sup> Philippine Computing Science Congress ([PCSC 2024](https://pcsc.dlsu.edu.ph/)), held in Laguna, Philippines.**
+- Our preprint can be accessed via this [link](https://arxiv.org/abs/2404.10250).
+- Our PCSC 2024 can be accessed via this [link]().
+
+If you find AniFrame useful, please consider citing:
+```
+@inproceedings{aniframe2024,
+  title        = {AniFrame: A Programming Language for 2D Drawing and Frame-Based Animation},
+  author       = {Gonzales, Mark Edward M. AND Ibrahim, Hans Oswald A. AND Ong, Elyssia Barrie H. AND Fernandez, Ryan Austin},
+  year         = 2024,
+  month        = {May},
+  booktitle    = {24th Philippine Computing Science Congress (PCSC 2024)},
+  publisher    = {Computing Society of the Philippines}
+}
+```
+
+## 📚 Description
+
+AniFrame's core principles and features are as follows:
 - **Ready Support for Animation-Specific Constructs.** AniFrame features animation-specific data types (e.g., for drawn objects and colors), operations (e.g., for mixing colors and simplifying the layering of objects into composite objects), and built-in functions for shapes and affine transformations.
 - **Fine-Grained Control Over Animation.** AniFrame adopts a frame-based strategy where programmers explicitly specify the object to be animated, along with the start and end frames for the animation sequence. Settings such as the frame rate and the total number of frames can also be configured.
 - **Reduced Learning Curve.** AniFrame follows a Python-like syntax, limits the number of keywords and control structures to a minimum, and tries to use keywords that are close to their semantic intent (e.g., `Text` instead of `string`). Specifying data types is optional since type inferencing is enforced.  
 - **Computational Expressivity.** AniFrame supports common mathematical operations, built-in trigonometric functions, and user-defined recursive functions. Their utility is demonstrated in creating self-similar patterns, such as fractals.
 
-If you find AniFrame useful, please consider citing:
-```
-```
-
 ![aniframe_kirby](https://github.com/memgonzales/aniframe-language/assets/44253974/bdcf7a0b-b5fa-40ad-a4f6-7492b7e922f4)
 
-## Installing AniFrame
+## ⚙️ Installing AniFrame
 
 ### A. Installing the Parser, Lexer & Interpreter
 
@@ -29,7 +43,7 @@ If you find AniFrame useful, please consider citing:
 
 Refer to installation instructions [here](https://github.com/memgonzales/aniframe-language/blob/main/browser/README.md)
 
-## Quick Start
+## 🚀 Quick Start
 1. Run the p5.js widget:
    ```
    cd browser/p5-widget/p5.js-widget
@@ -49,13 +63,13 @@ Refer to installation instructions [here](https://github.com/memgonzales/anifram
 1. Remember to activate the CORS-enabling extension for the AniFrame webpage before testing the application.
    
 
-## Language Documentation
+## 📒 Language Documentation
 
 Refer to https://aniframe-docs.vercel.app/
 
-## Gallery
+## 🖼️ Gallery
 
-## Authors
+## 💻 Authors
 
 -   <b>Mark Edward M. Gonzales</b> <br/>
     mark_gonzales@dlsu.edu.ph <br/> 
