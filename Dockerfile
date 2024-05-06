@@ -23,6 +23,9 @@ RUN cd ../../ \
   && npm install \
   && npm run build
 
+# Run the Django server
+RUN nohup python3 /app/browser/aniframe/manage.py runserver 0.0.0.0:8000 &
+
 # Port 8080 is used by the p5.js widget embedded in the AniFrame browser
 # Port 8000 is used by the AniFrame browser
 EXPOSE 8080 8000
