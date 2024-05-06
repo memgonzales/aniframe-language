@@ -1,8 +1,20 @@
-on: push
+on:
+    workflow_run:
+        workflows: [Check code formatting quality]
+        types: [completed]
+
 name: Check for syntax errors
+
 jobs:
-  check-for-syntax-errors:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: cclauss/Find-Python-syntax-errors-action@master
+    check-for-syntax-errors:
+        runs-on: ubuntu-latest
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        steps:
+            - uses: actions/checkout@v3
+            - uses: cclauss/Find-Python-syntax-errors-action@master
+
+    on-failure:
+        runs-on: ubuntu-latest
+        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+        steps:
+            - run: echo 'The triggering workflow failed'
