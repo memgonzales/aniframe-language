@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0002_remove_notes_title_alter_notes_content'),
+        ("core", "0002_remove_notes_title_alter_notes_content"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='notes',
-            old_name='content',
-            new_name='code',
+            model_name="notes",
+            old_name="content",
+            new_name="code",
         ),
         migrations.AddField(
-            model_name='notes',
-            name='filename',
-            field=models.CharField(default='None', max_length=60),
+            model_name="notes",
+            name="filename",
+            field=models.CharField(default="None", max_length=60),
         ),
     ]

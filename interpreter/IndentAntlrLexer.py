@@ -41,20 +41,19 @@
 # ==================================================================
 
 
-from typing import TextIO
-from antlr4 import *
-from antlr4.Token import CommonToken
-from AniFrameParser import AniFrameParser
-from ModifiedAntlrLexer import ModifiedAntlrLexer
-
+import re
 import sys
 from typing import TextIO
-import re
+
+from AniFrameParser import AniFrameParser
+from antlr4 import *
+from antlr4.Token import CommonToken
+from ModifiedAntlrLexer import ModifiedAntlrLexer
 
 
 class IndentAntlrLexer(ModifiedAntlrLexer):
-    NEWLINE_PATTERN = re.compile('[^\r\n\f]+')
-    SPACES_PATTERN = re.compile('[\r\n\f]+')
+    NEWLINE_PATTERN = re.compile("[^\r\n\f]+")
+    SPACES_PATTERN = re.compile("[\r\n\f]+")
 
     def __init__(self, input: InputStream, output: TextIO = sys.stdout):
         super().__init__(input, output)
@@ -77,10 +76,11 @@ class IndentAntlrLexer(ModifiedAntlrLexer):
         if self._input.LA(1) == AniFrameParser.EOF and len(self.indents) != 0:
             # Remove any trailing EOF tokens from our buffer.
             self.tokens = [
-                token for token in self.tokens if token.type != AniFrameParser.EOF]
+                token for token in self.tokens if token.type != AniFrameParser.EOF
+            ]
 
             # First emit an extra line break that serves as the end of the statement.
-            self.emitToken(self.commonToken(AniFrameParser.NEWLINE, '\n'))
+            self.emitToken(self.commonToken(AniFrameParser.NEWLINE, "\n"))
 
             # Now emit as much DEDENT tokens as needed.
             while len(self.indents) != 0:
@@ -88,23 +88,29 @@ class IndentAntlrLexer(ModifiedAntlrLexer):
                 self.indents.pop()
 
             # Put the EOF back on the token stream.
-            self.emitToken(self.commonToken(AniFrameParser.EOF, '<EOF>'))
+            self.emitToken(self.commonToken(AniFrameParser.EOF, "<EOF>"))
 
         next_ = super().nextToken()
         return next_ if len(self.tokens) == 0 else self.tokens.pop(0)
 
     def createUnindent(self):
-        return self.commonToken(AniFrameParser.UNINDENT, '')
+        return self.commonToken(AniFrameParser.UNINDENT, "")
 
     def commonToken(self, type_: int, text: str):
         stop = self.getCharIndex() - 1
-        start = stop if text == '' else stop - len(text) + 1
-        return CommonToken(self._tokenFactorySourcePair, type_, Lexer.DEFAULT_TOKEN_CHANNEL, start, stop)
+        start = stop if text == "" else stop - len(text) + 1
+        return CommonToken(
+            self._tokenFactorySourcePair,
+            type_,
+            Lexer.DEFAULT_TOKEN_CHANNEL,
+            start,
+            stop,
+        )
 
     def getIndentationCount(self, whitespace: str):
         count = 0
         for c in whitespace:
-            if c == '\t':
+            if c == "\t":
                 count += 8 - count % 8
             else:
                 count += 1
@@ -120,8 +126,8 @@ class IndentAntlrLexer(ModifiedAntlrLexer):
         self.opened -= 1
 
     def onNewLine(self):
-        new_line = self.NEWLINE_PATTERN.sub('', self.text)
-        spaces = self.SPACES_PATTERN.sub('', self.text)
+        new_line = self.NEWLINE_PATTERN.sub("", self.text)
+        spaces = self.SPACES_PATTERN.sub("", self.text)
 
         # Strip newlines inside open clauses except if we are near EOF. We keep NEWLINEs near EOF to
         # satisfy the final newline needed by the single_put rule used by the REPL.

@@ -1,13 +1,15 @@
 # accepts file then generates new file/overwrites file
 import os
 import subprocess
-print(os.listdir('/mount_dir'))
+
+print(os.listdir("/mount_dir"))
+
 
 def convertAnf(str):
-    
-    with open('/mount_dir/sample.js', 'w') as f:
-        f.write(str);
-    
+
+    with open("/mount_dir/sample.js", "w") as f:
+        f.write(str)
+
     f = open("/mount_dir/sample.js", "r")
     print(f.read())
 
@@ -17,6 +19,3 @@ def convertAnf(str):
     # subprocess.run(["echo", "hello"])
 
     # return str
-
-
-    

@@ -1,17 +1,18 @@
+import os
+import shutil
 import sys
-from antlr4 import *
+
 from AniFrameLexer import AniFrameLexer
 from AniFrameParser import AniFrameParser
 from AniFrameParserVisitor import AniFrameParserVisitor
+from antlr4 import *
 
-import shutil
-import os
 
 def make_posix_compliant(source_code):
-    file = f'{source_code}.tmp'
+    file = f"{source_code}.tmp"
     shutil.copy(source_code, file)
-    with open(file, 'a') as f:
-        f.write('\r\n')
+    with open(file, "a") as f:
+        f.write("\r\n")
 
     return file
 
@@ -32,10 +33,10 @@ def main(argv):
             raise e
 
     try:
-        os.remove(f'{argv[1]}.tmp')
+        os.remove(f"{argv[1]}.tmp")
     except Exception as e:
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main(sys.argv)

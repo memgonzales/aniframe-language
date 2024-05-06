@@ -5,4 +5,5 @@ def func():
 
     return str
 
+
 func()

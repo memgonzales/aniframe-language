@@ -7,6 +7,7 @@
 #   in case of a lexical error
 
 import sys
+
 if sys.version_info[1] > 5:
     from typing import TextIO
 else:
@@ -23,10 +24,10 @@ class ModifiedAntlrLexer(Lexer):
         start = self._tokenStartCharIndex
         stop = self._input.index
         text = self._input.getText(start, stop)
-        msg = "token recognition error at: '" + \
-            self.getErrorDisplay(text) + "'"
+        msg = "token recognition error at: '" + self.getErrorDisplay(text) + "'"
         listener = self.getErrorListenerDispatch()
 
         # Add 1 to tokenStartColumn for one-based column indexing
-        listener.syntaxError(self, None, self._tokenStartLine,
-                             self._tokenStartColumn + 1, msg, e)
+        listener.syntaxError(
+            self, None, self._tokenStartLine, self._tokenStartColumn + 1, msg, e
+        )
