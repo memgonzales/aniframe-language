@@ -6,7 +6,7 @@ set MAX_NUM_OF_FRAMES to 1000
 
 
 x = get_input("kirby-input.txt")
-start_fr = x[0]
+start_fr = 1
 info(start_fr)
 type(start_fr)
 
@@ -26,13 +26,13 @@ func make_part(x: Number, y: Number, width: Number, height: Number, colr: Color)
     return part
 
 
-l_eye = make_part(220, 210, 38, 90, x[1])
-l_eye_shine = make_part(220, 185, 20, 40, x[2])
+l_eye = make_part(220, 210, 38, 90, "#000000")
+l_eye_shine = make_part(220, 185, 20, 40, "#ffffff")
 
 l_eye.add(l_eye_shine) 
 
-r_eye = make_part(220+60, 210, 38, 90, x[1])
-r_eye_shine = make_part((220+60), 185, 20, 40, x[2])
+r_eye = make_part(220+60, 210, 38, 90, "#000000")
+r_eye_shine = make_part((220+60), 185, 20, 40, "#ffffff")
 
 r_eye.add(r_eye_shine)
 
