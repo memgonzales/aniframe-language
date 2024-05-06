@@ -125,7 +125,7 @@ Refer to the instructions [here]().
 
 ## 📚 Description
 
-AniFrame's core principles and features are as follows:
+Creative coding is an experimentation-heavy activity that requires translating high-level visual ideas into code. However, most languages and libraries for creative coding may not be adequately intuitive for beginners. Designed for novice programmers, AniFrame's core principles and features are as follows:
 
 -   **Ready Support for Animation-Specific Constructs.** AniFrame features animation-specific data types (e.g., for drawn objects and colors), operations (e.g., for mixing colors and simplifying the layering of objects into composite objects), and built-in functions for shapes and affine transformations.
 -   **Fine-Grained Control Over Animation.** AniFrame adopts a frame-based strategy where programmers explicitly specify the object to be animated, along with the start and end frames for the animation sequence. Settings such as the frame rate and the total number of frames can also be configured.
@@ -136,9 +136,9 @@ AniFrame's core principles and features are as follows:
 
 Refer to https://aniframe-docs.vercel.app/
 
-## 🖼️ Gallery (Sample Code)
+## 🖼️ Gallery
 
-We'd love to showcase your code and (art) work here!
+We'd love to showcase your creative coding artwork here!
 
 Code | Result
 -- | --
