@@ -5,10 +5,9 @@ name: Create and publish Docker image
 
 on:
     # Trigger workflow when a new release has been published
-    workflow_run:
-        workflows: [Check for syntax errors]
-        types: [completed]
-        branches: [release]
+    push:
+        branches:
+            - release
 
 env:
     REGISTRY: ghcr.io
