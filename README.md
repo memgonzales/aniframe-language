@@ -51,6 +51,9 @@ The simplest way to install AniFrame is via Docker.
 
 
 ### Option 2: Using Conda
+<details>
+  <summary>Click here to show/hide instructions for installing AniFrame via Conda.</summary>
+  
 1. Clone this repository by running:
    ```
    git clone https://github.com/memgonzales/aniframe-language
@@ -68,9 +71,17 @@ The simplest way to install AniFrame is via Docker.
    ```
 
 1. Follow the instructions [here](https://github.com/memgonzales/aniframe-language/blob/main/browser/README.md) to configure AniFrame's browser-based environment.
+</details>
 
 ## 🚀 Quick Start
 
+### If you installed AniFrame via Docker
+1. Every time you want to use AniFrame, perform the following steps:
+   - Launch a terminal (from anywhere), and start the AniFrame container by running:
+     ```
+     docker start aniframe
+     ```
+     
 1. Run the p5.js widget:
     ```
     cd browser/p5-widget/p5.js-widget
@@ -86,6 +97,8 @@ The simplest way to install AniFrame is via Docker.
 1. Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) to view the application in the browser.
 
 1. Remember to activate the CORS-enabling extension for the AniFrame webpage before testing the application.
+
+### If you installed AniFrame via Conda
 
 ## 📚 Description
 
