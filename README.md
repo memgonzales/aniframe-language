@@ -95,11 +95,14 @@ The simplest way to install AniFrame is via Docker.
 
 ### If you installed AniFrame via Docker
 1. Every time you want to use AniFrame, perform the following steps:
-   - Launch a terminal (from anywhere), and start the AniFrame container by running:
+   - Launch a terminal (from anywhere). Start the AniFrame container and open a shell inside it by running:
      
      ```
      docker start aniframe
+     docker exec -it aniframe bash
      ```
+     
+     Doing so should change the working directory to `root@<conainer_id>:/app/browser/p5-widget/p5.js-widget`
 
    - Enable cross-origin resource sharing (CORS) following the instructions [here]().
      
