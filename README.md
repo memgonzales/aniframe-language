@@ -49,6 +49,24 @@ The simplest way to install AniFrame is via Docker.
     - **[For MacOS and Windows]** Open Docker Desktop to start the daemon.
     - **[For Linux]** Follow the instructions [here](https://docs.docker.com/config/daemon/start/).
 
+1. Launch a terminal (from anywhere), and pull the latest version of AniFrame by running:
+   ```
+   docker pull ghcr.io/memgonzales/aniframe:latest
+   ```
+
+1. Create a folder named `aniframe-code` anywhere in your computer. Inside this folder, create a file named `sample.js`.
+
+1. Spin up a container by running;
+   ```
+   docker create --name aniframe -p 8000:8000 -p 8080:8080 -v path/to/aniframe-code/sample.js/in/your/computer:/app/browser/p5-widget/p5.js-widget/static/sample.js ghcr.io/memgonzales/aniframe:latest
+   ```
+
+   Replace `path/to/aniframe-code/sample.js/in/your/computer` with the path to the `sample.js` file that you created in the previous step. It may be more convenient to use the absolute path. If you are using Windows, make sure to replace the backward slashes (`\`) in the path with forward slashes (`/`).
+
+1. Launch a terminal (from anywhere), and start the AniFrame container by running:
+   ```
+   docker start aniframe
+   ```
 
 ### Option 2: Using Conda
 <details>
