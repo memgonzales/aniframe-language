@@ -1,4 +1,5 @@
 # AniFrame
+
 ![badge][badge-python]
 ![badge][badge-django]
 ![badge][badge-django-rest]
@@ -6,14 +7,15 @@
 [![Actions Status](https://github.com/memgonzales/aniframe-language/workflows/Check%20for%20syntax%20errors/badge.svg)](https://github.com/memgonzales/aniframe-language/actions)
 ![badge][badge-github-actions]
 
-
-AniFrame is an open-source domain-specific language for two-dimensional drawing and frame-based animation for novice programmers. 
+AniFrame is an open-source domain-specific language for two-dimensional drawing and frame-based animation for novice programmers.
 
 **This work was accepted for full paper presentation at the 24<sup>th</sup> Philippine Computing Science Congress ([PCSC 2024](https://pcsc.dlsu.edu.ph/)), held in Laguna, Philippines.**
-- Our preprint can be accessed via this [link](https://arxiv.org/abs/2404.10250).
-- Our PCSC 2024 can be accessed via this [link]().
+
+-   Our preprint can be accessed via this [link](https://arxiv.org/abs/2404.10250).
+-   Our PCSC 2024 can be accessed via this [link]().
 
 If you find AniFrame useful, please consider citing:
+
 ```
 @inproceedings{aniframe2024,
   title        = {AniFrame: A Programming Language for 2D Drawing and Frame-Based Animation},
@@ -25,49 +27,58 @@ If you find AniFrame useful, please consider citing:
 }
 ```
 
+## ⚙️ Installing AniFrame
+
+**Operating System:** Windows, macOS, Linux
+
+### Option 1: Using Docker (Recommended)
+
+1. Download and install [Docker](https://docs.docker.com/get-docker/), a platform for building and running containerized apps:
+
+    - **[For MacOS and Windows]** Install [Docker Desktop](https://docs.docker.com/get-docker/).
+    - **[For Linux]** For easier installation, we recommend installing Docker Engine instead of Docker Desktop. Instructions for different Linux distributions can be found [here](https://docs.docker.com/engine/install/#supported-platforms).
+
+1. Start the Docker daemon:
+    - **[For MacOS and Windows]** Open Docker Desktop to start the daemon.
+    - **[For Linux]** Follow the instructions [here](https://docs.docker.com/config/daemon/start/).
+
+### Option 2: Without Using Docker
+
+## 🚀 Quick Start
+
+1. Run the p5.js widget:
+    ```
+    cd browser/p5-widget/p5.js-widget
+    npm start
+    ```
+1. In a separate terminal, activate the virtual environment and run AniFrame:
+    ```
+    cd browser
+    env\Scripts\activate.bat
+    cd aniframe
+    python manage.py runserver
+    ```
+1. Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) to view the application in the browser.
+
+1. Remember to activate the CORS-enabling extension for the AniFrame webpage before testing the application.
+
 ## 📚 Description
 
 AniFrame's core principles and features are as follows:
-- **Ready Support for Animation-Specific Constructs.** AniFrame features animation-specific data types (e.g., for drawn objects and colors), operations (e.g., for mixing colors and simplifying the layering of objects into composite objects), and built-in functions for shapes and affine transformations.
-- **Fine-Grained Control Over Animation.** AniFrame adopts a frame-based strategy where programmers explicitly specify the object to be animated, along with the start and end frames for the animation sequence. Settings such as the frame rate and the total number of frames can also be configured.
-- **Reduced Learning Curve.** AniFrame follows a Python-like syntax, limits the number of keywords and control structures to a minimum, and tries to use keywords that are close to their semantic intent (e.g., `Text` instead of `string`). Specifying data types is optional since type inferencing is enforced.  
-- **Computational Expressivity.** AniFrame supports common mathematical operations, built-in trigonometric functions, and user-defined recursive functions. Their utility is demonstrated in creating self-similar patterns, such as fractals.
+
+-   **Ready Support for Animation-Specific Constructs.** AniFrame features animation-specific data types (e.g., for drawn objects and colors), operations (e.g., for mixing colors and simplifying the layering of objects into composite objects), and built-in functions for shapes and affine transformations.
+-   **Fine-Grained Control Over Animation.** AniFrame adopts a frame-based strategy where programmers explicitly specify the object to be animated, along with the start and end frames for the animation sequence. Settings such as the frame rate and the total number of frames can also be configured.
+-   **Reduced Learning Curve.** AniFrame follows a Python-like syntax, limits the number of keywords and control structures to a minimum, and tries to use keywords that are close to their semantic intent (e.g., `Text` instead of `string`). Specifying data types is optional since type inferencing is enforced.
+-   **Computational Expressivity.** AniFrame supports common mathematical operations, built-in trigonometric functions, and user-defined recursive functions. Their utility is demonstrated in creating self-similar patterns, such as fractals.
 
 ![aniframe_kirby](https://github.com/memgonzales/aniframe-language/assets/44253974/bdcf7a0b-b5fa-40ad-a4f6-7492b7e922f4)
-
-## ⚙️ Installing AniFrame
-
-### A. Installing the Parser, Lexer & Interpreter
-
-### B. Installing the Browser Environment
-
-Refer to installation instructions [here](https://github.com/memgonzales/aniframe-language/blob/main/browser/README.md)
-
-## 🚀 Quick Start
-1. Run the p5.js widget:
-   ```
-   cd browser/p5-widget/p5.js-widget
-   npm start
-   ```
-   
-1. In a separate terminal, activate the virtual environment and run AniFrame:
-   ```
-   cd browser
-   env\Scripts\activate.bat
-   cd aniframe
-   python manage.py runserver
-   ```
-   
-1. Open [http://127.0.0.1:8000/]( http://127.0.0.1:8000/) to view the application in the browser.
-
-1. Remember to activate the CORS-enabling extension for the AniFrame webpage before testing the application.
-   
 
 ## 📒 Language Documentation
 
 Refer to https://aniframe-docs.vercel.app/
 
 ## 🖼️ Gallery
+
 <img src="https://github.com/memgonzales/aniframe-language/assets/79676314/177c8483-3f7f-4447-b208-3d1e7443db6a" width="300" height="300">
 
 <img src="https://github.com/memgonzales/aniframe-language/assets/79676314/0998a8f4-c09a-4ca4-9e30-e3a5240b5f91" width="300" height="300">
@@ -79,16 +90,14 @@ Refer to https://aniframe-docs.vercel.app/
 ## 💻 Authors
 
 -   <b>Mark Edward M. Gonzales</b> <br/>
-    mark_gonzales@dlsu.edu.ph <br/> 
-    
+    mark_gonzales@dlsu.edu.ph <br/>
 -   <b>Hans Oswald A. Ibrahim</b> <br/>
     hans_oswald_ibrahim@dlsu.edu.ph <br/>
 
 -   <b>Elyssia Barrie H. Ong</b> <br/>
     elyssia_ong@dlsu.edu.ph <br/>
-    
 -   <b>Mr. Ryan Austin Fernandez</b> <br/>
-    ryan.fernandez@dlsu.edu.ph <br/>    
+    ryan.fernandez@dlsu.edu.ph <br/>
 
 This is the major course output in a theory of programming languages class for master's students under Mr. Ryan Austin Fernandez of the Department of Software Technology, De La Salle University. The task is to create a domain-specific programming language within ten weeks.
 
