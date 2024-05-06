@@ -42,11 +42,11 @@ The simplest way to install AniFrame is via Docker.
 
 1. Download and install [Docker](https://docs.docker.com/get-docker/), a platform for building and running containerized apps:
 
-    - **[For MacOS and Windows]** Install [Docker Desktop](https://docs.docker.com/get-docker/).
+    - **[For macOS and Windows]** Install [Docker Desktop](https://docs.docker.com/get-docker/).
     - **[For Linux]** For easier installation, we recommend installing Docker Engine instead of Docker Desktop. Instructions for different Linux distributions can be found [here](https://docs.docker.com/engine/install/#supported-platforms).
 
 1. Start the Docker daemon:
-    - **[For MacOS and Windows]** Open Docker Desktop to start the daemon.
+    - **[For macOS and Windows]** Open Docker Desktop to start the daemon.
     - **[For Linux]** Follow the instructions [here](https://docs.docker.com/config/daemon/start/).
 
 1. Launch a terminal (from anywhere), and pull the latest version of AniFrame by running:
