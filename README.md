@@ -58,10 +58,10 @@ The simplest way to install AniFrame is via Docker.
 
 1. Spin up a container by running;
    ```
-   docker create --name aniframe -p 8000:8000 -p 8080:8080 -v path/to/aniframe-code/sample.js/in/local:/app/browser/p5-widget/p5.js-widget/static/sample.js ghcr.io/memgonzales/aniframe:latest
+   docker create --name aniframe -p 8000:8000 -p 8080:8080 -v path/to/aniframe-code/sample.js/in/your/computer:/app/browser/p5-widget/p5.js-widget/static/sample.js ghcr.io/memgonzales/aniframe:latest
    ```
 
-   Replace `path/to/aniframe-code/sample.js/in/local` (i.e., the string before the `:` in the value passed to `-v`) with the path to the `sample.js` file that you created in the previous step. It may be more convenient to use the absolute path. If you are using Windows, make sure to replace the backward slashes (`\`) in the path with forward slashes (`/`).
+   Replace `path/to/aniframe-code/sample.js/in/your/computer` with the path to the `sample.js` file that you created in the previous step. It may be more convenient to use the absolute path. If you are using Windows, make sure to replace the backward slashes (`\`) in the path with forward slashes (`/`).
 
 1. Launch a terminal (from anywhere), and start the AniFrame container by running:
    ```
@@ -96,9 +96,12 @@ The simplest way to install AniFrame is via Docker.
 ### If you installed AniFrame via Docker
 1. Every time you want to use AniFrame, perform the following steps:
    - Launch a terminal (from anywhere), and start the AniFrame container by running:
+     
      ```
      docker start aniframe
      ```
+
+   - Enable cross-origin resource sharing (CORS) following the instructions [here]().
      
 1. Run the p5.js widget:
     ```
