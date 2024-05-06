@@ -117,7 +117,7 @@ The simplest way to install AniFrame is via Docker.
     ```
 1. Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) to view the application in the browser.
 
-1. Remember to activate the CORS-enabling extension for the AniFrame webpage before testing the application.
+![aniframe_kirby](https://github.com/memgonzales/aniframe-language/assets/44253974/bdcf7a0b-b5fa-40ad-a4f6-7492b7e922f4)
 
 ### If you installed AniFrame via Conda
 
@@ -132,8 +132,6 @@ AniFrame's core principles and features are as follows:
 -   **Reduced Learning Curve.** AniFrame follows a Python-like syntax, limits the number of keywords and control structures to a minimum, and tries to use keywords that are close to their semantic intent (e.g., `Text` instead of `string`). Specifying data types is optional since type inferencing is enforced.
 -   **Computational Expressivity.** AniFrame supports common mathematical operations, built-in trigonometric functions, and user-defined recursive functions. Their utility is demonstrated in creating self-similar patterns, such as fractals.
 
-![aniframe_kirby](https://github.com/memgonzales/aniframe-language/assets/44253974/bdcf7a0b-b5fa-40ad-a4f6-7492b7e922f4)
-
 ## 📒 Language Documentation
 
 Refer to https://aniframe-docs.vercel.app/
@@ -143,12 +141,11 @@ Refer to https://aniframe-docs.vercel.app/
 Code | Result
 -- | --
 [Jumping Shapes](https://github.com/memgonzales/aniframe-language/blob/main/gallery/jumping_shapes.anf) | <img src="https://github.com/memgonzales/aniframe-language/assets/79676314/177c8483-3f7f-4447-b208-3d1e7443db6a" width="300" height="300">
+[A Pink Round Hero](https://github.com/memgonzales/aniframe-language/blob/main/gallery/kirby.anf) | <img src="https://github.com/memgonzales/aniframe-language/assets/79676314/0998a8f4-c09a-4ca4-9e30-e3a5240b5f91" width="300" height="300">
+[Smaller and Smaller Circles](https://github.com/memgonzales/aniframe-language/blob/main/gallery/smaller_and_smaller_circles.anf) | <img src="https://github.com/memgonzales/aniframe-language/assets/79676314/edd9d922-07e4-49f6-a5e1-19e0aeca081e" width="300" height="300">
+[Pinocchio](https://github.com/memgonzales/aniframe-language/blob/main/gallery/pinocchio.anf) | <img src="https://github.com/memgonzales/aniframe-language/assets/79676314/eb73c9b5-1a9a-4606-b0b9-76ee228eed12" width="90%" height="80%">
 
-<img src="https://github.com/memgonzales/aniframe-language/assets/79676314/0998a8f4-c09a-4ca4-9e30-e3a5240b5f91" width="300" height="300">
-
-<img src="https://github.com/memgonzales/aniframe-language/assets/79676314/edd9d922-07e4-49f6-a5e1-19e0aeca081e" width="300" height="300">
-
-<img src="https://github.com/memgonzales/aniframe-language/assets/79676314/eb73c9b5-1a9a-4606-b0b9-76ee228eed12" width="90%" height="80%">
+We'd love to showcase your code and (art) work here!
 
 ## 💻 Authors
 
