@@ -1,0 +1,1 @@
+python3 /app/interpreter/interpreter.py /app/browser/p5-widget/p5.js-widget/static/sample.js && cp -f src.anf-int /app/browser/p5-widget/p5.js-widget/static/sample.js
