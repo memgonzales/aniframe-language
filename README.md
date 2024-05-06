@@ -4,7 +4,8 @@
 ![badge][badge-django]
 ![badge][badge-django-rest]
 ![badge][badge-react] <br>
-[![Actions Status](https://github.com/memgonzales/aniframe-language/workflows/Check%20for%20syntax%20errors/badge.svg)](https://github.com/memgonzales/aniframe-language/actions)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Create and publish Docker image](https://github.com/memgonzales/aniframe-language/actions/workflows/dockerize-and-publish.yml/badge.svg)](https://github.com/memgonzales/aniframe-language/actions/workflows/dockerize-and-publish.yml)
 ![badge][badge-github-actions]
 
 AniFrame is an open-source domain-specific language for two-dimensional drawing and frame-based animation for novice programmers.
@@ -43,6 +44,9 @@ If you find AniFrame useful, please consider citing:
     - **[For Linux]** Follow the instructions [here](https://docs.docker.com/config/daemon/start/).
 
 ### Option 2: Without Using Docker
+
+1. Set up the interpreter following the instructions [here]().
+1. Set up the AniFrame browser following the instructions [here](https://github.com/memgonzales/aniframe-language/blob/main/browser/README.md).
 
 ## 🚀 Quick Start
 
