@@ -54,7 +54,7 @@ The simplest way to install AniFrame is via Docker.
    docker pull ghcr.io/memgonzales/aniframe:latest
    ```
 
-1. Create a folder named `aniframe-code` anywhere in your computer. Inside this folder, create a file named `sample.js`.
+1. Create a folder named `aniframe-code` anywhere in your computer. Inside this folder, create an empty file named `sample.js`.
 
 1. Spin up a container by running;
    ```
@@ -121,6 +121,8 @@ The simplest way to install AniFrame is via Docker.
 
 ### If you installed AniFrame via Conda
 
+Refer to the instructions [here]().
+
 ## 📚 Description
 
 AniFrame's core principles and features are as follows:
@@ -136,9 +138,11 @@ AniFrame's core principles and features are as follows:
 
 Refer to https://aniframe-docs.vercel.app/
 
-## 🖼️ Gallery
+## 🖼️ Gallery (Sample Code)
 
-<img src="https://github.com/memgonzales/aniframe-language/assets/79676314/177c8483-3f7f-4447-b208-3d1e7443db6a" width="300" height="300">
+Code | Result
+-- | --
+[Jumping Shapes](https://github.com/memgonzales/aniframe-language/blob/main/gallery/jumping_shapes.anf) | <img src="https://github.com/memgonzales/aniframe-language/assets/79676314/177c8483-3f7f-4447-b208-3d1e7443db6a" width="300" height="300">
 
 <img src="https://github.com/memgonzales/aniframe-language/assets/79676314/0998a8f4-c09a-4ca4-9e30-e3a5240b5f91" width="300" height="300">
 
