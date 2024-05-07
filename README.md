@@ -28,6 +28,14 @@ If you find AniFrame useful, please consider citing:
 }
 ```
 
+## Table of Contents
+- [⚙️ Installing AniFrame](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#%EF%B8%8F-installing-aniframe)
+- [🚀 Running AniFrame Code](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#-running-aniframe-code)
+- [📚 Description](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#-description)
+- [📒 Language Documentation](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#-language-documentation)
+- [🖼️ Gallery](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#%EF%B8%8F-gallery)
+- [💻 Authors](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#-authors)
+
 ## ⚙️ Installing AniFrame
 
 This installation bundles AniFrame's interpreter and browser-based environment where you can write and run code.
