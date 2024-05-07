@@ -68,6 +68,18 @@ The simplest way to install AniFrame is via Docker.
    docker start aniframe
    ```
 
+1. Open a shell _inside the container_ by running:
+   ```
+   docker exec -it aniframe
+   ```
+   
+1. Inside this shell, run the following command:
+   ```
+   sh start-django.sh && exit
+   ```
+
+1. To open the environment where you can write and run AniFrame code, visit [http://localhost:8050](http://localhost:8050) on your browser.
+
 ### Option 2: Using Conda
 <details>
   <summary>Click here to show/hide instructions for installing AniFrame via Conda.</summary>
