@@ -111,6 +111,8 @@ The simplest way to install AniFrame is via Docker.
 1. Follow the instructions [here](https://github.com/memgonzales/aniframe-language/blob/main/browser/README.md) to configure AniFrame's browser-based environment.
 </details>
 
+_↑ Return to [Table of Contents](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#table-of-contents)._
+
 ## 🚀 Running AniFrame Code
 
 ### If you installed AniFrame via Docker
@@ -155,6 +157,8 @@ The simplest way to install AniFrame is via Docker.
 
 Refer to the instructions [here]().
 
+_↑ Return to [Table of Contents](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#table-of-contents)._
+
 ## 📚 Description
 
 Creative coding is an experimentation-heavy activity that requires translating high-level visual ideas into code. However, most languages and libraries for creative coding may not be adequately intuitive for beginners. Designed for novice programmers, AniFrame's core principles and features are as follows:
@@ -164,9 +168,13 @@ Creative coding is an experimentation-heavy activity that requires translating h
 -   **Reduced Learning Curve.** AniFrame follows a Python-like syntax, limits the number of keywords and control structures to a minimum, and tries to use keywords that are close to their semantic intent (e.g., `Text` instead of `string`). Specifying data types is optional since type inferencing is enforced.
 -   **Computational Expressivity.** AniFrame supports common mathematical operations, built-in trigonometric functions, and user-defined recursive functions. Their utility is demonstrated in creating self-similar patterns, such as fractals.
 
+_↑ Return to [Table of Contents](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#table-of-contents)._
+
 ## 📒 Language Documentation
 
 Refer to https://aniframe-docs.vercel.app/
+
+_↑ Return to [Table of Contents](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#table-of-contents)._
 
 ## 🖼️ Gallery
 
@@ -176,6 +184,8 @@ Code | Result | Code | Result
 -- | -- | -- | --
 [Jumping Shapes](https://github.com/memgonzales/aniframe-language/blob/main/gallery/jumping_shapes.anf) | <img src="https://github.com/memgonzales/aniframe-language/assets/79676314/177c8483-3f7f-4447-b208-3d1e7443db6a" width="200" height="200"> | [Smaller and Smaller Circles](https://github.com/memgonzales/aniframe-language/blob/main/gallery/smaller_and_smaller_circles.anf) | <img src="https://github.com/memgonzales/aniframe-language/assets/79676314/edd9d922-07e4-49f6-a5e1-19e0aeca081e" width="200" height="200">
 [A Pink Round Hero](https://github.com/memgonzales/aniframe-language/blob/main/gallery/kirby.anf) | <img src="https://github.com/memgonzales/aniframe-language/assets/79676314/0998a8f4-c09a-4ca4-9e30-e3a5240b5f91" width="200" height="200"> | [Pinocchio](https://github.com/memgonzales/aniframe-language/blob/main/gallery/pinocchio.anf) | <img src="https://github.com/memgonzales/aniframe-language/assets/79676314/eb73c9b5-1a9a-4606-b0b9-76ee228eed12" width="200">
+
+_↑ Return to [Table of Contents](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#table-of-contents)._
 
 ## 💻 Authors
 
