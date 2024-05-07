@@ -138,7 +138,7 @@ _↑ Return to [Table of Contents](https://github.com/memgonzales/aniframe-langu
 
    Doing so should open a window prompting you to select a folder. Select the `aniframe-code` folder that you created when [installing AniFrame](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#option-1-using-docker-recommended). If your browser prompts you to allow AniFrame to view files and save changes to this folder, grant these permissions. 
    
-1. On the terminal that you opened in Step 1 (i.e., the shell with working directory `root@<conainer_id>:/app/browser/p5-widget/p5.js-widget`), run:
+1. On the shell you opened in Step 1 (i.e., the shell with working directory `root@<conainer_id>:/app/browser/p5-widget/p5.js-widget`), run:
    ```
    sh run-code.sh
    ```
@@ -153,6 +153,20 @@ _↑ Return to [Table of Contents](https://github.com/memgonzales/aniframe-langu
    
    ![aniframe_kirby](https://github.com/memgonzales/aniframe-language/assets/44253974/bdcf7a0b-b5fa-40ad-a4f6-7492b7e922f4)
 
+1. Once you are finished using AniFrame:
+   - On the shell you opened in Step 1 (i.e., the shell with working directory `root@<conainer_id>:/app/browser/p5-widget/p5.js-widget`), run:
+     ```
+     exit
+     ```
+
+     Doing so should return you to your usual terminal.
+     
+   - Run the following command to stop the AniFrame container:
+     
+     ```
+     docker stop aniframe
+     ```
+   
 ### If you installed AniFrame via Conda
 
 Refer to the instructions [here]().
