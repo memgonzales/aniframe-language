@@ -70,7 +70,7 @@ The simplest way to install AniFrame is via Docker.
 
 1. Open a shell _inside the container_ by running:
    ```
-   docker exec -it aniframe
+   docker exec -it aniframe bash
    ```
    
 1. Inside this shell, run the following command:
@@ -78,7 +78,7 @@ The simplest way to install AniFrame is via Docker.
    sh start-django.sh && exit
    ```
 
-1. To open the environment where you can write and run AniFrame code, visit [http://localhost:8050](http://localhost:8050) on your browser.
+1. To open the environment where you can write and run AniFrame code, visit [http://localhost:8000](http://localhost:8000) on your browser.
 
 ### Option 2: Using Conda
 <details>
@@ -103,10 +103,10 @@ The simplest way to install AniFrame is via Docker.
 1. Follow the instructions [here](https://github.com/memgonzales/aniframe-language/blob/main/browser/README.md) to configure AniFrame's browser-based environment.
 </details>
 
-## 🚀 Quick Start
+## 🚀 Running AniFrame Code
 
 ### If you installed AniFrame via Docker
-1. Every time you want to use AniFrame, perform the following steps:
+1. Every time you want to use AniFrame, perform the following steps first:
    - Launch a terminal (from anywhere). Start the AniFrame container and open a shell inside it by running:
      
      ```
@@ -114,25 +114,34 @@ The simplest way to install AniFrame is via Docker.
      docker exec -it aniframe bash
      ```
      
-     Doing so should change the working directory to `root@<conainer_id>:/app/browser/p5-widget/p5.js-widget`
+     Doing so should change the working directory to `root@<conainer_id>:/app/browser/p5-widget/p5.js-widget`.
 
    - Enable cross-origin resource sharing (CORS) following the instructions [here]().
      
-1. Run the p5.js widget:
-    ```
-    cd browser/p5-widget/p5.js-widget
-    npm start
-    ```
-1. In a separate terminal, activate the virtual environment and run AniFrame:
-    ```
-    cd browser
-    env\Scripts\activate.bat
-    cd aniframe
-    python manage.py runserver
-    ```
-1. Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) to view the application in the browser.
+1. Visit [http://localhost:8000](http://localhost:8000) on your browser.
+   
+1. Write the AniFrame code on the text editor at the left side of the webpage.
 
-![aniframe_kirby](https://github.com/memgonzales/aniframe-language/assets/44253974/bdcf7a0b-b5fa-40ad-a4f6-7492b7e922f4)
+   For a quick start, you can refer to sample AniFrame source code [here](https://github.com/memgonzales/aniframe-language/tree/main/gallery).
+   
+1. Once you are done writing your code, click the Submit button.
+
+   Doing so should open a window prompting you to select a folder. Select the `aniframe-code` folder that you created when [installing AniFrame](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#option-1-using-docker-recommended). If your browser prompts you to allow AniFrame to view files and save changes to this folder, grant these permissions. 
+   
+1. On the terminal that you opened in Step 1 (i.e., the shell with working directory `root@<conainer_id>:/app/browser/p5-widget/p5.js-widget`), run:
+   ```
+   sh run-code.sh
+   ```
+  
+   The text output of your code will be displayed on this terminal.
+
+1. Navigate back to your browser, and click the Reset button.
+
+   The visual output of your code will be displayed on the player at the right side of the webpage.
+
+   _If no output is displayed, check if you properly enabled CORS._
+   
+   ![aniframe_kirby](https://github.com/memgonzales/aniframe-language/assets/44253974/bdcf7a0b-b5fa-40ad-a4f6-7492b7e922f4)
 
 ### If you installed AniFrame via Conda
 
