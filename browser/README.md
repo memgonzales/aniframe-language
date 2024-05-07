@@ -15,24 +15,23 @@ We provide a browser-based environment where you can write AniFrame scripts and 
 
 The instructions below assume that you opt to install via Conda and have run the steps [here](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#option-2-using-conda).
 
-### Configuring p5.js Widget
+### Configuring the p5.js Widget
 
-1. Clone the repository
-1. Set up the p5.js widget locally:
+1. Install the necessary dependencies for the p5.js widget by running:
 
-    ```
-    cd browser/p5-widget/p5.js-widget
-    npm install
-    ```
+   ```
+   cd browser/p5-widget/p5.js-widget
+   npm install
+   ```
 
-    Run the p5.js widget:
+1. Start the local server for the p5.js widget by running:
 
-    ```
-    cd browser/p5-widget/p5.js-widget
-    npm start
-    ```
+   ```
+   cd browser/p5-widget/p5.js-widget
+   npm start
+   ```
 
-### Configuring AniFrame Browser
+### Configuring the Django Server
 
 1. In a separate terminal, create your environment:
     ```
