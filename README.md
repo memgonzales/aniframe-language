@@ -38,15 +38,13 @@ If you find AniFrame useful, please consider citing:
 
 ## ⚙️ Installing AniFrame
 
-This installation bundles AniFrame's interpreter and browser-based environment where you can write and run code.
-
 ### System Requirements
 - **Operating System:** Windows, macOS, or Linux
 - **Storage:** ~1.8 GB
 
 ### Option 1: Using Docker (Recommended)
 
-The simplest way to install AniFrame is via Docker.
+The simplest way to install AniFrame is via Docker. This installation bundles AniFrame's interpreter and browser-based environment where you can write and run code.
 
 1. Download and install [Docker](https://docs.docker.com/get-docker/), a platform for building and running containerized apps:
 
@@ -108,7 +106,9 @@ The simplest way to install AniFrame is via Docker.
    conda activate aniframe
    ```
 
-1. Follow the instructions [here](https://github.com/memgonzales/aniframe-language/blob/main/browser/README.md) to configure AniFrame's browser-based environment.
+1. The instructions above cover the installation of AniFrame's interpreter and part of the installation of AniFrame's browser-based environment.
+   
+   Follow the instructions [here](https://github.com/memgonzales/aniframe-language/blob/main/browser/README.md) to finish configuring AniFrame's browser-based environment.
 </details>
 
 _↑ Return to [Table of Contents](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#table-of-contents)._
