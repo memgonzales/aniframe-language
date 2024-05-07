@@ -1,17 +1,19 @@
 We provide a browser-based environment where you can write AniFrame scripts and view the output.
 
-## Dependencies
+## Dependencies & Attribution
 
 -   **Frontend:** ReactJS
 -   **Backend:** Django, Django REST Framework
--   The browser of AniFrame is built using a [base web application](https://github.com/Faruqt/React-Django) originally developed by Faruqt.
--   The [p5.js Widget](https://toolness.github.io/p5.js-widget) is originally developed by Atul Varma. AniFrame uses a [modified version of this widget](https://github.com/memgonzales/p5.js-widget).
+-   AniFrame's browser-based environment is based on this [web app](https://github.com/Faruqt/React-Django) by Faruq Abdulsalam.
+-   AniFrame uses a [modified version](https://github.com/memgonzales/p5.js-widget) of the [p5.js widget](https://toolness.github.io/p5.js-widget) originally developed by Atul Varma.
 
-## Installation and Setup
+## Installing AniFrame's Browser-Based Environment via Conda
 
-\*Required Operating System: **Windows\***
+**💡 We highly recommend that you install AniFrame via Docker following the instructions [here](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#option-1-using-docker-recommended).** This Docker installation bundles both the interpreter and the browser-based environment.
 
-### A. Configuring p5.js Widget
+The instructions below assume that you opt to install via Conda and have run the steps [here](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#option-2-using-conda).
+
+### Configuring p5.js Widget
 
 1. Clone the repository
 1. Set up the p5.js widget locally:
@@ -28,9 +30,7 @@ We provide a browser-based environment where you can write AniFrame scripts and 
     npm start
     ```
 
----
-
-### B. Configuring AniFrame Browser
+### Configuring AniFrame Browser
 
 1. In a separate terminal, create your environment:
     ```
