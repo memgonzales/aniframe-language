@@ -27,68 +27,51 @@ The instructions below assume that you opt to install via Conda and have run the
 1. Start the local server for the p5.js widget by running:
 
    ```
-   cd browser/p5-widget/p5.js-widget
    npm start
    ```
 
 ### Configuring the Django Server
 
-1. In a separate terminal, create your environment:
-    ```
-    cd browser
-    python -m venv env
-    ```
-1. Activate your environment:
-    ```
-    env\Scripts\activate.bat
-    ```
-1. Navigate to the aniframe base folder that contains the `requirements.txt` file:
-    ```
-    cd aniframe
-    ```
-1. Install all requirements:
-    ```
-    pip install -r requirements.txt
-    ```
-1. Make migrations:
+1. Open another terminal in the root of the cloned repository and activate the AniFrame environment in this terminal as well:
+   ```
+   conda activate aniframe
+   ```
+  
+1. Create the Django migration files by running: 
 
-    ```
-    python manage.py makemigrations
-    ```
+   ```
+   cd browser/aniframe
+   python manage.py makemigrations
+   ```
 
-    You might get a warning similar to this one below because the build folder has not been created yet. Ignore it and proceed to the next step.
+   You might get a warning similar to the one below because the `build` folder has not yet been created. You may safely ignore it.
 
-    ```WARNINGS:
-    ?: (staticfiles.W004) The directory '/Users/faruq/Desktop/test/React-Django/project1/frontend/build/static' in the STATICFILES_DIRS setting does not exist.
-    ```
+   ```
+   ?: (staticfiles.W004) The directory '<some_path>/aniframe-language/browser/aniframe/frontend/build/static' in the STATICFILES_DIRS setting does not exist.
+   ```
 
-1. Migrate changes:
-    ```
-    python manage.py migrate
-    ```
-1. Navigate to the front end folder:
-    ```
-    cd frontend
-    ```
-1. Install npm:
-    ```
-    npm install
-    ```
-1. Build the files:
-    ```
-    npm run build
-    ```
-1. Navigate back to the root directory:
-    ```
-    cd ..
-    ```
-1. Run the following command to run the code in development mode:
-    ```
-    python manage.py runserver
-    ```
-1. Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) to view the application in the browser.
+1. Migrate the changes by running:
+   
+   ```
+   python manage.py migrate
+   ```
+   
+1. Install the remaining dependencies by running: 
 
----
+   ```
+   cd frontend
+   npm install
+   npm run build
+   ```
+
+1. Start the local server by running:
+
+   ```
+   cd ../
+   python manage.py runserver
+   ```
+
+1. Visit [http://localhost:8000](http://localhost:8000) on your browser.
 
 ### C. Enabling CORS
 
