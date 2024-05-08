@@ -141,13 +141,11 @@ AniFrame's browser-based environment embeds a [modified version](https://github.
 
    _If no output is displayed, check if you properly enabled CORS (see instructions [here](https://github.com/memgonzales/aniframe-language/blob/main/browser/README.md#enabling-cross-origin-resource-sharing-cors))._
 
-1. Once you are finished using AniFrame:
-   
-   - Deactivate the AniFrame virtual environment by running:
+1. Once you are finished using AniFrame, deactivate the AniFrame virtual environment by running:
      
-     ```
-     conda deactivate
-     ```
+   ```
+   conda deactivate
+   ```
 
 ## For Contributors: Making Changes to AniFrame's Browser-Based Environment
 
