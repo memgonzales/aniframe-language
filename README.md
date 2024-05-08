@@ -149,7 +149,7 @@ _↑ Return to [Table of Contents](https://github.com/memgonzales/aniframe-langu
 
    The visual output of your code will be displayed on the player at the right side of the webpage.
 
-   _If no output is displayed, check if you properly enabled CORS (see instructions [here](https://github.com/memgonzales/aniframe-language/blob/main/browser/README.md#enabling-cross-origin-resource-sharing-cors)]._
+   _If no output is displayed, check if you properly enabled CORS (see instructions [here](https://github.com/memgonzales/aniframe-language/blob/main/browser/README.md#enabling-cross-origin-resource-sharing-cors))._
    
    ![aniframe_kirby](https://github.com/memgonzales/aniframe-language/assets/44253974/bdcf7a0b-b5fa-40ad-a4f6-7492b7e922f4)
 
