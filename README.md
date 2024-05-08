@@ -169,7 +169,7 @@ _↑ Return to [Table of Contents](https://github.com/memgonzales/aniframe-langu
    
 ### If you installed AniFrame via Conda
 
-Refer to the instructions [here]().
+Refer to the instructions [here](https://github.com/memgonzales/aniframe-language/blob/main/browser/README.md#running-aniframe-code-via-conda).
 
 _↑ Return to [Table of Contents](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#table-of-contents)._
 
