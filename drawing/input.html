@@ -21,7 +21,7 @@
         <br />
 
         <p>Getting input from a file involves two steps:</p>
-        <ol>
+        <ol class="px-5">
             <li>
                 Create a text file. Each input should be placed in a separate
                 line.
@@ -36,8 +36,8 @@
 
         <br />
         <p>Example:</p>
-        <b>input-file.txt:</b>
-        <div class="code">
+        <b>Input File (<span class="code">input-file.txt</span>)</b>
+        <div class="code mt-3">
             <pre>
 250
 123
@@ -46,15 +46,25 @@
             >
         </div>
         <br />
-        <b>Main Code:</b>
-        <div class="code">
-            <pre>
+        <div class="row">
+            <div class="col-sm-6">
+                <b>Main Code</b>
+                <div class="code mt-3" style="width: 100%">
+                    <pre>
 x = get_input("/path-to-txt-file/input-file.txt")
-info(x)
+info(x)</pre
+                    >
+                </div>
+            </div>
 
-<b>Output:</b>
+            <div class="col-sm-6">
+                <b>Output</b>
+                <div class="code mt-3" style="width: 100%">
+                    <pre>
 [{'value': 250, 'data_type': 'Number'}, {'value': 123, 'data_type': 'Number'}, {'value': 467, 'data_type': 'Number'}, {'value': 50, 'data_type': 'Number'}]</pre
-            >
+                    >
+                </div>
+            </div>
         </div>
     </body>
 </html>
