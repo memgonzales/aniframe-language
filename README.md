@@ -13,7 +13,7 @@ AniFrame is an open-source domain-specific language for two-dimensional drawing 
 **This work was accepted for full paper presentation at the 24<sup>th</sup> Philippine Computing Science Congress ([PCSC 2024](https://pcsc.dlsu.edu.ph/)), held in Laguna, Philippines.**
 
 -   Our preprint can be accessed via this [link](https://arxiv.org/abs/2404.10250).
--   Our PCSC 2024 can be accessed via this [link]().
+-   Our PCSC 2024 can be accessed via this [link](https://docs.google.com/presentation/d/1BxfY10Y1c0W7ZZyjA1W7g9RBYEo3isJy1kp8OmQxiZw/edit?usp=sharing).
 
 If you find AniFrame useful, please consider citing:
 
