@@ -108,7 +108,7 @@ The simplest way to install AniFrame is via Docker. This installation bundles An
 
 1. The instructions above cover the installation of AniFrame's interpreter and part of its browser-based environment.
    
-   Follow the instructions [here](https://github.com/memgonzales/aniframe-language/blob/main/browser/README.md) to finish configuring the browser-based environment.
+   Follow the instructions [here](https://github.com/memgonzales/aniframe-language/tree/main/browser#installing-aniframes-browser-based-environment-via-conda) to finish configuring the browser-based environment.
 </details>
 
 _↑ Return to [Table of Contents](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#table-of-contents)._
