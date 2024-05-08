@@ -126,7 +126,7 @@ _↑ Return to [Table of Contents](https://github.com/memgonzales/aniframe-langu
      
      Doing so should change the working directory to `root@<conainer_id>:/app/browser/p5-widget/p5.js-widget`.
 
-   - Enable cross-origin resource sharing (CORS) following the instructions [here]().
+   - Enable cross-origin resource sharing (CORS) following the instructions [here](https://github.com/memgonzales/aniframe-language/blob/main/browser/README.md#enabling-cross-origin-resource-sharing-cors).
      
 1. Visit [http://localhost:8000](http://localhost:8000) on your browser.
    
@@ -149,7 +149,7 @@ _↑ Return to [Table of Contents](https://github.com/memgonzales/aniframe-langu
 
    The visual output of your code will be displayed on the player at the right side of the webpage.
 
-   _If no output is displayed, check if you properly enabled CORS._
+   _If no output is displayed, check if you properly enabled CORS (see instructions [here](https://github.com/memgonzales/aniframe-language/blob/main/browser/README.md#enabling-cross-origin-resource-sharing-cors)]._
    
    ![aniframe_kirby](https://github.com/memgonzales/aniframe-language/assets/44253974/bdcf7a0b-b5fa-40ad-a4f6-7492b7e922f4)
 
