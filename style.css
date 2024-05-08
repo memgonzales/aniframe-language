@@ -1,5 +1,7 @@
 body {
-    margin: 2em;
+    margin: 5em;
+    margin-top: 3em;
+    margin-bottom: 3em;
 }
 
 .code {
@@ -22,4 +24,8 @@ ol.bold li::marker {
 
 pre {
     margin-bottom: 0;
+}
+
+table {
+    width: 75% !important;
 }
