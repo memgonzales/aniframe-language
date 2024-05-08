@@ -101,7 +101,7 @@ The simplest way to install AniFrame is via Docker. This installation bundles An
    conda env create -f environment.yaml
    ```
 
-1. Activate this environment by running:
+1. Activate this virtual environment by running:
    ```
    conda activate aniframe
    ```
