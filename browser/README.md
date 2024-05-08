@@ -32,7 +32,7 @@ The instructions below assume that you opt to install via Conda and have run the
 
 ### Configuring the Django Server
 
-1. Open another terminal in the root of the cloned repository and activate the AniFrame environment in this terminal as well:
+1. Open another terminal in the root of the cloned repository and activate the AniFrame virtual environment on this terminal as well:
    ```
    conda activate aniframe
    ```
@@ -73,17 +73,17 @@ The instructions below assume that you opt to install via Conda and have run the
 
 1. Visit [http://localhost:8000](http://localhost:8000) on your browser.
 
-### C. Enabling CORS
+## Enabling Cross-Origin Resource Sharing (CORS)
 
-Cross-origin resource sharing (CORS) is needed for AniFrame to read user-input files, but it is disabled on browsers by default. This can be rectified with a browser extension.
+AniFrame uses a modified version of the p5.js widget in order to display graphics and animation sequences. However, since the browser-based environment is served over port 8000 while the p5.js widget is served over port 8080, **cross-origin resource sharing (CORS) should be enabled**. By default, it is disabled on most browsers, but an easy workaround is to use a CORS-enabling browser extension.
 
-1. Install a CORS-enabling extension such as [this one for Google Chrome](https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf).
+1. Install a CORS-enabling extension such as [this one](https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf) for Google Chrome.
 
 1. Activate the extension for the AniFrame webpage.
 
 ---
 
-### D. Viewing New Changes
+## For Contributors: Making Changes to AniFrame's Browser-Based Environment
 
 New changes made to the model or frontend of AniFrame are only reflected upon restarting the browser.
 
@@ -110,23 +110,4 @@ New changes made to the model or frontend of AniFrame are only reflected upon re
     ```
 1. Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) to view the new changes in the browser.
 
-## Quick Start
 
-1. Run the p5.js widget:
-    ```
-    cd browser/p5-widget/p5.js-widget
-    npm start
-    ```
-1. In a separate terminal, activate the virtual environment:
-    ```
-    cd browser
-    env\Scripts\activate.bat
-    ```
-1. Run the code in development mode:
-    ```
-    cd aniframe
-    python manage.py runserver
-    ```
-1. Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) to view the application in the browser.
-
-1. Remember to activate the CORS-enabling extension for the AniFrame webpage before testing the application.
