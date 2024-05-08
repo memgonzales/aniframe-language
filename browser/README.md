@@ -88,6 +88,12 @@ AniFrame's browser-based environment embeds a [modified version](https://github.
   
      <img src = "https://github.com/memgonzales/aniframe-language/assets/44253974/499339ae-27e7-421d-aadd-ed7183ac9e62" width = "50%">
 
+## Running AniFrame Code via Conda
+
+**💡 We highly recommend that you [install](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#option-1-using-docker-recommended) and [run](https://github.com/memgonzales/aniframe-language?tab=readme-ov-file#if-you-installed-aniframe-via-docker) AniFrame via Docker instead.**
+
+
+
 ## For Contributors: Making Changes to AniFrame's Browser-Based Environment
 
 New changes made to the model or frontend of AniFrame are only reflected upon restarting the browser.
