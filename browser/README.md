@@ -86,7 +86,7 @@ AniFrame's browser-based environment embeds a [modified version](https://github.
 
    - Make sure to toggle the extension on when you are using AniFrame at [http://localhost:8000](http://localhost:8000).
   
-     <img src = "https://github.com/memgonzales/aniframe-language/assets/44253974/499339ae-27e7-421d-aadd-ed7183ac9e62" width = "50%">
+     <img src = "https://github.com/memgonzales/aniframe-language/assets/44253974/1fa2a475-bbad-42e1-8d9f-336c113f52cc" width = "50%">
 
 ## Running AniFrame Code via Conda
 
