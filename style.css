@@ -26,6 +26,6 @@ pre {
     margin-bottom: 0;
 }
 
-table {
-    width: 75% !important;
+ol {
+    padding-left: 3.5em;
 }
