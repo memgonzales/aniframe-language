@@ -75,7 +75,7 @@ The instructions below assume that you opt to install via Conda and have run the
 
 ## Enabling Cross-Origin Resource Sharing (CORS)
 
-AniFrame's browser-based environment embeds a modified version of the p5.js widget in order to display graphics and animation sequences. However, since the browser-based environment is served over port 8000 while the p5.js widget is served over port 8080, **cross-origin resource sharing (CORS) should be enabled**. By default, it is disabled on most browsers, but you can use a CORS-enabling browser extension to enable it for AniFrame.
+AniFrame's browser-based environment embeds a [modified version](https://github.com/memgonzales/p5.js-widget) of the [p5.js widget](https://toolness.github.io/p5.js-widget) in order to display graphics and animation sequences. However, since the browser-based environment is served over port 8000 while the p5.js widget is served over port 8080, **cross-origin resource sharing (CORS) should be enabled**. By default, it is disabled on most browsers, but you can use a CORS-enabling browser extension to enable it for AniFrame.
 
 1. Install a CORS-enabling extension like [this one](https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf) for Google Chrome.
 
