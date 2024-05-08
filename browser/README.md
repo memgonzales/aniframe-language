@@ -64,7 +64,7 @@ The instructions below assume that you opt to install via Conda and have run the
    npm run build
    ```
 
-1. Start the local server by running:
+1. Start the Django server by running:
 
    ```
    cd ../
@@ -149,29 +149,38 @@ AniFrame's browser-based environment embeds a [modified version](https://github.
 
 ## For Contributors: Making Changes to AniFrame's Browser-Based Environment
 
-New changes made to the model or frontend of AniFrame are only reflected upon restarting the browser.
+Changes made to the model or front-end of AniFrame's browser-based environment are reflected only after restarting the Django server. To view these changes:
 
-1. Navigate to the root directory:
+1. Launch a terminal from the root of the cloned repository. Activate the AniFrame virtual environment on this terminal and start the local server for the p5.js widget by running:
 
-    ```
-    cd ..
-    ```
+   ```
+   conda activate aniframe
+   cd browser/p5-widget/p5.js-widget
+   npm start 
+   ```
+     
+1. Launch another terminal from the root of the cloned repository. Activate the AniFrame virtual environment on this terminal as well and start the Django server by running:
+     
+   ```
+   conda activate aniframe
+   cd browser/aniframe/frontend
+   npm run build
+   ```
+   
+1. Create the Django migration files and migrate the changes by running:
 
-1. Run the following commands upon updating the frontend:
-    ```
-    cd frontend
-    npm run build
-    cd ..
-    ```
-1. Run the following commands upon updating the model:
-    ```
-    python manage.py makemigrations
-    python manage.py migrate
-    ```
-1. Run the code in development mode:
-    ```
-    python manage.py runserver
-    ```
-1. Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) to view the new changes in the browser.
+   ```
+   cd ../
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
+   
+1. Start the Django server by running:
+   
+   ```
+   python manage.py runserver
+   ```
+   
+1. Open [http://localhost:8000](http://localhost:8000) to view the changes on the browser.
 
 
