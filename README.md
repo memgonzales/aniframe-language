@@ -29,7 +29,7 @@ If you find AniFrame useful, please consider citing:
   editor       = {Azcarraga, Judith J. AND Ong, Ethel Chua Joy AND Gonzales, Mark Edward M.},
   publisher    = {Computing Society of the Philippines},
   organization = {Computing Society of the Philippines},
-  pages        = {46--53},
+  pages        = {46--53}
 }
 ```
 
