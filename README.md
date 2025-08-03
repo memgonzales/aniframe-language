@@ -13,6 +13,7 @@ AniFrame is an open-source domain-specific language for two-dimensional drawing 
 **This work was awarded Best Student Paper at the 24<sup>th</sup> Philippine Computing Science Congress ([PCSC 2024](https://pcsc.dlsu.edu.ph/)), held in Laguna, Philippines.**
 
 -   Our preprint can be accessed via this [link](https://arxiv.org/abs/2404.10250).
+-   The final version of our paper (version of record) can be accessed via this [link](https://pcsc.dlsu.edu.ph/proceedings/main-conference/19.pdf).
 -   Our PCSC 2024 slides can be accessed via this [link](https://docs.google.com/presentation/d/1BxfY10Y1c0W7ZZyjA1W7g9RBYEo3isJy1kp8OmQxiZw/edit?usp=sharing).
 
 If you find AniFrame useful, please consider citing:
@@ -21,10 +22,14 @@ If you find AniFrame useful, please consider citing:
 @inproceedings{aniframe2024,
   title        = {AniFrame: A Programming Language for 2D Drawing and Frame-Based Animation},
   author       = {Gonzales, Mark Edward M. AND Ibrahim, Hans Oswald A. AND Ong, Elyssia Barrie H. AND Fernandez, Ryan Austin},
-  year         = 2024,
+  year         = {2024},
   month        = {May},
-  booktitle    = {24th Philippine Computing Science Congress (PCSC 2024)},
-  publisher    = {Computing Society of the Philippines}
+  booktitle    = {Proceedings of the 24th Philippine Computing Science Congress},
+  volume       = {Volume I: Main Conference},
+  editor       = {Azcarraga, Judith J. AND Ong, Ethel Chua Joy AND Gonzales, Mark Edward M.},
+  publisher    = {Computing Society of the Philippines},
+  organization = {Computing Society of the Philippines},
+  pages        = {46--53},
 }
 ```
 
